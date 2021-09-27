@@ -20,17 +20,17 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <div class="layui-header"  th:style="${' background-color:' + sys.sysColor + ' !important;'}">
             <div class="layui-logo"><img th:src='${sys.sysLogo}' class="layui-nav-img"/> <span th:text="${sys.sysName}"></span></div>
-            <ul class="layui-nav layui-layout-left">
-                <!-- 动态读取加载用户快捷菜单 -->
-                <li class="layui-nav-item" th:each="menu,iterStat : ${shortcutMenuList}">
-                    <a th:text="${menu.shortcutMenuName}"
-                       th:data-url="${menu.shortcutMenuPath.indexOf('http') == -1 ? #request.getContextPath() + menu.shortcutMenuPath : menu.shortcutMenuPath}"
-                       th:data-id="${menu.shortcutMenuId}" class="huanzi-menu" href="javascript:;">XXX菜单</a>
-                    <dl class="layui-nav-child" th:if="${#lists.size(menu.children)} > 0">
-                        <th:block th:include="common/head::shortcutMenu(${menu.children})"></th:block>
-                    </dl>
-                </li>
-            </ul>
+<!--            <ul class="layui-nav layui-layout-left">-->
+<!--                &lt;!&ndash; 动态读取加载用户快捷菜单 &ndash;&gt;-->
+<!--                <li class="layui-nav-item" th:each="menu,iterStat : ${shortcutMenuList}">-->
+<!--                    <a th:text="${menu.shortcutMenuName}"-->
+<!--                       th:data-url="${menu.shortcutMenuPath.indexOf('http') == -1 ? #request.getContextPath() + menu.shortcutMenuPath : menu.shortcutMenuPath}"-->
+<!--                       th:data-id="${menu.shortcutMenuId}" class="huanzi-menu" href="javascript:;">XXX菜单</a>-->
+<!--                    <dl class="layui-nav-child" th:if="${#lists.size(menu.children)} > 0">-->
+<!--                        <th:block th:include="common/head::shortcutMenu(${menu.children})"></th:block>-->
+<!--                    </dl>-->
+<!--                </li>-->
+<!--            </ul>-->
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
                     <a href="javascript:;">
@@ -40,7 +40,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a class="huanzi-menu" th:data-url="${#request.getContextPath()} + '/user/userinfo'" data-id="userinfo" href="javascript:;">基本资料</a></dd>
-                        <dd><a class="huanzi-menu" th:data-url="${#request.getContextPath()} + '/user/shortcMenu'" data-id="shortcMenu" href="javascript:;">个性菜单</a></dd>
+<!--                        <dd><a class="huanzi-menu" th:data-url="${#request.getContextPath()} + '/user/shortcMenu'" data-id="shortcMenu" href="javascript:;">个性菜单</a></dd>-->
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a th:href="@{/logout}">退出</a></li>
