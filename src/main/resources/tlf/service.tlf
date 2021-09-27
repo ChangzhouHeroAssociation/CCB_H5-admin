@@ -1,14 +1,12 @@
-package cn.huanzi.qch.baseadmin.sys.${entityToLowerCase}.service;
+package ${filePackage}.${entityToLowerCase}.service;
 
 import cn.huanzi.qch.baseadmin.common.service.*;
-import cn.huanzi.qch.baseadmin.sys.${entityToLowerCase}.pojo.${entity};
-import cn.huanzi.qch.baseadmin.sys.${entityToLowerCase}.vo.${entity}Vo;
+import ${filePackage}.${entityToLowerCase}.pojo.${entity};
+import ${filePackage}.${entityToLowerCase}.vo.${entity}Vo;
 
 /**
  * ${tableComment} Service
  *
- * ${author}
- * ${date}
  */
 public interface ${entity}Service extends CommonService<${entity}Vo, ${entity}, ${priDataType}> {
 }

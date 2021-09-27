@@ -1,4 +1,4 @@
-package cn.huanzi.qch.baseadmin.sys.${entityToLowerCase}.pojo;
+package ${filePackage}.${entityToLowerCase}.pojo;
 
 import lombok.Data;
 import javax.persistence.*;
@@ -8,8 +8,6 @@ import java.util.Date;
 /**
  * ${tableComment} 实体类
  *
- * ${author}
- * ${date}
  */
 @Entity
 @Table(name = "${tableName}")

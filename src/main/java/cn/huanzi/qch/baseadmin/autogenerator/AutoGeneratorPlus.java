@@ -35,7 +35,9 @@ public class AutoGeneratorPlus {
      */
     private String tlfPath = System.getProperty("user.dir") + "\\src\\main\\resources\\tlf\\";//模板文件位置
     private String basePackage = "cn\\huanzi\\qch\\baseadmin\\";//根包位置
-    private String filePackage = basePackage + "sys\\";//文件所在包位置
+    private String filePackage = basePackage + "ccb\\";//文件所在包位置
+    private String packageName = filePackage.replaceAll("\\\\", ".").substring(0, filePackage.length() - 1);
+
 
     /**
      * 构造参数，设置表名
@@ -90,6 +92,11 @@ public class AutoGeneratorPlus {
                 String line = String.valueOf(o);
 
                 /* 设置值 */
+                //${filePackage} 包名，例如com.test.ccb
+                if(line.contains("${filePackage}")){
+                    line = line.replaceAll("\\$\\{filePackage}", packageName);
+                }
+
 
                 //${tableName} 表名称，例如：tb_user
                 if(line.contains("${tableName}")){
@@ -265,7 +272,7 @@ public class AutoGeneratorPlus {
          */
         private static String typeMapping(String dbType) {
             String javaType;
-            if ("int|integer".contains(dbType)) {
+            if ("int|integer|bigint|tinyint".contains(dbType)) {
                 javaType = "Integer";
             } else if ("float|double|decimal|real".contains(dbType)) {
                 javaType = "Double";
@@ -494,6 +501,7 @@ public class AutoGeneratorPlus {
      */
     private String create() {
         System.out.println("生成路径位置：" + filePath);
+        System.out.println("文件所在包的位置：" + filePackage);
 
         //获取表信息
         List<TableInfo> tableInfo = getTableInfo();
@@ -503,8 +511,8 @@ public class AutoGeneratorPlus {
 
         //自定义参数
         HashMap<String, String> customParameter = new HashMap<>(2);
-        customParameter.put("author","作者：Auto Generator By 'huanzi-qch'");
-        customParameter.put("date","生成日期："+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+//        customParameter.put("author","作者：Auto Generator By 'huanzi-qch'");
+//        customParameter.put("date","生成日期："+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 
         //读取模板、生成代码
         writer(tlfPath+"controller.tlf",
@@ -529,12 +537,13 @@ public class AutoGeneratorPlus {
         return tableName + " 后台代码生成完毕！";
     }
 
-//    public static void main(String[] args) {
-////        String[] tables = {"sys_user","sys_menu","sys_authority","sys_user_menu","sys_user_authority","sys_shortcut_menu","sys_setting"};
-//        String[] tables = {"tb_user"};
-//        for (String table : tables) {
-//            String msg = new AutoGeneratorPlus(table).create();
-//            System.out.println(msg);
-//        }
-//    }
+    public static void main(String[] args) {
+//        String[] tables = {"sys_user","sys_menu","sys_authority","sys_user_menu","sys_user_authority","sys_shortcut_menu","sys_setting"};
+        String[] tables = {"advertisement", "answer", "banner", "channel", "log", "question", "teacher", "video", "video_teacher"};
+        for (String table : tables) {
+            String msg = new AutoGeneratorPlus(table).create();
+
+            System.out.println(msg);
+        }
+    }
 }
