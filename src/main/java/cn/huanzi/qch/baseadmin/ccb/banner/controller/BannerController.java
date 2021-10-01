@@ -80,9 +80,14 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
     @PostMapping("delete")
     public Result deleteById(Integer id) {
         if (id == null) {
-            return Result.of(null, true, 400, "删除失败");
+            return Result.of(null, true, 400, "未输入id");
         }
-        bannerService.deleteById(id);
+        try {
+            bannerService.deleteById(id);
+        } catch (Exception e) {
+            return Result.of(null, true, 400, "没有该记录");
+        }
+
         return Result.of(null, true, "删除成功");
     }
 
