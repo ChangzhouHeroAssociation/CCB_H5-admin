@@ -1,5 +1,6 @@
 package cn.huanzi.qch.baseadmin.common.pojo;
 
+import cn.huanzi.qch.baseadmin.annotation.In;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,11 +18,14 @@ public class Result<T> implements Serializable {
     /**
      * 通信状态
      */
-    private boolean flag = true;
+    private boolean status = true;
     /**
      * 通信描述
      */
     private String msg = "操作成功";
+
+    // 状态码
+    private Integer code = 200;
 
     /**
      * 通过静态方法获取实例
@@ -37,6 +41,9 @@ public class Result<T> implements Serializable {
     public static <T> Result<T> of(T data, boolean flag, String msg) {
         return new Result<>(data, flag, msg);
     }
+    public static <T> Result<T> of(T data, boolean flag, Integer code, String msg) {
+        return new Result<>(data, flag, code, msg);
+    }
 
     @Deprecated
     public Result() {
@@ -47,14 +54,21 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
-    private Result(T data, boolean flag) {
+    private Result(T data, boolean status) {
         this.data = data;
-        this.flag = flag;
+        this.status = status;
     }
 
-    private Result(T data, boolean flag, String msg) {
+    private Result(T data, boolean status, String msg) {
         this.data = data;
-        this.flag = flag;
+        this.status = status;
+        this.msg = msg;
+    }
+
+    private Result(T data, boolean status, Integer code, String msg) {
+        this.data = data;
+        this.status = status;
+        this.code = code;
         this.msg = msg;
     }
 
