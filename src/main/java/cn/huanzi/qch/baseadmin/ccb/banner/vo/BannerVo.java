@@ -19,7 +19,7 @@ public class BannerVo extends PageCondition implements Serializable {
 
     private String url;//url
 
-    private Integer order;//倒序 数据校验最大值100 最小0
+    private Integer weight;//倒序 数据校验最大值100 最小0
 
     private Date createTime;//创建时间
 

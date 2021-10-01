@@ -13,6 +13,8 @@ spring:
     active: ${BASE_ADMIN:dev} #选择配置分支，先读取系统环境变量，如果没有则默认值为 dev
   application:
     name: base-admin
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path.img},file:${web.upload-path.video}
 
   #修改thymeleaf访问根路径
   thymeleaf:
@@ -42,9 +44,9 @@ spring:
 
   #数据库配置
   datasource:
-    url: jdbc:mysql://39.96.56.19:3306/ccb?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/ccb?serverTimezone=GMT%2B8&characterEncoding=utf-8
     username: root
-    password: Huike123456
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
 #是否需要输入验证码
@@ -58,9 +60,9 @@ spring:
 
   #数据库配置
   datasource:
-    url: jdbc:mysql://39.96.56.19:3306/ccb?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/ccb?serverTimezone=GMT%2B8&characterEncoding=utf-8
     username: root
-    password: Huike123456
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
 #是否需要输入验证码
