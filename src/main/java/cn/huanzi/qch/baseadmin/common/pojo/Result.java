@@ -22,7 +22,7 @@ public class Result<T> implements Serializable {
     /**
      * 通信描述
      */
-    private String msg = "操作成功";
+    private String msg = "success";
 
     // 状态码
     private Integer code = 200;

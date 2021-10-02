@@ -17,7 +17,7 @@ public interface BannerService extends CommonService<BannerVo, Banner, Integer> 
 
     Page<Banner> pagination(Integer page, Integer limit);
 
-    Banner findOneById(Integer id);
+    Banner getById(Integer id);
 
     Banner create(Banner banner);
 

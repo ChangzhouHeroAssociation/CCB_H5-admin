@@ -54,7 +54,7 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
 
     @GetMapping("get")
     public Result<Banner> getOne(Integer id) {
-        Banner banner = bannerService.findOneById(id);
+        Banner banner = bannerService.getById(id);
         if (banner == null) {
             return Result.of(banner, true, 204, "没有查找到内容");
         }

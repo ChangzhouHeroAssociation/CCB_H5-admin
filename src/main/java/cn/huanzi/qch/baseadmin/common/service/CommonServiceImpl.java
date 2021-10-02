@@ -147,7 +147,7 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
     }
 
     @Override
-    public Result<T> delete(T id) {
+    public Result delete(T id) {
         commonRepository.deleteById(id);
         return Result.of(id);
     }

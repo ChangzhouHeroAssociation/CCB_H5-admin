@@ -1,5 +1,6 @@
 package cn.huanzi.qch.baseadmin.ccb.banner.service;
 
+import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
 import cn.huanzi.qch.baseadmin.common.service.CommonServiceImpl;
 import cn.huanzi.qch.baseadmin.ccb.banner.pojo.Banner;
 import cn.huanzi.qch.baseadmin.ccb.banner.repository.BannerRepository;
@@ -36,12 +37,11 @@ public class BannerServiceImpl extends CommonServiceImpl<BannerVo, Banner, Integ
     @Override
     public Page<Banner> pagination(Integer page, Integer limit) {
         Page<Banner> bannerPage = bannerRepository.findAll(PageRequest.of(page, limit));
-        // CopyUtil.java 将实体类与vo类相互转换。
         return bannerPage;
     }
 
     @Override
-    public Banner findOneById(Integer id) {
+    public Banner getById(Integer id) {
         Optional<Banner> banner = bannerRepository.findById(id);
         return banner.get();
     }
@@ -57,6 +57,10 @@ public class BannerServiceImpl extends CommonServiceImpl<BannerVo, Banner, Integ
     @Override
     @Transactional
     public Banner update(Banner banner) {
+        // 设置创建时间
+        Banner origin = getById(banner.getId());
+        banner.setCreateTime(origin.getCreateTime());
+        // 设置更新时间
         banner.setUpdateTime(new Date());
         bannerRepository.save(banner);
         return banner;
