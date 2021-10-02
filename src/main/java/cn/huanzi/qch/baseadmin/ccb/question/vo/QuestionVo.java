@@ -27,7 +27,7 @@ public class QuestionVo extends PageCondition implements Serializable {
 
     private Date updateTime;//更新时间
 
-    private Integer order;//倒序 数据校验最大值100 最小0
+    private Integer weight;//倒序 数据校验最大值100 最小0
 
   
 }

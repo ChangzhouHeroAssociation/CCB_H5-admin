@@ -23,7 +23,7 @@ public class Channel implements Serializable {
 
     private String icon;//首页icon的url
 
-    private String text;//内容文字介绍
+    private String content;//内容文字介绍
 
     private String image;//image的url
 
