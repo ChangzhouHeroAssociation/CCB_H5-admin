@@ -1,4 +1,4 @@
-package cn.huanzi.qch.baseadmin.ccb.upload;
+package cn.huanzi.qch.baseadmin.ccb.upload.controller;
 
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import cn.huanzi.qch.baseadmin.util.UploadUtil;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.awt.font.ImageGraphicAttribute;
-import java.awt.geom.RectangularShape;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +32,7 @@ public class UploadController {
     @PostMapping("image")
     @ResponseBody
     public Result image(@RequestParam("img") MultipartFile file, HttpServletRequest request) throws IOException {
+
         String image = UploadUtil.uploadImage(file);
 
         Result<Map> result;
@@ -44,7 +43,7 @@ public class UploadController {
             result = Result.of(data, true, 200, "success");
             return result;
         } else {
-            result = Result.of(null, false, 400, "failed");
+            result = Result.of(null, true, 400, "failed");
         }
         return result;
     }

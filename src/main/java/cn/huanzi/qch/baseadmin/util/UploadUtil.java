@@ -1,9 +1,11 @@
 package cn.huanzi.qch.baseadmin.util;
 
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.IIOImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,10 +20,6 @@ import java.util.Date;
 
 public class UploadUtil {
 
-    // 图片上传路径
-    private static final String IMAGE_BASE_PATH = "E:\\Project\\java\\CCB_H5-admin\\target\\classes\\static\\upload\\img\\";
-    // 视频上传路径
-    private static final String VIDEO_BASE_PATH = "E:\\Project\\java\\CCB_H5-admin\\target\\classes\\static\\upload\\video\\";
     // 图片访问路径
     private static final String IMAGE_SERVER_PATH = "http://localhost:8081/upload/img/";
     // 视频访问路径
@@ -31,13 +29,23 @@ public class UploadUtil {
      * 上传图片
      * 返回图片的访问路径
      */
-    public static String uploadImage(MultipartFile file) {
+    public static String uploadImage(MultipartFile file) throws FileNotFoundException {
+        //获取根目录
+        File rootPath = new File(ResourceUtils.getURL("classpath:").getPath());
+        if (!rootPath.exists()){
+            rootPath = new File("");
+        }
+        File image_base_path = new File(rootPath.getAbsolutePath(),"static/upload/img/");
+        if (!image_base_path.exists()){
+            image_base_path.mkdirs();
+        }
+
         // 图片名字
         String fileName = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
         // 扩展名
         String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         // 创建图片对象
-        File image = new File(IMAGE_BASE_PATH + fileName + suffix);
+        File image = new File(image_base_path, fileName + suffix);
         // 判断路径是否存在，不存在则创建
         if (!image.getParentFile().exists()) {
             image.getParentFile().mkdir();
