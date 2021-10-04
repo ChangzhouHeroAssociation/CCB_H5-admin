@@ -6,19 +6,10 @@ import cn.huanzi.qch.baseadmin.ccb.banner.service.BannerService;
 import cn.huanzi.qch.baseadmin.ccb.banner.vo.BannerVo;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *  Controller
@@ -41,15 +32,17 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
 
     @GetMapping("page")
     @ResponseBody
-    public Page<Banner> paging(Integer page, Integer limit) {
+    public Result paging(Integer page, Integer limit) {
         if (page == null || page < 0) {
             page = 0;
+        } else {
+            page--;
         }
         if (limit == null) {
             limit = 10;
         }
         Page<Banner> bannerPage = bannerService.pagination(page, limit);
-        return bannerPage;
+        return Result.of(bannerPage);
     }
 
     @GetMapping("get")
