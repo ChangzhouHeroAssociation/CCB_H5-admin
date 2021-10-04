@@ -63,7 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/getVerifyCodeImage",
             "/error/*",
             "/openApi/*",
-            "/upload/**"
+            "/upload/**",
+            "/ccb/**"
     };
 
     @Override

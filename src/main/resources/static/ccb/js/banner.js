@@ -81,7 +81,6 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             }
         }
         , weight: function (value) {
-            console.log(value);
             if (isNaN(value)) {
                 return '请输入数字';
             }
@@ -106,6 +105,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         let postUrl;
         let formData = $("#bannerForm").serializeObject();
         formData.url = $("#uImage").attr("src");
+        console.log("img2 -> " + formData.url);
         if (bannerId == '') {
             postUrl = "/ccb/banner/create";
         } else {
@@ -127,7 +127,10 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         elem: '#uploadImage'
         , url: '/upload/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
         , method: 'POST'
+        // 限制格式
+        , ext: 'jpg|png|gif|bmp|jpeg'
         , before: function (obj) {
+
             //预读本地文件示例，不支持ie8
             obj.preview(function (index, file, result) {
                 $('#uImage').attr('src', result); //图片链接（base64）
@@ -140,7 +143,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 return layer.msg('上传失败');
             }
             //上传成功的一些操作
-            $('#uImage').attr('src', res.data.src);
+            $('#uImage').attr('src', res.data.url);
             $('#demoText').html(''); //置空上传失败的状态
         }
         , error: function () {
