@@ -34,15 +34,15 @@ public class AdvertisementController extends CommonController<AdvertisementVo, A
     }
 
     @GetMapping("page")
-    public Page paging(Integer page, Integer limit) {
+    public Result paging(Integer page, Integer limit) {
         if (page == null || page < 0) {
             page = 0;
         }
         if (limit == null || limit < 1) {
             limit = 10;
         }
-        Page pagination = advertisementService.pagination(page, limit);
-        return pagination;
+        Page pagination = advertisementService.pagination(page - 1, limit);
+        return Result.of(pagination);
     }
 
     @GetMapping("get")

@@ -7,27 +7,27 @@
     <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
     <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
     <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
-    <script th:src="@{/ccb/js/banner.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/js/advertisement.js}" charset="utf-8"></script>
 </head>
-<body style="background: #EFEFEF">
+<body>
 <div class="layui-row layui-col-space15">
     <!-- 分页表格 -->
     <div class="layui-col-md7">
         <div class="layui-card">
-            <div class="layui-card-header">轮播图列表</div>
+            <div class="layui-card-header">广告列表</div>
             <div class="layui-card-body">
-                <!--轮播图表-->
-                <table class="layui-hide" id="bannerTable"  lay-filter="banner">
+                <!--广告列表-->
+                <table class="layui-hide" id="adTable"  lay-filter="ad">
 
                 </table>
                 <!-- 上方工具栏 -->
-                <script type="text/html" id="bannerTableToolbarDemo">
+                <script type="text/html" id="adTableToolbarDemo">
                     <div class="layui-btn-container">
-                        <button id="createBanner" class="layui-btn layui-btn-sm" lay-event="addData">新增<i class="layui-icon layui-icon-add-1"></i></button>
+                        <button id="createAd" class="layui-btn layui-btn-sm" lay-event="addData">新增<i class="layui-icon layui-icon-add-1"></i></button>
                     </div>
                 </script>
                 <!--操作按钮-->
-                <script type="text/html" id="bannerBarDemo">
+                <script type="text/html" id="adBarDemo">
                     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 </script>
@@ -39,38 +39,32 @@
         <div class="layui-card">
             <div class="layui-card-header">添加或修改</div>
             <div class="layui-card-body">
-                <form class="layui-form" id="bannerForm" lay-filter="example">
+                <form class="layui-form" id="adForm" lay-filter="example">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">轮播图id</label>
+                        <label class="layui-form-label">广告id</label>
                         <div class="layui-input-block">
-                            <input type="text" name="id" autocomplete="off" placeholder="轮播图id（不允许用户输入）" class="layui-input" readonly="readonly">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">轮播图名字</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="bannerName" placeholder="请输入轮播图名" lay-verify="name" autocomplete="off" class="layui-input">
+                            <input type="text" name="id" autocomplete="off" placeholder="广告id（不允许用户输入）" class="layui-input" readonly="readonly">
                         </div>
                     </div>
 
-                    <!-- 图片上传 -->
+                    <!-- 广告图片上传 -->
                     <div class="layui-form-item">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
                             <div class="layui-upload">
-                                <button type="button" class="layui-btn" id="uploadImage">上传轮播图</button>
+                                <button type="button" class="layui-btn" id="uploadAdImage">上传广告图片</button>
                                 <div class="layui-upload-list">
-                                    <img name="url" value="" class="layui-upload-img" id="uImage" style="max-height: 200px">
-                                    <p id="demoText"></p>
+                                    <img name="imageUrl" class="layui-upload-img" id="adImage" style="max-height: 200px">
+                                    <p id="imageText"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">权值</label>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">目标链接</label>
                         <div class="layui-input-block">
-                            <input type="text" name="weight" lay-verify="weight" autocomplete="off" placeholder="0 - 100" class="layui-input">
+                            <textarea name="targetUrl" placeholder="请输入目标链接" class="layui-textarea" lay-verify="url"></textarea>
                         </div>
                     </div>
 

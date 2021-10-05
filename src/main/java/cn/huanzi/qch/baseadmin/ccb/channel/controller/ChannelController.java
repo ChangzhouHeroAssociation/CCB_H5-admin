@@ -34,15 +34,15 @@ public class ChannelController extends CommonController<ChannelVo, Channel, Inte
     }
 
     @GetMapping("page")
-    public Page<Channel> paging(Integer page, Integer limit) {
+    public Result paging(Integer page, Integer limit) {
         if (page == null || page < 0) {
             page = 0;
         }
         if (limit == null || limit < 1) {
             limit = 10;
         }
-        Page<Channel> channels = channelService.pagination(page, limit);
-        return channels;
+        Page<Channel> channels = channelService.pagination(page - 1, limit);
+        return Result.of(channels);
     }
 
     @GetMapping("get")

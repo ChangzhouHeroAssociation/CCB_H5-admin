@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <!-- 样式 -->
+  <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+  <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+  <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+  <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+  <script th:src="@{/ccb/js/channel.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-row layui-col-space15">
+  <!-- 分页表格 -->
+  <div class="layui-col-md7">
+    <div class="layui-card">
+      <div class="layui-card-header">频道列表</div>
+      <div class="layui-card-body">
+        <!--轮播图表-->
+        <table class="layui-hide" id="channelTable"  lay-filter="channel">
+
+        </table>
+        <!-- 上方工具栏 -->
+        <script type="text/html" id="channelTableToolbarDemo">
+          <div class="layui-btn-container">
+            <button id="createChannel" class="layui-btn layui-btn-sm" lay-event="addData">新增<i class="layui-icon layui-icon-add-1"></i></button>
+          </div>
+        </script>
+        <!--操作按钮-->
+        <script type="text/html" id="channelBarDemo">
+          <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- 操作表单 -->
+  <div class="layui-col-md5 layui-bg-gray">
+    <div class="layui-card">
+      <div class="layui-card-header">添加或修改</div>
+      <div class="layui-card-body">
+        <form class="layui-form" id="channelForm" lay-filter="example">
+          <div class="layui-form-item">
+            <label class="layui-form-label">频道id</label>
+            <div class="layui-input-block">
+              <input type="text" name="id" autocomplete="off" placeholder="频道图id（不允许用户输入）" class="layui-input" readonly="readonly">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">频道名</label>
+            <div class="layui-input-block">
+              <input type="text" name="channelName" placeholder="请输入频道名" lay-verify="content" autocomplete="off" class="layui-input">
+            </div>
+          </div>
+
+          <!-- 图标上传 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+              <div class="layui-upload">
+                <button type="button" class="layui-btn" id="uploadIconImage">上传频道图标</button>
+                <div class="layui-upload-list">
+                  <img name="icon" class="layui-upload-img" id="iImage" style="max-height: 200px">
+                  <p id="iconText"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">频道描述</label>
+            <div class="layui-input-block">
+              <textarea name="content" placeholder="请输入内容" class="layui-textarea" lay-verify="content"></textarea>
+            </div>
+          </div>
+
+          <!-- 频道大图上传 -->
+          <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+              <div class="layui-upload">
+                <button type="button" class="layui-btn" id="uploadImage">上传频道大图</button>
+                <div class="layui-upload-list">
+                  <img name="image" class="layui-upload-img" id="uImage" style="max-height: 200px">
+                  <p id="ImageText"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button id="commit" type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
+              <button id="reset" type="reset" class="layui-btn layui-btn-primary">清空</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<style>
+  .layui-table-cell {
+    height: auto;
+    line-height: 60px;
+  }
+  th .layui-table-cell {
+    height: 30px;
+    line-height: 30px;
+  }
+</style>
+</html>
