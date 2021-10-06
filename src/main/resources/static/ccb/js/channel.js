@@ -74,7 +74,6 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             $("#uImage").attr("src", data.image);
             form.render();
         }
-
     });
 
     // 自定义验证规则

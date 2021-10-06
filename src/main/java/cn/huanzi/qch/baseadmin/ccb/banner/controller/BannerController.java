@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *  Controller
@@ -29,6 +31,21 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
     public ModelAndView index() {
         return new ModelAndView("ccb/banner/index");
     }
+
+    @GetMapping("bannerForm")
+    public ModelAndView form(Integer id) {
+        ModelAndView mav = new ModelAndView("ccb/banner/bannerForm");
+
+        if (id == null) {
+            mav.addObject("banner", null);
+        } else {
+            Banner banner = bannerService.getById(id);
+            mav.addObject("banner", banner);
+        }
+
+        return mav;
+    }
+
 
     @GetMapping("page")
     @ResponseBody

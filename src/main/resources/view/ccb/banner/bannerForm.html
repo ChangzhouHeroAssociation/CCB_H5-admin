@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <!-- 样式 -->
+    <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+    <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+    <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/js/bannerForm.js}" charset="utf-8"></script>
+</head>
+<body>
+    <!-- 操作表单 -->
+    <div style="margin: 25px 60px 0 0;">
+          <form class="layui-form" id="bannerForm" lay-filter="example">
+              <input name="id" th:value="${banner!=null?banner.id:''}" style="display: none">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">轮播图名字</label>
+                  <div class="layui-input-block">
+                      <input id="bannerName" th:value="${banner!=null?banner.bannerName:''}" type="text" name="bannerName" placeholder="请输入轮播图名" lay-verify="required|name" autocomplete="off" class="layui-input">
+                  </div>
+              </div>
+
+              <!-- 图片上传 -->
+              <div class="layui-form-item">
+                  <label class="layui-form-label"></label>
+                  <div class="layui-input-block">
+                      <div class="layui-upload">
+                          <button type="button" class="layui-btn" id="uploadImage">上传轮播图</button>
+                          <div class="layui-upload-list">
+                              <img th:src="${banner!=null?banner.url:''}" name="url" lay-verify="image" class="layui-upload-img" id="uImage" style="max-height: 200px">
+                              <p id="demoText"></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="layui-form-item">
+                  <label class="layui-form-label">权值</label>
+                  <div class="layui-input-block">
+                      <input id="weight" th:value="${banner!=null?banner.weight:''}" type="text" name="weight" lay-verify="required|weight" autocomplete="off" placeholder="0 - 100" class="layui-input">
+                  </div>
+              </div>
+
+              <div class="layui-form-item">
+                  <div class="layui-input-block">
+                      <button id="commit" type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
+                      <button id="resetBtn" type="reset" class="layui-btn layui-btn-primary">清空</button>
+                  </div>
+              </div>
+          </form>
+
+    </div>
+</body>
+</html>
