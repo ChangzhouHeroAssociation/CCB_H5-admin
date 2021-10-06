@@ -50,6 +50,31 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         ]
         ,page: true
     });
+
+    //头工具栏事件
+    table.on('toolbar(banner)', function(obj){
+        switch(obj.event){
+            case 'createBanner':
+                layer.open({
+                    type: 2,
+                    title: '新增',          // 弹窗标题
+                    shadeClose: true,           //弹出框之外的地方是否可以点击
+                    offset: 'auto',
+                    area: ['60%', '80%'],
+                    content: '/ccb/banner/bannerForm',
+                    end: function () {
+                        tableIns.reload();
+                    }
+                });
+                break;
+
+            //自定义头工具栏右侧图标 - 提示
+            case 'LAYTABLE_TIPS':
+                layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                break;
+        };
+    });
+
     // 监听右侧工具条
     table.on('tool(banner)', function(obj){
         let data = obj.data;
@@ -80,15 +105,15 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
 
     });
 
-    $("#createBanner").click(function() {
-        layer.open({
-            type: 2,
-            title: '新增',          // 弹窗标题
-            shadeClose: true,           //弹出框之外的地方是否可以点击
-            offset: 'auto',
-            area: ['60%', '80%'],
-            content: '/ccb/banner/bannerForm'
-        });
-    });
+    // $("#createBanner").click(function() {
+    //     layer.open({
+    //         type: 2,
+    //         title: '新增',          // 弹窗标题
+    //         shadeClose: true,           //弹出框之外的地方是否可以点击
+    //         offset: 'auto',
+    //         area: ['60%', '80%'],
+    //         content: '/ccb/banner/bannerForm'
+    //     });
+    // });
 
 });
