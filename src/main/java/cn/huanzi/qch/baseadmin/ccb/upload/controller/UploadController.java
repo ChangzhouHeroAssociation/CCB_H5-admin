@@ -62,9 +62,8 @@ public class UploadController {
         Map data = new HashMap<String, String>();
         try {
             file.transferTo(image);
-            String url = request.getScheme() + "://" + request.getServerName() + ":"
-                    + request.getServerPort() + "/upload/img/" + fileName + suffix;
-            System.out.println("url ->" + url);
+            String url = "http://ccb-api.cczuit.cn/upload/img/" + fileName + suffix;
+            System.out.println("url -> " + url);
             data.put("url", url);
             return Result.of(data);
         } catch (IOException e) {
