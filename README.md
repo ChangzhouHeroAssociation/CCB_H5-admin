@@ -9,6 +9,21 @@ Base Admin一套简单通用的后台管理系统<br/>
 前端：layui<br/> 
 java后端：SpringBoot + Thymeleaf + WebSocket + Spring Security + SpringData-Jpa + MySql<br/> 
 
+## 文件上传相关
+文件上传目录设置在 `application.properties` 文件中
+
+```
+# 设置文件上传的路径，图片会上传到该目录的image文件夹下，视频放到video文件夹下
+# l路径结尾一定要写 '/'
+file.upload-path.image=/data/wwwroot/CCB_H5-admin/upload/img/
+file.upload-path.video=/data/wwwroot/CCB_H5-admin/upload/video/
+
+# 上传文件的最大限制
+spring.servlet.multipart.max-file-size=10MB
+# 单次请求文件的最大限制
+spring.servlet.multipart.max-request-size=10MB
+```
+
 ## 常见问题<br/>
 0、maven下载jar包长时间无反应？
 ```text
