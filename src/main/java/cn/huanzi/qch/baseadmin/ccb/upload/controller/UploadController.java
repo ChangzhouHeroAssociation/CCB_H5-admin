@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @ClassName: UploadController
@@ -47,11 +46,18 @@ public class UploadController {
     @PostMapping("image")
     @ResponseBody
     public Result image(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+        // 常见图片格式后缀
+        List imageSuffix = new ArrayList<String>(Arrays.asList(".PNG", ".JPG", ".GIF", ".BMP", ".DIB",
+                ".PCP", ".DIF", ".WMF", ".TIF", ".EPS", ".PSD", ".CDR", ".IFF", ".TGA", ".PCD", ".MPT"));
+        // 图片扩展名
+        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+        // 如果不是图片后缀
+        if (!imageSuffix.contains(suffix.toUpperCase())) {
+            return Result.of(null, false, 400, "文件格式不支持");
+        }
 
         // 图片名字，时间作名字
         String fileName = simpleDateFormat.format(new Date());
-        // 图片扩展名
-        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
         // 创建图片对象
         File image = new File(imageUploadPath + "/" + fileName + suffix);
         System.out.println(image.getAbsolutePath());
@@ -62,8 +68,8 @@ public class UploadController {
         Map data = new HashMap<String, String>();
         try {
             file.transferTo(image);
-            String url = "http://ccb-api.cczuit.cn/upload/img/" + fileName + suffix;
-            System.out.println("url -> " + url);
+            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
+            System.out.println("url ->" + url);
             data.put("url", url);
             return Result.of(data);
         } catch (IOException e) {

@@ -37,9 +37,9 @@
               </div>
 
               <div class="layui-form-item">
-                  <label class="layui-form-label">权值</label>
+                  <label class="layui-form-label">排序</label>
                   <div class="layui-input-block">
-                      <input id="weight" th:value="${banner!=null?banner.weight:''}" type="text" name="weight" lay-verify="required|weight" autocomplete="off" placeholder="0 - 100" class="layui-input">
+                      <input id="weight" th:value="${banner!=null?banner.weight:''}" type="text" name="weight" lay-verify="required|weight" autocomplete="off" placeholder="0 - 100（倒序，数字越大越靠前）" class="layui-input">
                   </div>
               </div>
 

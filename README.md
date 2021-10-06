@@ -9,12 +9,12 @@ Base Admin一套简单通用的后台管理系统<br/>
 前端：layui<br/> 
 java后端：SpringBoot + Thymeleaf + WebSocket + Spring Security + SpringData-Jpa + MySql<br/> 
 
-## 文件上传相关
+## 文件上传相关<br/>
 文件上传目录设置在 `application.properties` 文件中
 
 ```
 # 设置文件上传的路径，图片会上传到该目录的image文件夹下，视频放到video文件夹下
-# l路径结尾一定要写 '/'
+# 路径结尾一定要写 '/'
 file.upload-path.image=/data/wwwroot/CCB_H5-admin/upload/img/
 file.upload-path.video=/data/wwwroot/CCB_H5-admin/upload/video/
 
@@ -23,6 +23,21 @@ spring.servlet.multipart.max-file-size=10MB
 # 单次请求文件的最大限制
 spring.servlet.multipart.max-request-size=10MB
 ```
+还有上传文件返回的url前缀（协议、主机、端口）在ccb/upload/controller/UploadController.java中修改
+> 注意： 确保有权限创建目录
+
+
+## 快速开始
+1. 克隆源码到本地<br/>
+```
+git clone https://github.com/ChangzhouHeroAssociation/CCB_H5-admin.git
+```
+2. 创建数据库并导入数据
+数据库文件在 `src/main/resources/static/sql/ccb.sql`
+3. 修改配置文件`applicaition.properties`和`application.yml` <br/>
+修改mysql的数据源和文件上传的目录<br/>
+修改ccb.upload.controler包下的上传控制器，如果没有域名，使用本地访问的话，需要获取本机的协议、主机、端口。
+4. 修改 `start.sh` 中生成jar包的路径，然后运行 start.sh 脚本启动程序。
 
 ## 常见问题<br/>
 0、maven下载jar包长时间无反应？
@@ -104,4 +119,14 @@ GitHub地址：https://github.com/huanzi-qch/fast-scaffold
 /package C盘下面的package文件夹
 package pom.xml文件的同级目录下面的package
 
+```
+10、上传文件失败？
+```text
+请确保文件的上传路径是正确的，并且能够创建。（一般系统目录没有权限创建文件夹）
+
+如何还不行，可能是文件的大小受到限制，或者文件的格式受限制，不能上传。
+
+还可能是上传文件返回的url不正确，需要更改为正确的协议主机和端口。
+
+在application.properties和UploadController.java中修改配置。
 ```
