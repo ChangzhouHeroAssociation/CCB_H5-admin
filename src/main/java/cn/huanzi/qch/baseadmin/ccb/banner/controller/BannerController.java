@@ -1,5 +1,6 @@
 package cn.huanzi.qch.baseadmin.ccb.banner.controller;
 
+import cn.huanzi.qch.baseadmin.ccb.upload.service.FileService;
 import cn.huanzi.qch.baseadmin.common.controller.CommonController;
 import cn.huanzi.qch.baseadmin.ccb.banner.pojo.Banner;
 import cn.huanzi.qch.baseadmin.ccb.banner.service.BannerService;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *  Controller
@@ -25,11 +24,13 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
     @Autowired
     private BannerService bannerService;
 
+    @Autowired
+    private FileService fileService;
 
 
     @GetMapping("index")
     public ModelAndView index() {
-        return new ModelAndView("ccb/banner/index");
+        return new ModelAndView("ccb/banner/banner");
     }
 
     @GetMapping("bannerForm")
@@ -90,15 +91,19 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
     @PostMapping("delete")
     public Result deleteById(Integer id) {
         if (id == null) {
-            return Result.of(null, true, 400, "未输入id");
+            return Result.of(id, false, 400, "未输入id");
+        }
+        Banner result = bannerService.getById(id);
+        if (result == null) {
+            Result.of(id, false, 400, "没有该记录");
         }
         try {
+            fileService.deleteImage(result.getUrl());
             bannerService.deleteById(id);
         } catch (Exception e) {
-            return Result.of(null, true, 400, "没有该记录");
+            return Result.of(id, false, 400, "删除失败");
         }
-
-        return Result.of(null, true, "删除成功");
+        return Result.of(id, true, "删除成功");
     }
 
 }

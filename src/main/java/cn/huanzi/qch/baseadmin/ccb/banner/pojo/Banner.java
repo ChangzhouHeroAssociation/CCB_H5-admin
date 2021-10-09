@@ -28,7 +28,5 @@ public class Banner implements Serializable {
     private Date createTime;//创建时间
 
     private Date updateTime;//更新时间
-
-  
 }
 
