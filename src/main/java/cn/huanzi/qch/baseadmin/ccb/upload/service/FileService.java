@@ -63,8 +63,8 @@ public class FileService {
         }
         try {
             file.transferTo(image);
-//            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
-            String url = "http://192.168.206.1:8081/upload/img/" + fileName + suffix;
+            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
+//            String url = "http://192.168.206.1:8081/upload/img/" + fileName + suffix;
             System.out.println("url -> " + url);
             return url;
         } catch (IOException e) {
