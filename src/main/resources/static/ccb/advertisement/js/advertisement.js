@@ -8,11 +8,11 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , layer = layui.layer;
 
     tableIns = table.render({
-        elem: '#bannerTable'
+        elem: '#adTable'
         , height: 'full-200'
         , cellMinWidth: 80
         , page: true
-        ,url:'/ccb/banner/page'
+        ,url:'/ccb/advertisement/page'
         , method: 'GET'
         //请求前参数处理
         , request: {
@@ -36,34 +36,36 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 "rows": data.content //解析数据列表
             };
         }
-        , toolbar: '#bannerTableToolbarDemo'
-        , title: '轮播图列表'
+        , toolbar: '#adTableToolbarDemo'
+        , title: '广告列表'
         ,cols: [
             [
-                {field:'id', width:80, title: 'ID', sort: true}
-                ,{field:'bannerName', width:150, title: '轮播图名字', sort: true}
-                ,{field:'url', width:150, title: '轮播图', templet: function(res) {
-                    return "<img src='" + res.url +"'/>"
-                }}
-                ,{field:'weight', width:80, title: '排序', sort: true}
-                ,{field:'createTime', title: '创建时间', minWidth: 160, sort: true}
-                ,{field:'updateTime', width:160, title: '更新时间', sort: true}
-                ,{fixed: 'right', width:160, align:'center', toolbar: '#bannerBarDemo'}
+                { field:'id', width:80, title: 'ID', sort: true }
+                , { field:'channelName', width:150, title: '频道', sort: true, templet: function(res) {
+                    return res.channel.channelName;
+                } }
+                , { field:'imageUrl', width:150, title: '广告大图', templet: function(res) {
+                    return "<img src='" + res.imageUrl +"'/>"
+                } }
+                , { field:'targetUrl', width:300, title: '目标链接' }
+                , { field:'createTime', title: '创建时间', minWidth: 160, sort: true }
+                , { field:'updateTime', width:160, title: '更新时间', sort: true }
+                , { fixed: 'right', width:160, align:'center', toolbar: '#adBarDemo' }
             ]
         ]
     });
 
     //头工具栏事件
-    table.on('toolbar(banner)', function(obj){
+    table.on('toolbar(ad)', function(obj){
         switch(obj.event){
-            case 'createBanner':
+            case 'createAd':
                 layer.open({
                     type: 2,
                     title: '新增',          // 弹窗标题
                     shadeClose: true,           //弹出框之外的地方是否可以点击
                     offset: 'auto',
                     area: ['60%', '80%'],
-                    content: '/ccb/banner/bannerForm',
+                    content: '/ccb/advertisement/adForm',
                     end: function () {
                         tableIns.reload();
                     }
@@ -78,12 +80,12 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
     });
 
     // 监听右侧工具条
-    table.on('tool(banner)', function(obj){
+    table.on('tool(ad)', function(obj){
         let data = obj.data;
         if(obj.event === 'del'){
             /* 删除操作 */
             layer.confirm('真的删除行么', function(index){
-                $.post("/ccb/banner/delete", {
+                $.post("/ccb/advertisement/delete", {
                     "id": data.id
                 }, function (data) {
                     console.log(data.msg);
@@ -92,18 +94,18 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 tableIns.reload();
             });
         } else if(obj.event === 'edit'){
+            /* 编辑操作 */
             layer.open({
                 type: 2,
                 title: '编辑',          // 弹窗标题
                 shadeClose: true,           //弹出框之外的地方是否可以点击
                 offset: 'auto',
                 area: ['60%', '80%'],
-                content: '/ccb/banner/bannerForm?id=' + data.id,
+                content: '/ccb/advertisement/adForm?id=' + data.id,
                 end: function () {
                     tableIns.reload();
                 }
             });
         }
-
     });
 });

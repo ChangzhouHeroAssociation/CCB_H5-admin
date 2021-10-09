@@ -1,9 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.channel.service;
 
-import cn.huanzi.qch.baseadmin.common.service.CommonServiceImpl;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.repository.ChannelRepository;
-import cn.huanzi.qch.baseadmin.ccb.channel.vo.ChannelVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,7 @@ import java.util.Optional;
  * ${date}
  */
 @Service
-public class ChannelServiceImpl extends CommonServiceImpl<ChannelVo, Channel, Integer> implements ChannelService{
+public class ChannelServiceImpl implements ChannelService{
 
     @PersistenceContext
     private EntityManager em;
@@ -46,6 +45,11 @@ public class ChannelServiceImpl extends CommonServiceImpl<ChannelVo, Channel, In
     public Channel getById(Integer id) {
         Optional<Channel> byId = channelRepository.findById(id);
         return byId.get();
+    }
+
+    @Override
+    public List<Channel> getAll() {
+        return channelRepository.findAll();
     }
 
     /**

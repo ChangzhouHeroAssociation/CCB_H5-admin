@@ -1,9 +1,6 @@
 package cn.huanzi.qch.baseadmin.ccb.advertisement.service;
 
-import cn.huanzi.qch.baseadmin.common.pojo.Result;
-import cn.huanzi.qch.baseadmin.common.service.*;
 import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
-import cn.huanzi.qch.baseadmin.ccb.advertisement.vo.AdvertisementVo;
 import org.springframework.data.domain.Page;
 
 /**
@@ -12,7 +9,7 @@ import org.springframework.data.domain.Page;
  * ${author}
  * ${date}
  */
-public interface AdvertisementService extends CommonService<AdvertisementVo, Advertisement, Integer> {
+public interface AdvertisementService {
 
     Page pagination(Integer page, Integer limit);
 

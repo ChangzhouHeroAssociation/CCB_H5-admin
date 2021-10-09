@@ -31,6 +31,8 @@ public class Channel implements Serializable {
 
     private Date updateTime;//更新时间
 
-  
+    private Integer status;//状态 1正常 0删除
+
+    private Integer enabled;//是否开启 1 开启: 0 关闭
 }
 

@@ -1,9 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.advertisement.service;
 
-import cn.huanzi.qch.baseadmin.common.service.CommonServiceImpl;
 import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
 import cn.huanzi.qch.baseadmin.ccb.advertisement.repository.AdvertisementRepository;
-import cn.huanzi.qch.baseadmin.ccb.advertisement.vo.AdvertisementVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +21,7 @@ import java.util.Optional;
  */
 @Service
 @Transactional
-public class AdvertisementServiceImpl extends CommonServiceImpl<AdvertisementVo, Advertisement, Integer> implements AdvertisementService{
+public class AdvertisementServiceImpl implements AdvertisementService{
 
     @PersistenceContext
     private EntityManager em;
@@ -47,7 +45,7 @@ public class AdvertisementServiceImpl extends CommonServiceImpl<AdvertisementVo,
     public Advertisement create(Advertisement ad) {
         ad.setCreateTime(new Date());
         ad.setUpdateTime(new Date());
-        Advertisement advertisement = advertisementRepository.save(ad);
+        Advertisement advertisement = (Advertisement) advertisementRepository.save(ad);
         return advertisement;
     }
 
@@ -58,7 +56,7 @@ public class AdvertisementServiceImpl extends CommonServiceImpl<AdvertisementVo,
         ad.setCreateTime(origin.getCreateTime());
         // 设置更新时间
         ad.setUpdateTime(new Date());
-        Advertisement advertisement = advertisementRepository.save(ad);
+        Advertisement advertisement =(Advertisement) advertisementRepository.save(ad);
         return advertisement;
     }
 

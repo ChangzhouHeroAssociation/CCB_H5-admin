@@ -113,15 +113,15 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
 
     }
     function resetForm() {
-        $("#channelForm").form(null);
-        $("#uImage").attr("src", null);
-        $("#iImage").attr("src", null);
+        $("input[name]").attr("value", '');
+        $("#uImage").attr("src", '');
+        $("#iImage").attr("src", '');
     }
 
     // 频道图标上传
     var uploadIcon = upload.render({
         elem: '#uploadIconImage'
-        , url: '/upload/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
         , method: 'POST'
         // 限制格式
         , ext: 'jpg|png|gif|bmp|jpeg'
@@ -153,7 +153,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
     // 频道大图上传
     var uploadInst = upload.render({
         elem: '#uploadImage'
-        , url: '/upload/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
         , method: 'POST'
         // 限制格式
         , ext: 'jpg|png|gif|bmp|jpeg'

@@ -1,9 +1,9 @@
 package cn.huanzi.qch.baseadmin.ccb.channel.service;
 
-import cn.huanzi.qch.baseadmin.common.service.*;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
-import cn.huanzi.qch.baseadmin.ccb.channel.vo.ChannelVo;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  *  Service
@@ -11,11 +11,13 @@ import org.springframework.data.domain.Page;
  * ${author}
  * ${date}
  */
-public interface ChannelService extends CommonService<ChannelVo, Channel, Integer> {
+public interface ChannelService {
 
     Page<Channel> pagination(Integer page, Integer limit);
 
     Channel getById(Integer id);
+
+    List getAll();
 
     Channel create(Channel channel);
 
