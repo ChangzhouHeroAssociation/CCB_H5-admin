@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>讲师表单</title>
+    <!-- 样式 -->
+    <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+    <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+    <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/teacher/js/teacherForm.js}" charset="utf-8"></script>
+
+</head>
+<body>
+<!-- 操作表单 -->
+<div style="margin: 25px 60px 0 0;">
+    <form class="layui-form" id="teacherForm" lay-filter="example">
+        <label id="id" th:value="${teacher!=null?teacher.id:''}" class="layui-form-label" style="display: none">讲师id</label>
+        <div class="layui-form-item">
+            <label class="layui-form-label">讲师名字</label>
+            <div class="layui-input-block">
+                <input id="teacherName" type="text" name="teacherName" th:value="${teacher!=null?teacher.teacherName:''}" placeholder="请输入讲师名字" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">讲师简介</label>
+            <div class="layui-input-block">
+                <textarea id="description" name="description" th:text="${teacher!=null?teacher.description:''}" placeholder="请输入讲师简介" class="layui-textarea" lay-verify="required"></textarea>
+            </div>
+        </div>
+
+        <!-- 图标上传 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">讲师照片</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="uploadTeacherImage">上传讲师照片</button>
+                    <div class="layui-upload-list">
+                        <img id="tImage" name="teacherPhoto" th:src="${teacher!=null?teacher.teacherPhoto:''}" lay-verify="image" class="layui-upload-img" style="max-height: 200px">
+                        <p id="teacherText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
+                <button id="resetBtn" type="reset" class="layui-btn layui-btn-primary">清空</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

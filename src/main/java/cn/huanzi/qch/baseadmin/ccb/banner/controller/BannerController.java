@@ -52,7 +52,7 @@ public class BannerController extends CommonController<BannerVo, Banner, Integer
     @ResponseBody
     public Result paging(Integer page, Integer limit) {
         if (page == null || page < 0) {
-            page = 0;
+            page = 1;
         } else {
             page--;
         }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class BannerServiceImpl extends CommonServiceImpl<BannerVo, Banner, Integ
 
     @Override
     public Page<Banner> pagination(Integer page, Integer limit) {
-        Page<Banner> bannerPage = bannerRepository.findAll(PageRequest.of(page, limit));
+        Page<Banner> bannerPage = bannerRepository.findAll(PageRequest.of(page, limit, Sort.by(Sort.Direction.DESC, "weight")));
         return bannerPage;
     }
 
@@ -58,12 +59,12 @@ public class BannerServiceImpl extends CommonServiceImpl<BannerVo, Banner, Integ
     @Transactional
     public Banner update(Banner banner) {
         // 设置创建时间
-        Banner origin = getById(banner.getId());
+        Banner origin = bannerRepository.findById(banner.getId()).get();
         banner.setCreateTime(origin.getCreateTime());
         // 设置更新时间
         banner.setUpdateTime(new Date());
-        bannerRepository.save(banner);
-        return banner;
+        Banner save = bannerRepository.save(banner);
+        return save;
     }
 
     @Override

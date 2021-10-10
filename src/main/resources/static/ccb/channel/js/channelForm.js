@@ -1,8 +1,6 @@
 layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
-    var table = layui.table
-        , form = layui.form
+    var form = layui.form
         , upload = layui.upload
-        , element = layui.element
         , layer = layui.layer;
 
     // 自定义验证规则
@@ -12,6 +10,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
                 return '内容不能为空';
             }
         }
+        , image: [ /(^$)|(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/, "图片格式不正确" ]
     });
 
     form.on('submit(commit)', function (data) {

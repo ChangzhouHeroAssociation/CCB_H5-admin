@@ -59,7 +59,7 @@ public class AdvertisementController {
     @GetMapping("page")
     public Result paging(Integer page, Integer limit) {
         if (page == null || page < 0) {
-            page = 0;
+            page = 1;
         }
         if (limit == null || limit < 1) {
             limit = 10;
@@ -70,6 +70,9 @@ public class AdvertisementController {
 
     @GetMapping("get")
     public Result getOne(Integer id) {
+        if (id == null) {
+            return Result.of(null, true, 405, "请输入id");
+        }
         Advertisement advertisement = advertisementService.getById(id);
         if (advertisement == null) {
             return Result.of(null, true, 405, "未查找到数据");

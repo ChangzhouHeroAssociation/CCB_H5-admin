@@ -31,6 +31,5 @@ public class Teacher implements Serializable {
 
     private Date updateTime;//更新时间
 
-  
 }
 

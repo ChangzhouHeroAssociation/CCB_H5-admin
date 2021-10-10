@@ -45,18 +45,18 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     public Advertisement create(Advertisement ad) {
         ad.setCreateTime(new Date());
         ad.setUpdateTime(new Date());
-        Advertisement advertisement = (Advertisement) advertisementRepository.save(ad);
+        Advertisement advertisement = advertisementRepository.save(ad);
         return advertisement;
     }
 
     @Override
     public Advertisement update(Advertisement ad) {
         // 设置创建时间
-        Advertisement origin = getById(ad.getId());
+        Advertisement origin = advertisementRepository.findById(ad.getId()).get();
         ad.setCreateTime(origin.getCreateTime());
         // 设置更新时间
         ad.setUpdateTime(new Date());
-        Advertisement advertisement =(Advertisement) advertisementRepository.save(ad);
+        Advertisement advertisement = advertisementRepository.save(ad);
         return advertisement;
     }
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +36,18 @@ public class ChannelServiceImpl implements ChannelService{
      */
     @Override
     public Page<Channel> pagination(Integer page, Integer limit) {
-        Page<Channel> channels = channelRepository.findAll(PageRequest.of(page, limit));
+        // 构建查询条件
+        Specification<Channel> spec = new Specification<Channel>() {
+            @Override
+            public Predicate toPredicate(Root<Channel> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path<Channel> path = root.get("status");
+                Predicate equal = criteriaBuilder.equal(path, "1");
+                return equal;
+            }
+        };
+
+        Pageable pageable = PageRequest.of(page, limit);
+        Page<Channel> channels = channelRepository.findAll(spec, pageable);
         return channels;
     }
 
@@ -45,7 +56,7 @@ public class ChannelServiceImpl implements ChannelService{
      */
     @Override
     public Channel getById(Integer id) {
-        Channel byId = channelRepository.findOne(id);
+        Channel byId = channelRepository.findById(id).get();
         return byId;
     }
 
@@ -73,7 +84,7 @@ public class ChannelServiceImpl implements ChannelService{
     @Transactional
     public Channel update(Channel channel) {
         // 设置创建时间
-        Channel origin = getById(channel.getId());
+        Channel origin = channelRepository.findById(channel.getId()).get();
         channel.setCreateTime(origin.getCreateTime());
         // 设置更新时间
         channel.setUpdateTime(new Date());
@@ -84,7 +95,7 @@ public class ChannelServiceImpl implements ChannelService{
     @Override
     @Transactional
     public Integer deleteById(Integer id) {
-        Channel one = channelRepository.getOne(id);
+        Channel one = channelRepository.findById(id).get();
         one.setStatus(0);
         channelRepository.save(one);
         return id;

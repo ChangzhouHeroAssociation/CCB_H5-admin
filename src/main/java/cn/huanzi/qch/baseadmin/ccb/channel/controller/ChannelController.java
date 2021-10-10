@@ -58,32 +58,7 @@ public class ChannelController {
     public Result<Page<Channel>> queryPage(Integer page, Integer limit) {
 
         if (page == null || page < 0) {
-            page = 0;
-        }
-        if (limit == null || limit < 1) {
-            limit = 10;
-        }
-
-        // 构建查询条件
-        Specification<Channel> spec = new Specification<Channel>() {
-            @Override
-            public Predicate toPredicate(Root<Channel> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                Path<Channel> path = root.get("status");
-                Predicate equal = criteriaBuilder.equal(path, "1");
-                return equal;
-            }
-        };
-
-        Pageable pageable = PageRequest.of(page - 1, limit);
-        Page<Channel> channels = channelRepository.findAll(spec, pageable);
-
-        return Result.of(channels);
-    }
-
-
-    public Result paging(Integer page, Integer limit) {
-        if (page == null || page < 0) {
-            page = 0;
+            page = 1;
         }
         if (limit == null || limit < 1) {
             limit = 10;
@@ -92,7 +67,6 @@ public class ChannelController {
         Page<Channel> channels = channelService.pagination(page - 1, limit);
         return Result.of(channels);
     }
-
 
     @GetMapping("get")
     public Result getOne(Integer id) {
@@ -119,7 +93,7 @@ public class ChannelController {
     @PostMapping("/switch")
     public Result switchEnable(Integer id, Integer isEnabled) {
 
-        if (id == null | isEnabled == null) {
+        if (id == null || isEnabled == null) {
             return Result.of(null, false, 400, "参数错误");
         }
         Channel one = channelRepository.getOne(id);
