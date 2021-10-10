@@ -5,14 +5,15 @@ import cn.huanzi.qch.baseadmin.ccb.channel.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import javax.persistence.criteria.*;
+import java.util.*;
 
 /**
  *  ServiceImpl
@@ -29,6 +30,7 @@ public class ChannelServiceImpl implements ChannelService{
     @Autowired
     private ChannelRepository channelRepository;
 
+
     /**
      * 分页查询
      */
@@ -43,8 +45,8 @@ public class ChannelServiceImpl implements ChannelService{
      */
     @Override
     public Channel getById(Integer id) {
-        Optional<Channel> byId = channelRepository.findById(id);
-        return byId.get();
+        Channel byId = channelRepository.findOne(id);
+        return byId;
     }
 
     @Override
@@ -82,7 +84,9 @@ public class ChannelServiceImpl implements ChannelService{
     @Override
     @Transactional
     public Integer deleteById(Integer id) {
-        channelRepository.deleteById(id);
+        Channel one = channelRepository.getOne(id);
+        one.setStatus(0);
+        channelRepository.save(one);
         return id;
     }
 }

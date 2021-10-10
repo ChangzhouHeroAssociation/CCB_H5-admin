@@ -3,12 +3,13 @@ let contextPath = window.location.protocol + "://" + window.location.host;
 layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
     var table = layui.table
         ,form = layui.form
-        , upload = layui.upload
-        , element = layui.element
         , layer = layui.layer;
 
     tableIns = table.render({
         elem: '#channelTable'
+        , height: 'full-200'
+        , cellMinWidth: 80
+        , page: true
         ,url:'/ccb/channel/page'
         , method: 'GET'
         //请求前参数处理
@@ -37,22 +38,48 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '频道列表'
         ,cols: [
             [
-                {field:'id', width:80, title: 'ID', sort: true}
-                ,{field:'channelName', width:120, title: '频道名字', sort: true}
-                ,{field:'icon', width:150, title: '频道图标', templet: function(res) {
+                { field:'id', width:80, title: 'ID', sort: true }
+                , { field:'enabled', title: '是否开启', width: 120, sort: true, templet: '#switchEnable' }
+                , { field:'channelName', width:120, title: '频道名字', sort: true }
+                , { field:'content', width:150, title: '频道描述', sort: true }
+                , { field:'icon', width:150, title: '频道图标', templet: function(res) {
                     return "<img src='" + res.icon +"'/>"
                 }}
-                ,{field:'content', width:120, title: '频道描述', sort: true}
-                ,{field:'image', width:150, title: '频道大图', templet: function(res) {
-                    return "<img src='" + res.image +"'/>"
-                }}
-                ,{field:'createTime', title: '创建时间', minWidth: 160, sort: true}
-                ,{field:'updateTime', width:160, title: '更新时间', sort: true}
-                ,{fixed: 'right', width:178, align:'center', toolbar: '#channelBarDemo'}
+                , { field:'image', width:150, title: '频道大图', templet: function(res) {
+                    return "<img src='" + res.image +"'/>";
+                } }
+                ,{ field:'createTime', title: '创建时间', minWidth: 160, sort: true }
+                ,{ field:'updateTime', width:160, title: '更新时间', sort: true }
+                ,{ fixed: 'right', width:178, align:'center', toolbar: '#channelBarDemo' }
             ]
         ]
-        ,page: true
     });
+
+    //头工具栏事件
+    table.on('toolbar(channel)', function(obj){
+        switch(obj.event){
+            case 'createChannel':
+                layer.open({
+                    type: 2,
+                    title: '新增',          // 弹窗标题
+                    shadeClose: true,           //弹出框之外的地方是否可以点击
+                    offset: 'auto',
+                    area: ['60%', '80%'],
+                    content: '/ccb/channel/channelForm',
+                    end: function () {
+                        tableIns.reload();
+                    }
+                });
+                break;
+
+            //自定义头工具栏右侧图标 - 提示
+            case 'LAYTABLE_TIPS':
+                layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                break;
+        };
+    });
+
+
     // 监听右侧工具条
     table.on('tool(channel)', function(obj){
         let data = obj.data;
@@ -68,119 +95,29 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 tableIns.reload();
             });
         } else if(obj.event === 'edit'){
-            /* 编辑操作 */
-            $("#channelForm").form(data);
-            $("#iImage").attr("src", data.icon);
-            $("#uImage").attr("src", data.image);
-            form.render();
+            layer.open({
+                type: 2,
+                title: '编辑',          // 弹窗标题
+                shadeClose: true,           //弹出框之外的地方是否可以点击
+                offset: 'auto',
+                area: ['60%', '80%'],
+                content: '/ccb/channel/channelForm?id=' + data.id,
+                end: function () {
+                    tableIns.reload();
+                }
+            });
         }
     });
 
-    // 自定义验证规则
-    form.verify({
-        content: function(value){
-            if(value.trim() == ''){
-                return '内容不能为空';
-            }
-        }
-    });
-
-
-    $("#commit").click(function () {
-        savechannel();
-    });
-
-    $("#reset,#createChannel").click(function() {
-        resetForm();
-    });
-
-    // 保存
-    function savechannel() {
-        let channelId = $("input[name='id']").val();
-        let postUrl;
-        let formData = $("#channelForm").serializeObject();
-        formData.icon = $("#iImage").attr("src");
-        formData.image = $("#uImage").attr("src");
-        if (channelId == '') {
-            postUrl = "/ccb/channel/create";
-        } else {
-            postUrl = "/ccb/channel/update";
-        }
-
-        $.post(postUrl, formData, function (data) {
-            console.log(data.msg);
+    //监听状态操作
+    form.on('switch(enable)', function(obj){
+        let isEnable = obj.elem.checked == true ? 1 : 0;
+        $.post('/ccb/channel/switch', {
+            "id": this.value,
+            "isEnabled": isEnable
+        }, function (data) {
+            layer.msg(data.msg);
         }, "json")
-
-    }
-    function resetForm() {
-        $("input[name]").attr("value", '');
-        $("#uImage").attr("src", '');
-        $("#iImage").attr("src", '');
-    }
-
-    // 频道图标上传
-    var uploadIcon = upload.render({
-        elem: '#uploadIconImage'
-        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
-        , method: 'POST'
-        // 限制格式
-        , ext: 'jpg|png|gif|bmp|jpeg'
-        , before: function (obj) {
-            //预读本地文件示例，不支持ie8
-            obj.preview(function (index, file, result) {
-                $('#iImage').attr('src', result); //图片链接（base64）
-            });
-        }
-        , done: function (res) {
-            //如果上传失败
-            if (res.code == '400') {
-                return layer.msg('上传失败');
-            }
-            //上传成功的一些操作
-            $('#iImage').attr('src', res.data.url);
-            $('#iconText').html(''); //置空上传失败的状态
-        }
-        , error: function () {
-            //演示失败状态，并实现重传
-            var iconText = $('#iconText');
-            iconText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-            iconText.find('.demo-reload').on('click', function () {
-                uploadIcon.upload();
-            });
-        }
     });
 
-    // 频道大图上传
-    var uploadInst = upload.render({
-        elem: '#uploadImage'
-        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
-        , method: 'POST'
-        // 限制格式
-        , ext: 'jpg|png|gif|bmp|jpeg'
-        , before: function (obj) {
-
-            //预读本地文件示例，不支持ie8
-            obj.preview(function (index, file, result) {
-                $('#uImage').attr('src', result); //图片链接（base64）
-            });
-
-        }
-        , done: function (res) {
-            //如果上传失败
-            if (res.code == '400') {
-                return layer.msg('上传失败');
-            }
-            //上传成功的一些操作
-            $('#uImage').attr('src', res.data.url);
-            $('#ImageText').html(''); //置空上传失败的状态
-        }
-        , error: function () {
-            //演示失败状态，并实现重传
-            var ImageText = $('#ImageText');
-            ImageText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-            ImageText.find('.demo-reload').on('click', function () {
-                uploadInst.upload();
-            });
-        }
-    });
 });
