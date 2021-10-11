@@ -1,10 +1,117 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>问卷表单</title>
+    <!-- 样式 -->
+    <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+    <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+    <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/question/js/questionForm.js}" charset="utf-8"></script>
+
 </head>
 <body>
-$END$
+<!--/*@thymesVar id="user" type="cn.huanzi.qch.baseadmin.ccb.question.pojo.Question"*/-->
+<!-- 操作表单 -->
+<div style="margin: 25px 60px 0 0;">
+    <form class="layui-form" id="questionForm" lay-filter="example">
+        <!-- id -->
+        <label id="id" th:value="${question!=null?question.id:''}" class="layui-form-label" style="display: none">问题id</label>
+
+        <!-- 频道 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">频道</label>
+            <div class="layui-input-block">
+                <select id="channelId" name="channelId" lay-verify="required" lay-filter="aihao">
+                    <option value=""></option>
+                    <option th:each="channel:${channels}" th:selected="${question!=null} and ${question.channel.id} == ${channel.id}"
+                            th:value="${channel.id}" th:text="${channel.channelName}">频道</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 问题类型 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">问题类型</label>
+            <div class="layui-input-block">
+                <select id="category" name="category"
+                        lay-verify="required" lay-filter="category">
+                    <option value=""></option>
+                    <option th:selected="${question!=null and question.category eq 1}" value="1">单选</option>
+                    <option th:selected="${question!=null and question.category eq 2}" value="2">多选</option>
+                    <option th:selected="${question!=null and question.category eq 3}" value="3">判断</option>
+                    <option th:selected="${question!=null and question.category eq 4}" value="4">填空</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- 题目 -->
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">题目</label>
+            <div class="layui-input-block">
+                <textarea id="title" name="title" th:text="${question!=null?question.title:''}" placeholder="请输入题目" class="layui-textarea" lay-verify="required"></textarea>
+            </div>
+        </div>
+
+        <!-- 选项 动态添加删除 -->
+        <div class="layui-form-item yf-input-del">
+            <label class="layui-form-label">选项</label>
+            <div class="layui-input-block" id="optionList">
+                <div class="layui-input-item">
+                    <div class="layui-input-inline">
+                        <!--input文本框-->
+                        <input type="text" name="optionList[5]" value="" autocomplete="off" placeholder="请输入选项（填空可不选）"
+                               lay-verify="" class="layui-input"  style="float: left">
+                    </div>
+                    <!--删除按钮-->
+                    <i class="layui-icon removeOption">&#x1006;</i>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <a id="addOption" href="javascript:void(0);" class="layui-btn site-demo-active">
+                    添加选项 <i class="layui-icon">&#xe654;</i> <!--新增1条选项-->
+                </a>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-block">
+                <input id="weight" th:value="${question!=null?question.weight:''}" type="text" name="weight" lay-verify="required|weight" autocomplete="off" placeholder="0 - 100（倒序，数字越大越靠前）" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
+                <button id="resetBtn" type="reset" class="layui-btn layui-btn-primary">清空</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
+
+<style>
+    .layui-input-item {
+        display: inline-block;
+        float: left;
+        padding: 2px 5px;
+    }
+    .layui-input-item i {
+        height: 36px;
+        line-height: 36px;
+    }
+</style>
+<script th:inline="javascript">
+
+    // 获取option
+    var tempOption = /*[[${question!=null?question.option:''}]]*/ "defalut";
+    console.log("option in html -> " + tempOption);
+
+</script>
 </html>
