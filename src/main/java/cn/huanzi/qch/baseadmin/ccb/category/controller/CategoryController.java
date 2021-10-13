@@ -91,6 +91,7 @@ public class CategoryController {
         }
 
         Category category = new Category();
+        category.setId(categoryVo.getId());
         category.setCategoryName(categoryVo.getCategoryName());
         category.setVideos(videos);
         Category save = categoryService.update(category);

@@ -27,15 +27,11 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         let categoryId = $("#id").attr("value");
         let formData = $("#categoryForm").serializeObject();
         formData.id = categoryId;
-        formData.url = $("#url").attr("src");
-        /* 能编辑的肯定没有被删除 */
-        formData.status = 1;
+
         var videoIds = [];
         $("input[name^='video']:checked").each(function (i) {
             videoIds[i] = $(this).attr("value");
         });
-
-
         formData.videoIds = videoIds;
         console.log(JSON.stringify(formData));
 

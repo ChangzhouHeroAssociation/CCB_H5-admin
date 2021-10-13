@@ -8,7 +8,7 @@
     <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
     <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
     <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
-    <script th:src="@{/ccb/category/js/category.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/category/js/categoryForm.js}" charset="utf-8"></script>
 </head>
 <body>
 <!-- 操作表单 -->
@@ -18,7 +18,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">视频标题</label>
             <div class="layui-input-block">
-                <input id="categoryName" type="text" name="categoryTitle" th:value="${category!=null?category.categoryName:''}"
+                <input id="categoryName" type="text" name="categoryName" th:value="${category!=null?category.categoryName:''}"
                        placeholder="请输入视频标题" lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -41,4 +41,19 @@
     </form>
 </div>
 </body>
+<script th:inline="javascript">
+    var hasCategory = /*[[${category!=null}]]*/'false';
+    if (hasCategory) {
+        var videoInputs =  $("input[name^='video']");
+        var categoryVideos = /*[[${category.videos}]]*/'null';
+        for (let i = 0; i < categoryVideos.length; i++) {
+            $.each(videoInputs, function() {
+                console.log($(this).val());
+                if ($(this).val() == categoryVideos[i].id) {
+                    $(this).prop("checked", true);
+                }
+            });
+        }
+    }
+</script>
 </html>
