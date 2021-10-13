@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.upload.controller;
 
 import cn.huanzi.qch.baseadmin.ccb.upload.service.FileService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
+import com.sun.org.apache.xpath.internal.operations.Mult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,5 +47,23 @@ public class UploadController {
             return Result.of(data);
         }
 
+    }
+
+    /**
+     * 上传视频
+     */
+    @PostMapping("video")
+    @ResponseBody
+    public Result video(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+
+        Map data = new HashMap<String, String>();
+        String videoUrl = fileService.uploadVideo(file);
+        if (videoUrl == null) {
+            data.put("url", null);
+            return Result.of(data, false, 400, "上传失败");
+        } else {
+            data.put("url", videoUrl);
+            return Result.of(data);
+        }
     }
 }

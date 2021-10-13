@@ -1,8 +1,10 @@
 package cn.huanzi.qch.baseadmin.ccb.upload.service;
 
+import cn.huanzi.qch.baseadmin.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,6 +42,11 @@ public class FileService {
     public static List imageSuffix = new ArrayList<String>(Arrays.asList(".PNG", ".JPG", ".GIF", ".BMP", ".DIB",
             ".PCP", ".DIF", ".WMF", ".TIF", ".EPS", ".PSD", ".CDR", ".IFF", ".TGA", ".PCD", ".MPT"));
 
+    /** 常见视频格式后缀 */
+    public static List videoSuffix = new ArrayList<String>(Arrays.asList(".MP4", ".AVI", ".FLV",
+            ".VOB",  ".WMV", ".MOV", ".MPEG"));
+
+
     /**
      * 上传图片
      * file 传入MultipartFile 对象
@@ -56,21 +63,84 @@ public class FileService {
         String fileName = simpleDateFormat.format(new Date());
         // 创建图片对象
         File image = new File(imageUploadPath + "/" + fileName + suffix);
-        System.out.println("absolutePath -> " + image.getAbsolutePath());
+        System.out.println("image absolutePath -> " + image.getAbsolutePath());
         // 判断路径是否存在，不存在则创建
         if (!image.getParentFile().exists()) {
             image.getParentFile().mkdir();
         }
         try {
             file.transferTo(image);
-            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
-//            String url = "http://192.168.206.1:8081/upload/img/" + fileName + suffix;
+//            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
+            String url = "http://192.168.206.1:8081/upload/img/" + fileName + suffix;
             System.out.println("url -> " + url);
             return url;
         } catch (IOException e) {
             return null;
         }
     }
+
+    /**
+     * 上传视频文件
+     */
+    public String uploadVideo(MultipartFile file) {
+        // 图片扩展名
+        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+        // 如果不是图片后缀
+        if (!videoSuffix.contains(suffix.toUpperCase())) {
+            return null;
+        }
+        // 图片名字，时间作名字
+        String fileName = simpleDateFormat.format(new Date());
+        // 创建图片对象
+        File video = new File(videoUploadPath + "/" + fileName + suffix);
+        System.out.println("video absolutePath -> " + video.getAbsolutePath());
+        // 判断路径是否存在，不存在则创建
+        if (!video.getParentFile().exists()) {
+            video.getParentFile().mkdir();
+        }
+        try {
+            file.transferTo(video);
+//            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
+            String url = "http://192.168.206.1:8081/upload/video/" + fileName + suffix;
+            System.out.println("url -> " + url);
+            return url;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    /**
+     * 上传多个文件，图片或视频
+     */
+//    public List<String> uploadFiles(MultipartFile[] files) {
+//        List urls = new ArrayList<String>();
+//        for (MultipartFile file : files) {
+//            // 文件扩展名
+//            String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+//
+//            String url = null;
+//            if (imageSuffix.contains(suffix.toUpperCase())) {
+//                // 如果是图片
+//                // 图片名字，时间作名字
+//                String fileName = UUIDUtil.getUuid();
+//                // 创建图片对象
+//                File image = new File(imageUploadPath + "/" + fileName + suffix);
+//                System.out.println("video absolutePath -> " + image.getAbsolutePath());
+//                if (!image.getParentFile().exists()) {
+//                    image.getParentFile().mkdir();
+//                }
+//                try {
+//                    file.transferTo(image);
+//                    url = "http://192.168.206.1:8081/upload/img/" + fileName + suffix;
+//                    urls.add(url);
+//                    System.out.println("image url -> " + url);
+//                } catch (Exception e) {
+//
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * 删除上传的文件

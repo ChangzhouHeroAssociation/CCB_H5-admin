@@ -1,9 +1,11 @@
 package cn.huanzi.qch.baseadmin.ccb.channel.pojo;
 
+import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *  实体类
@@ -34,5 +36,6 @@ public class Channel implements Serializable {
     private Integer status;//状态 1正常 0删除
 
     private Integer enabled;//是否开启 1 开启: 0 关闭
+
 }
 

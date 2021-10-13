@@ -19,14 +19,16 @@
         <div class="layui-form-item">
             <label class="layui-form-label">讲师名字</label>
             <div class="layui-input-block">
-                <input id="teacherName" type="text" name="teacherName" th:value="${teacher!=null?teacher.teacherName:''}" placeholder="请输入讲师名字" lay-verify="required" autocomplete="off" class="layui-input">
+                <input id="teacherName" type="text" name="teacherName" th:value="${teacher!=null?teacher.teacherName:''}"
+                       placeholder="请输入讲师名字" lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">讲师简介</label>
             <div class="layui-input-block">
-                <textarea id="description" name="description" th:text="${teacher!=null?teacher.description:''}" placeholder="请输入讲师简介" class="layui-textarea" lay-verify="required"></textarea>
+                <textarea id="description" name="description" th:text="${teacher!=null?teacher.description:''}"
+                          placeholder="请输入讲师简介" class="layui-textarea" lay-verify="required"></textarea>
             </div>
         </div>
 
@@ -37,7 +39,8 @@
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="uploadTeacherImage">上传讲师照片</button>
                     <div class="layui-upload-list">
-                        <img id="tImage" name="teacherPhoto" th:src="${teacher!=null?teacher.teacherPhoto:''}" lay-verify="image" class="layui-upload-img" style="max-height: 200px">
+                        <img id="tImage" name="teacherPhoto" th:src="${teacher!=null?teacher.teacherPhoto:''}"
+                             lay-verify="image" class="layui-upload-img" style="max-height: 200px">
                         <p id="teacherText"></p>
                     </div>
                 </div>

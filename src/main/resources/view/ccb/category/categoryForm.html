@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>视频列表</title>
+    <!-- 样式 -->
+    <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+    <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+    <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/category/js/category.js}" charset="utf-8"></script>
+</head>
+<body>
+<!-- 操作表单 -->
+<div style="margin: 25px 60px 0 0;">
+    <form class="layui-form" id="categoryForm" lay-filter="example">
+        <label id="id" th:value="${category!=null?category.id:''}" class="layui-form-label" style="display: none">分组id</label>
+        <div class="layui-form-item">
+            <label class="layui-form-label">视频标题</label>
+            <div class="layui-input-block">
+                <input id="categoryName" type="text" name="categoryTitle" th:value="${category!=null?category.categoryName:''}"
+                       placeholder="请输入视频标题" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <!-- 视频复选框 -->
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">视频</label>
+            <div id="teacher" class="layui-input-block">
+                <input type="checkbox" th:each="video:${videos}" lay-skin="primary"
+                       th:name="|video[${video.id}]|" th:title="${video.videoTitle}"
+                       th:value="${video.id}">
+            </div>
+        </div>
+
+        <!-- 保存 -->
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
+            <button id="resetBtn" type="reset" class="layui-btn layui-btn-primary">清空</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
