@@ -1,11 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.upload.service;
 
-import cn.huanzi.qch.baseadmin.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;

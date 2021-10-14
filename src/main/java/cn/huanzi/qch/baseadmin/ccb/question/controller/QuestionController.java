@@ -1,13 +1,10 @@
 package cn.huanzi.qch.baseadmin.ccb.question.controller;
 
-import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
 import cn.huanzi.qch.baseadmin.ccb.question.pojo.Question;
 import cn.huanzi.qch.baseadmin.ccb.question.service.QuestionService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QEncoderStream;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.crypto.Mac;
 
 /**
  *  Controller

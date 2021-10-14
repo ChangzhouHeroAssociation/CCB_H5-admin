@@ -6,7 +6,6 @@ import cn.huanzi.qch.baseadmin.ccb.upload.service.FileService;
 import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
 import cn.huanzi.qch.baseadmin.ccb.advertisement.service.AdvertisementService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
-import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.print.attribute.standard.NumberUp;
 
 /**
  *  Controller

@@ -1,13 +1,10 @@
 package cn.huanzi.qch.baseadmin.ccb.video.controller;
 
-import cn.huanzi.qch.baseadmin.ccb.category.pojo.Category;
 import cn.huanzi.qch.baseadmin.ccb.category.service.CategoryService;
-import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.ccb.teacher.service.TeacherService;
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
-import cn.huanzi.qch.baseadmin.ccb.video.repository.VideoRepository;
 import cn.huanzi.qch.baseadmin.ccb.video.service.VideoService;
 import cn.huanzi.qch.baseadmin.ccb.video.vo.VideoVo;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
@@ -15,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.ArrayList;
 import java.util.List;
 

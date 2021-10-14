@@ -1,13 +1,10 @@
 package cn.huanzi.qch.baseadmin.ccb.teacher.controller;
 
-import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.ccb.teacher.service.TeacherService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
-import javafx.event.EventTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
