@@ -8,6 +8,8 @@
     <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
     <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
     <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/common/xm-select.js}"></script>
+    <script th:src="@{/common/axios.js}"></script>
     <script th:src="@{/ccb/video/js/videoForm.js}" charset="utf-8"></script>
 </head>
 <body>
@@ -48,13 +50,11 @@
             </div>
         </div>
 
-        <!-- 讲师复选框 -->
+        <!-- 讲师多选 -->
         <div class="layui-form-item" pane="">
             <label class="layui-form-label">讲师</label>
             <div id="teacher" class="layui-input-block">
-                <input type="checkbox" th:each="teacher:${teachers}" lay-skin="primary"
-                       th:name="|teacher[${teacher.id}]|" th:title="${teacher.teacherName}"
-                       th:value="${teacher.id}">
+
             </div>
         </div>
 
@@ -65,20 +65,5 @@
         </div>
     </form>
 </div>
-<script th:inline="javascript">
-    var hasVideo = /*[[${video!=null}]]*/'false';
-    if (hasVideo) {
-        var teacherInputs =  $("input[name^='teacher']");
-        var videoTeachers = /*[[${video.teachers}]]*/'null';
-        for (let i = 0; i < videoTeachers.length; i++) {
-            $.each(teacherInputs, function() {
-                console.log($(this).val());
-                if ($(this).val() == videoTeachers[i].id) {
-                    $(this).prop("checked", true);
-                }
-            });
-        }
-    }
-</script>
 </body>
 </html>

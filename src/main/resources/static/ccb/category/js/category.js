@@ -39,9 +39,6 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             [
                 { field:'id', width:80, title: 'ID', sort: true }
                 , { field:'categoryName', width:150, title: '分组名', sort: true }
-                , { field:'length', width:150, title: '视频数量', sort: true, templet: function(res) {
-                    return res.videos.length;
-                } }
                 , { fixed: 'right', width:160, align:'center', toolbar: '#categoryBarDemo' }
             ]
         ]

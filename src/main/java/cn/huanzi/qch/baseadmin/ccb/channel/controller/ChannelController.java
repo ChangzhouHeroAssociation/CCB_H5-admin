@@ -3,14 +3,18 @@ package cn.huanzi.qch.baseadmin.ccb.channel.controller;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.repository.ChannelRepository;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
+import cn.huanzi.qch.baseadmin.ccb.channel.vo.ChannelVo;
+import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
+import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
+import cn.huanzi.qch.baseadmin.ccb.video.service.VideoService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -26,7 +30,7 @@ public class ChannelController {
     private ChannelService channelService;
 
     @Autowired
-    private ChannelRepository channelRepository;
+    private VideoService videoService;
 
     @GetMapping("index")
     public ModelAndView index() {
@@ -64,10 +68,34 @@ public class ChannelController {
         return Result.of(channels);
     }
 
+    @GetMapping("videoSelectList")
+    public Result videosInChannel(Integer id) {
+        Channel channel = null;
+        if (id != null) {
+            channel = channelService.getById(id);
+        }
+        List<Select> selects = new ArrayList<>();
+        List<Video> videos = videoService.getAll();
+        for (Video video : videos) {
+            Select tempSelect = new Select();
+            tempSelect.setName(video.getVideoTitle());
+            tempSelect.setValue(video.getId().toString());
+            if (channel != null) {
+                for (Video channelVideo : channel.getVideos()) {
+                    if (channelVideo.getId().equals(video.getId())) {
+                        tempSelect.setSelected(true);
+                    }
+                }
+            }
+            selects.add(tempSelect);
+        }
+
+        return Result.of(selects);
+    }
+
     @GetMapping("get")
     public Result getOne(Integer id) {
         Channel channel = channelService.getById(id);
-        Result result;
         if (channel == null) {
             return Result.of(null, true, 405, "未查询到数据");
         }
@@ -75,15 +103,40 @@ public class ChannelController {
     }
 
     @PostMapping("create")
-    public Result create(Channel channel) {
-        Channel channel1 = channelService.create(channel);
-        return Result.of(channel1, true, 200, "success");
+    public Result create(@RequestBody ChannelVo channelVo) {
+
+        List<Video> videos = new ArrayList<>();
+        for (Integer videoId : channelVo.getVideoIds()) {
+            videos.add(videoService.getById(videoId));
+        }
+        Channel channel = new Channel();
+        channel.setChannelName(channelVo.getChannelName());
+        channel.setIcon(channelVo.getIcon());
+        channel.setContent(channelVo.getContent());
+        channel.setImage(channelVo.getImage());
+        channel.setEnabled(channelVo.getEnabled());
+        channel.setVideos(videos);
+        Channel save = channelService.create(channel);
+        return Result.of(save);
     }
 
     @PostMapping("update")
-    public Result update(Channel channel) {
-        Channel channel1 = channelService.update(channel);
-        return Result.of(channel1, true, 200, "success");
+    public Result update(@RequestBody ChannelVo channelVo) {
+        List<Video> videos = new ArrayList<>();
+        for (Integer videoId : channelVo.getVideoIds()) {
+            videos.add(videoService.getById(videoId));
+        }
+        Channel channel = new Channel();
+        channel.setId(channelVo.getId());
+        channel.setChannelName(channelVo.getChannelName());
+        channel.setIcon(channelVo.getIcon());
+        channel.setContent(channelVo.getContent());
+        channel.setImage(channelVo.getImage());
+        channel.setEnabled(channelVo.getEnabled());
+        channel.setStatus(channelVo.getStatus());
+        channel.setVideos(videos);
+        Channel save = channelService.update(channel);
+        return Result.of(save);
     }
 
     @PostMapping("/switch")
@@ -92,12 +145,12 @@ public class ChannelController {
         if (id == null || isEnabled == null) {
             return Result.of(null, false, 400, "参数错误");
         }
-        Channel one = channelRepository.getOne(id);
+        Channel one = channelService.getById(id);
         if (one == null) {
             return Result.of(null, false, 400, "未找到数据");
         }
         one.setEnabled(isEnabled);
-        Channel save = channelRepository.save(one);
+        Channel save = channelService.update(one);
         return Result.of(save);
 
     }

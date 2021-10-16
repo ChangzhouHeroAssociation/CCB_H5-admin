@@ -22,6 +22,7 @@ import java.util.*;
  * ${date}
  */
 @Service
+@Transactional
 public class ChannelServiceImpl implements ChannelService{
 
     @PersistenceContext
@@ -73,6 +74,7 @@ public class ChannelServiceImpl implements ChannelService{
     public Channel create(Channel channel) {
         channel.setCreateTime(new Date());
         channel.setUpdateTime(new Date());
+        channel.setStatus(1);
         Channel channel1 = channelRepository.save(channel);
         return channel1;
     }

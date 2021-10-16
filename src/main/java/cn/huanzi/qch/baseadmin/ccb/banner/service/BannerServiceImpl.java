@@ -1,18 +1,14 @@
 package cn.huanzi.qch.baseadmin.ccb.banner.service;
 
-import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
-import cn.huanzi.qch.baseadmin.common.service.CommonServiceImpl;
 import cn.huanzi.qch.baseadmin.ccb.banner.pojo.Banner;
 import cn.huanzi.qch.baseadmin.ccb.banner.repository.BannerRepository;
 import cn.huanzi.qch.baseadmin.ccb.banner.vo.BannerVo;
-import cn.huanzi.qch.baseadmin.util.CopyUtil;
+import cn.huanzi.qch.baseadmin.common.service.CommonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

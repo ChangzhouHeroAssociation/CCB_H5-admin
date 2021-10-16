@@ -1,6 +1,5 @@
 layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     var form = layui.form
-        , upload = layui.upload
         , layer = layui.layer;
 
     // 自定义验证规则
@@ -28,11 +27,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         let formData = $("#categoryForm").serializeObject();
         formData.id = categoryId;
 
-        var videoIds = [];
-        $("input[name^='video']:checked").each(function (i) {
-            videoIds[i] = $(this).attr("value");
-        });
-        formData.videoIds = videoIds;
+        formData.videoIds = videosInCategory.getValue('value');
         console.log(JSON.stringify(formData));
 
         let postUrl;
@@ -65,7 +60,25 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     function resetForm() {
         $("#id").attr("value", "");
         $("#categoryName").attr("value", "");
-
+        videosInCategory.setValue([]);
     }
-});
 
+    var videosInCategory = xmSelect.render({
+        el: "#video",
+        language: "zn",
+        tips: "选择分组内的视频",
+        data: []
+    });
+
+    axios({
+        method: 'get',
+        url: '/ccb/category/videoSelectList?id=' + $("#id").attr("value"),
+    }).then(response => {
+        var res = response.data;
+
+        videosInCategory.update({
+            data: res.data,
+            autoRow: true,
+        })
+    });
+});

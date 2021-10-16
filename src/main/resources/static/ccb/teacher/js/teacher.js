@@ -39,7 +39,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             [
                 { field:'id', width:80, title: 'ID', sort: true }
                 , { field:'teacherName', width:150, title: '讲师名字', sort: true }
-                , { field:'description', width:150, title: '讲师简介' }
+                // , { field:'description', width:150, title: '讲师简介' }
                 , { field:'teacherPhoto', width:150, title: '讲师照片', templet: function(res) {
                     return "<img src='" + res.teacherPhoto +"'/>"
                 } }

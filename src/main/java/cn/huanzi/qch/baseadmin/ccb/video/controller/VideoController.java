@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.video.controller;
 
 import cn.huanzi.qch.baseadmin.ccb.category.service.CategoryService;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
+import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.ccb.teacher.service.TeacherService;
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
@@ -69,6 +70,33 @@ public class VideoController {
         Page<Video> videoPage = videoService.pagination(page - 1, limit);
         return Result.of(videoPage);
     }
+
+    @GetMapping("teacherSelectList")
+    public Result teachersInVideo(Integer id) {
+        Video video = null;
+        if (id != null) {
+            video = videoService.getById(id);
+        }
+
+        List<Select> teacherSelects = new ArrayList<>();
+        List<Teacher> teachers = teacherService.getAll();
+        for (Teacher teacher : teachers) {
+            Select tempSelect = new Select();
+            tempSelect.setName(teacher.getTeacherName());
+            tempSelect.setValue(teacher.getId().toString());
+            if (video != null) {
+                for (Teacher videoTeacher : video.getTeachers()) {
+                    if (videoTeacher.getId().equals(teacher.getId())) {
+                        tempSelect.setSelected(true);
+                    }
+                }
+            }
+            teacherSelects.add(tempSelect);
+        }
+
+        return Result.of(teacherSelects);
+    }
+
 
     @PostMapping(value = "create")
     public Result create(@RequestBody VideoVo videoVo) {

@@ -3,6 +3,7 @@ package cn.huanzi.qch.baseadmin.ccb.category.controller;
 import cn.huanzi.qch.baseadmin.ccb.category.pojo.Category;
 import cn.huanzi.qch.baseadmin.ccb.category.service.CategoryService;
 import cn.huanzi.qch.baseadmin.ccb.category.vo.CategoryVo;
+import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
 import cn.huanzi.qch.baseadmin.ccb.video.service.VideoService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: CategoryController
@@ -64,6 +67,35 @@ public class CategoryController {
         }
         Page<Category> categoryPage = categoryService.pagination(page - 1, limit, categoryName);
         return Result.of(categoryPage);
+    }
+
+    /** 返回给多选框 */
+    @GetMapping("videoSelectList")
+    public Result allVideoAndCategory(Integer id) {
+
+        Category category = null;
+        if (id != null) {
+            category = categoryService.getById(id);
+        }
+
+        /** 处理视频多选选项 */
+        List<Video> videos = videoService.getAll();
+        List<Select> selects = new ArrayList<>();
+        for (Video video : videos) {
+            Select tempSelect = new Select();
+            tempSelect.setName(video.getVideoTitle());
+            tempSelect.setValue(video.getId().toString());
+            if (category != null) {
+                for (Video categoryVideo : category.getVideos()) {
+                    if (categoryVideo.getId().equals(video.getId())) {
+                        tempSelect.setSelected(true);
+                    }
+                }
+            }
+            selects.add(tempSelect);
+        }
+
+        return Result.of(selects);
     }
 
     @PostMapping("create")

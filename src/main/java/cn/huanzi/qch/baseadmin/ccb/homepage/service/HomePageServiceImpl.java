@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @ClassName: HomePageServiceImpl
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@Transactional
 public class HomePageServiceImpl implements HomePageService{
 
     @Autowired

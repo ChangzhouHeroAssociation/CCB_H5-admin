@@ -41,7 +41,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 { field:'id', width:80, title: 'ID', sort: true }
                 , { field:'enabled', title: '是否开启', width: 120, sort: true, templet: '#switchEnable' }
                 , { field:'channelName', width:120, title: '频道名字', sort: true }
-                , { field:'content', width:150, title: '频道描述', sort: true }
+                // , { field:'content', width:150, title: '频道描述', sort: true }
                 , { field:'icon', width:150, title: '频道图标', templet: function(res) {
                     return "<img src='" + res.icon +"'/>"
                 }}

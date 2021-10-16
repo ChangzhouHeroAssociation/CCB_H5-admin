@@ -30,24 +30,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.url = $("#url").attr("src");
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
-        var categoryIds = [];
-        $("input[name^='category']:checked").each(function (i) {
-            categoryIds[i] = $(this).attr("value");
-        });
-
-        var channelIds = [];
-        $("input[name^='channel']:checked").each(function (i) {
-            channelIds[i] = $(this).attr("value");
-        });
-
-        var teacherIds = [];
-        $("input[name^='teacher']:checked").each(function (i) {
-            teacherIds[i] = $(this).attr("value");
-        });
-
-        formData.categoryIds = categoryIds;
-        formData.channelIds = channelIds;
-        formData.teacherIds = teacherIds;
+        formData.teacherIds = teachers.getValue('value');
         console.log(JSON.stringify(formData));
 
         let postUrl;
@@ -81,6 +64,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         $("#videoTitle").attr("value", "");
         $("#description").text("");
         $("#url").attr("src", '');
+        teachers.setValue([]);
     }
 
 // 讲师照片上传
@@ -114,6 +98,26 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
                 uploadVideo.upload();
             });
         }
+    });
+
+    // 讲师与视频关联，复选框
+    var teachers = xmSelect.render({
+        el: "#teacher",
+        language: "zn",
+        tips: "选择视频中的讲师",
+        data: []
+    });
+
+    axios({
+        method: 'get',
+        url: '/ccb/video/teacherSelectList?id=' + $("#id").attr("value"),
+    }).then(response => {
+        var res = response.data;
+
+        teachers.update({
+            data: res.data,
+            autoRow: true,
+        })
     });
 
 });

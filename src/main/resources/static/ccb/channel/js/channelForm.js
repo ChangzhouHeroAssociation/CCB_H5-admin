@@ -34,6 +34,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.enabled = isEnable;
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
+        formData.videoIds = videosInChannel.getValue('value');
 
         console.log(JSON.stringify(formData));
 
@@ -44,15 +45,23 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             postUrl = "/ccb/channel/update";
         }
 
-        $.post(postUrl, formData, function (data) {
-            var index = parent.layer.getFrameIndex(window.name);
-            if (data.code == '200') {
-                layer.msg(data.msg);
-                parent.layer.close(index);
-            } else {
-                layer.msg(data.msg);
+        $.ajax({
+            url: postUrl,
+            type: 'POST',
+            data: JSON.stringify(formData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function(data) {
+                var index = parent.layer.getFrameIndex(window.name);
+                if (data.code == '200') {
+                    layer.msg(data.msg);
+                    parent.layer.close(index);
+                } else {
+                    layer.msg(data.msg);
+                }
             }
-        }, "json")
+        });
 
     }
     function resetForm() {
@@ -67,8 +76,29 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         $("#switchEnable").val("");
         $("#switchEnable").removeAttr("checked");
         $("#switchEnable").attr("checked", "");
+        videosInChannel.setValue([ ]);
 
     }
+
+    var videosInChannel = xmSelect.render({
+        el: "#video",
+        language: "zn",
+        tips: "选择频道内的视频",
+        data: []
+    });
+
+    axios({
+        method: 'get',
+        url: '/ccb/channel/videoSelectList?id=' + $("#id").attr("value"),
+    }).then(response => {
+        var res = response.data;
+
+        videosInChannel.update({
+            data: res.data,
+            autoRow: true,
+        })
+    });
+
 
 // 频道图标上传
     var uploadIcon = upload.render({
