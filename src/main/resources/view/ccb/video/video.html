@@ -14,27 +14,55 @@
 <div class="layui-row layui-col-space15">
     <!-- 分页表格 -->
     <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">视频列表</div>
+            <div class="layui-card-body">
 
-        <!--视频列表-->
-        <table class="layui-hide" id="videoTable" lay-filter="video">
+                <!-- 搜索框 -->
+                <fieldset class="table-search-fieldset">
+                    <legend>搜索信息</legend>
+                    <div style="margin: 10px 10px 10px 10px" id="btn">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">输入关键词</label>
+                                <div class="layui-input-inline">
+                                    <!--注意此处input标签里的id-->
+                                    <input class="layui-input" name="keyword" id="search-input" autocomplete="off"
+                                           placeholder="视频标题、频道或讲师">
+                                </div>
+                            </div>
 
-        </table>
+                            <div class="layui-inline">
+                                <!--注意此处button标签里的type属性-->
+                                <button id="searchBtn" type="button" class="layui-btn layui-btn-primary"
+                                        lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
 
-        <!-- 上方工具栏 -->
-        <script type="text/html" id="videoTableToolbarDemo">
-            <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm" lay-event="createVideo">新增<i
-                        class="layui-icon layui-icon-add-1"></i></button>
+                <!--视频列表-->
+                <table class="layui-hide" id="videoTable" lay-filter="video">
+
+                </table>
+
+                <!-- 上方工具栏 -->
+                <script type="text/html" id="videoTableToolbarDemo">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="createVideo">新增<i
+                                class="layui-icon layui-icon-add-1"></i></button>
+                    </div>
+                </script>
+                <!--操作按钮-->
+                <script type="text/html" id="videoBarDemo">
+                    <button class="layui-btn layui-btn-sm layui-btn-primary" lay-event="video">
+                        <i class="fa fa-play" aria-hidden="true"></i>&nbsp;&nbsp;查看视频
+                    </button>
+                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                </script>
             </div>
-        </script>
-        <!--操作按钮-->
-        <script type="text/html" id="videoBarDemo">
-            <button class="layui-btn layui-btn-sm layui-btn-primary" lay-event="video">
-                <i class="fa fa-play" aria-hidden="true"></i>&nbsp;&nbsp;查看视频
-            </button>
-            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        </script>
+        </div>
 
     </div>
 </div>

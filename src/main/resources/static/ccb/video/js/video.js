@@ -38,6 +38,19 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         ,cols: [
             [
                 { field:'id', width:80, title: 'ID', sort: true }
+                , { field: 'channelName', width: 150, title: '频道', templet: function(res){
+                    var chString = "";
+                    var channelLength = res.channels.length;
+                    if (channelLength == 0) {
+                        return "";
+                    } else {
+                        chString = res.channels[0].channelName;
+                        for (let i = 1; i < channelLength; i++) {
+                            chString += ", " + res.channels[i].channelName;
+                        }
+                        return chString;
+                    }
+                } }
                 , { field:'videoTitle', width:150, title: '视频标题', sort: true }
                 , { field:'views', width:100, title: '观看数', sort: true }
                 , { field:'enjoyCount', width:100, title: '点赞数', sort: true }
@@ -61,6 +74,27 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 , { fixed: 'right', width:300, align:'center', toolbar: '#videoBarDemo' }
             ]
         ]
+    });
+
+    // 搜索框监测
+    var active = {
+        reload: function(){
+            var demoReload = $('#search-input');	//得到搜索框里已输入的数据
+            //执行重载
+            table.reload('videoTable', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                ,where: {
+                    name:  demoReload.val()		//在表格中进行搜索
+                }
+            });
+        }
+    };
+
+    $('#searchBtn').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
 
     //头工具栏事件

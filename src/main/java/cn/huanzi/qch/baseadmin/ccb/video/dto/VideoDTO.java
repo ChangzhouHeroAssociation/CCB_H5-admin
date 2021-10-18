@@ -1,4 +1,4 @@
-package cn.huanzi.qch.baseadmin.ccb.video.vo;
+package cn.huanzi.qch.baseadmin.ccb.video.dto;
 
 import lombok.Data;
 
@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Data
-public class VideoVo {
+public class VideoDTO {
     /** 视频编号 */
     private Integer id;
     /** 视频标题 */

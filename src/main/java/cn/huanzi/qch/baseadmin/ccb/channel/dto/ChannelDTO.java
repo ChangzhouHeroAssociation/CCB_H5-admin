@@ -1,7 +1,6 @@
-package cn.huanzi.qch.baseadmin.ccb.channel.vo;
+package cn.huanzi.qch.baseadmin.ccb.channel.dto;
 
 import lombok.Data;
-import org.apache.catalina.LifecycleState;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  */
 
 @Data
-public class ChannelVo {
+public class ChannelDTO {
     private Integer id;//频道编号
 
     private String channelName;//频道名称

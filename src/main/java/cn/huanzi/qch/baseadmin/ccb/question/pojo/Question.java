@@ -1,6 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.question.pojo;
 
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +15,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "question")
-@Data
 public class Question implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -37,5 +37,83 @@ public class Question implements Serializable {
     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, optional = false)
     @JoinColumn(name = "channel_id", referencedColumnName = "id")
     private Channel channel;// 频道
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", option='" + option + '\'' +
+                ", category=" + category +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", weight=" + weight +
+                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getOption() {
+        return option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+//    @JsonIgnore
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
 }
 

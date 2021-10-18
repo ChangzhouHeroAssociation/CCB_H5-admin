@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.advertisement.repository;
 
 import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,6 +12,6 @@ import org.springframework.stereotype.Repository;
  * ${date}
  */
 @Repository
-public interface AdvertisementRepository extends JpaRepository<Advertisement, Integer> {
+public interface AdvertisementRepository extends JpaRepository<Advertisement, Integer>, JpaSpecificationExecutor<Advertisement> {
 }
 

@@ -3,6 +3,7 @@ package cn.huanzi.qch.baseadmin.ccb.video.pojo;
 import cn.huanzi.qch.baseadmin.ccb.category.pojo.Category;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import javax.persistence.*;
@@ -22,6 +23,7 @@ import java.util.Set;
 public class Video implements Serializable {
     /** 视频编号 */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     /** 视频标题 */
     private String videoTitle;
@@ -50,6 +52,9 @@ public class Video implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "teacher_id")
     )
     private List<Teacher> teachers;
+
+    @ManyToMany(mappedBy = "videos")
+    private List<Channel> channels;
 
     @Override
     public String toString() {
@@ -153,6 +158,14 @@ public class Video implements Serializable {
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
+    }
+
+    public List<Channel> getChannels() {
+        return channels;
+    }
+
+    public void setChannels(List<Channel> channels) {
+        this.channels = channels;
     }
 }
 

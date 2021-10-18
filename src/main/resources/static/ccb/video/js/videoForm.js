@@ -30,6 +30,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.url = $("#url").attr("src");
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
+        formData.channelId = $("#channelId option:selected").val();
         formData.teacherIds = teachers.getValue('value');
         console.log(JSON.stringify(formData));
 

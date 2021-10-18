@@ -15,24 +15,28 @@
     <div class="layui-row layui-col-space15">
         <!-- 分页表格 -->
         <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">讲师列表</div>
+                <div class="layui-card-body">
 
-            <!--讲师列表-->
-            <table class="layui-hide" id="teacherTable"  lay-filter="teacher">
+                    <!--讲师列表-->
+                    <table class="layui-hide" id="teacherTable"  lay-filter="teacher">
 
-            </table>
+                    </table>
 
-            <!-- 上方工具栏 -->
-            <script type="text/html" id="teacherTableToolbarDemo">
-                <div class="layui-btn-container">
-                    <button class="layui-btn layui-btn-sm" lay-event="createTeacher">新增<i class="layui-icon layui-icon-add-1"></i></button>
+                    <!-- 上方工具栏 -->
+                    <script type="text/html" id="teacherTableToolbarDemo">
+                        <div class="layui-btn-container">
+                            <button class="layui-btn layui-btn-sm" lay-event="createTeacher">新增<i class="layui-icon layui-icon-add-1"></i></button>
+                        </div>
+                    </script>
+                    <!--操作按钮-->
+                    <script type="text/html" id="teacherBarDemo">
+                        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                    </script>
                 </div>
-            </script>
-            <!--操作按钮-->
-            <script type="text/html" id="teacherBarDemo">
-                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-            </script>
-
+            </div>
         </div>
     </div>
 </body>

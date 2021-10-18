@@ -1,6 +1,10 @@
 package cn.huanzi.qch.baseadmin.ccb.channel.pojo;
 
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -131,6 +135,7 @@ public class Channel implements Serializable {
         this.enabled = enabled;
     }
 
+    @JsonIgnore
     public List<Video> getVideos() {
         return videos;
     }

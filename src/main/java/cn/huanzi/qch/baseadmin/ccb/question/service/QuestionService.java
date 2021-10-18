@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
  */
 public interface QuestionService {
 
-    Page<Question> pagination(Integer page, Integer limit);
+    Page<Question> pagination(Integer page, Integer limit, String keyword);
 
     Question getById(Integer id);
 

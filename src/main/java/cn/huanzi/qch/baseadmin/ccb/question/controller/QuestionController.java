@@ -7,10 +7,7 @@ import cn.huanzi.qch.baseadmin.ccb.question.service.QuestionService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -48,7 +45,8 @@ public class QuestionController {
     }
 
     @GetMapping("page")
-    public Result<Page<Question>> queryPage(Integer page, Integer limit) {
+    public Result<Page<Question>> queryPage(Integer page, Integer limit,
+                                            @RequestParam(name = "name", required = false, defaultValue = "") String keyword) {
 
         if (page == null || page < 1) {
             page = 1;
@@ -57,7 +55,7 @@ public class QuestionController {
             limit = 10;
         }
 
-        Page<Question> questions = questionService.pagination(page - 1, limit);
+        Page<Question> questions = questionService.pagination(page - 1, limit, keyword);
         return Result.of(questions);
     }
 

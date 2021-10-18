@@ -1,4 +1,4 @@
-package cn.huanzi.qch.baseadmin.ccb.category.vo;
+package cn.huanzi.qch.baseadmin.ccb.category.dto;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Data
-public class CategoryVo {
+public class CategoryDTO {
 
     private Integer id;
     private String categoryName;

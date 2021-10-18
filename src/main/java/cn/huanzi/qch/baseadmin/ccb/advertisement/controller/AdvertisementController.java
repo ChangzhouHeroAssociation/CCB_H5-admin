@@ -8,10 +8,7 @@ import cn.huanzi.qch.baseadmin.ccb.advertisement.service.AdvertisementService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -54,14 +51,14 @@ public class AdvertisementController {
     }
 
     @GetMapping("page")
-    public Result paging(Integer page, Integer limit) {
+    public Result paging(Integer page, Integer limit, @RequestParam(name = "name", required = false, defaultValue = "") String keyword) {
         if (page == null || page < 0) {
             page = 1;
         }
         if (limit == null || limit < 1) {
             limit = 10;
         }
-        Page pagination = advertisementService.pagination(page - 1, limit);
+        Page pagination = advertisementService.pagination(page - 1, limit, keyword);
         return Result.of(pagination);
     }
 

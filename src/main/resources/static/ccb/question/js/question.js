@@ -60,7 +60,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     }
                 } }
                 , { field:'title', width:300, title: '题目', sort: true }
-                , { field:'option', width:300, title: '选项（用 "&" 间隔）' }
+                , { field:'option', width:300, title: '选项', templet: function(res) {
+                    return res.option.replaceAll("&", "</br>");
+                } }
                 , { field:'weight', width:150, title: '排序', sort: true }
                 , { field:'createTime', title: '创建时间', minWidth: 160, sort: true }
                 , { field:'updateTime', width:160, title: '更新时间', sort: true }
@@ -69,7 +71,28 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         ]
     });
 
-    //头工具栏事件
+    // 搜索框监测
+    var active = {
+        reload: function(){
+            var demoReload = $('#search-input');	//得到搜索框里已输入的数据
+            //执行重载
+            table.reload('questionTable', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                ,where: {
+                    name:  demoReload.val()		//在表格中进行搜索
+                }
+            });
+        }
+    };
+
+    $('#searchBtn').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+
+//头工具栏事件
     table.on('toolbar(question)', function(obj){
         switch(obj.event){
             case 'createQuestion':

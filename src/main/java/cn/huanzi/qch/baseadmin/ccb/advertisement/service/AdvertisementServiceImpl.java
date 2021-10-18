@@ -2,14 +2,17 @@ package cn.huanzi.qch.baseadmin.ccb.advertisement.service;
 
 import cn.huanzi.qch.baseadmin.ccb.advertisement.pojo.Advertisement;
 import cn.huanzi.qch.baseadmin.ccb.advertisement.repository.AdvertisementRepository;
+import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.Optional;
 
@@ -30,8 +33,20 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     private AdvertisementRepository advertisementRepository;
 
     @Override
-    public Page pagination(Integer page, Integer limit) {
-        Page<Advertisement> advertisements = advertisementRepository.findAll(PageRequest.of(page, limit));
+    public Page pagination(Integer page, Integer limit, String keyword) {
+
+        Specification<Advertisement> spec = new Specification<Advertisement>() {
+            @Override
+            public Predicate toPredicate(Root<Advertisement> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                // 按频道模糊查找
+                Join<Advertisement, Channel> joinChannel = root.join(root.getModel().getSingularAttribute("channel", Channel.class), JoinType.LEFT);
+                Predicate channelNameLike = criteriaBuilder.like(joinChannel.get("channelName").as(String.class), "%" + keyword + "%");
+
+                return channelNameLike;
+            }
+        };
+
+        Page<Advertisement> advertisements = advertisementRepository.findAll(spec, PageRequest.of(page, limit));
         return advertisements;
     }
 

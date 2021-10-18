@@ -7,7 +7,7 @@ import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.ccb.teacher.service.TeacherService;
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
 import cn.huanzi.qch.baseadmin.ccb.video.service.VideoService;
-import cn.huanzi.qch.baseadmin.ccb.video.vo.VideoVo;
+import cn.huanzi.qch.baseadmin.ccb.video.dto.VideoDTO;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,23 +51,24 @@ public class VideoController {
         } else {
             mav.addObject("video", videoService.getById(id));
         }
-        mav.addObject("teachers", teacherService.getAll());
         mav.addObject("channels", channelService.getAll());
-        mav.addObject("categories", categoryService.getAll());
 
         return mav;
     }
 
     @GetMapping("page")
-    public Result<Page<Video>> page(Integer page, Integer limit) {
+    public Result<Page<Video>> page(Integer page, Integer limit, @RequestParam(name = "name", required = false, defaultValue = "") String keyword) {
         if (page == null || page < 1) {
             page = 1;
         }
         if (limit == null || limit < 1) {
             limit = 10;
         }
+        if (keyword == null) {
+            keyword = "";
+        }
 
-        Page<Video> videoPage = videoService.pagination(page - 1, limit);
+        Page<Video> videoPage = videoService.pagination(page - 1, limit, keyword);
         return Result.of(videoPage);
     }
 
@@ -99,17 +100,17 @@ public class VideoController {
 
 
     @PostMapping(value = "create")
-    public Result create(@RequestBody VideoVo videoVo) {
+    public Result create(@RequestBody VideoDTO videoDTO) {
 
         List<Teacher> teachers = new ArrayList<>();
-        for (Integer teacherId : videoVo.getTeacherIds()) {
+        for (Integer teacherId : videoDTO.getTeacherIds()) {
             teachers.add(teacherService.getById(teacherId));
         }
 
         Video video = new Video();
-        video.setVideoTitle(videoVo.getVideoTitle());
-        video.setDescription(videoVo.getDescription());
-        video.setUrl(videoVo.getUrl());
+        video.setVideoTitle(videoDTO.getVideoTitle());
+        video.setDescription(videoDTO.getDescription());
+        video.setUrl(videoDTO.getUrl());
         video.setStatus(1);
         video.setTeachers(teachers);
         Video save = videoService.create(video);
@@ -118,8 +119,8 @@ public class VideoController {
     }
 
     @PostMapping(value = "update")
-    public Result update(@RequestBody VideoVo videoVo) {
-        List<Integer> teacherIds = videoVo.getTeacherIds();
+    public Result update(@RequestBody VideoDTO videoDTO) {
+        List<Integer> teacherIds = videoDTO.getTeacherIds();
 
         List<Teacher> teachers = new ArrayList<>();
         for (Integer teacherId : teacherIds) {
@@ -127,10 +128,10 @@ public class VideoController {
         }
 
         Video video = new Video();
-        video.setId(videoVo.getId());
-        video.setVideoTitle(videoVo.getVideoTitle());
-        video.setDescription(videoVo.getDescription());
-        video.setUrl(videoVo.getUrl());
+        video.setId(videoDTO.getId());
+        video.setVideoTitle(videoDTO.getVideoTitle());
+        video.setDescription(videoDTO.getDescription());
+        video.setUrl(videoDTO.getUrl());
         video.setStatus(1);
         video.setTeachers(teachers);
 

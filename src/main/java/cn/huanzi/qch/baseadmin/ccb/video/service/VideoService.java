@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface VideoService {
 
-    Page<Video> pagination(Integer page, Integer limit);
+    Page<Video> pagination(Integer page, Integer limit, String keyword);
 
     Video getById(Integer id);
 

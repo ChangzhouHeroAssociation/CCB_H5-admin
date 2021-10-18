@@ -55,6 +55,28 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         ]
     });
 
+    // 搜索框监测
+    var active = {
+        reload: function(){
+            var demoReload = $('#search-input');	//得到搜索框里已输入的数据
+            //执行重载
+            table.reload('adTable', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                ,where: {
+                    name:  demoReload.val()		//在表格中进行搜索
+                }
+            });
+        }
+    };
+
+    $('#searchBtn').on('click', function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+
+
     //头工具栏事件
     table.on('toolbar(ad)', function(obj){
         switch(obj.event){

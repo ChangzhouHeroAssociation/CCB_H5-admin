@@ -2,21 +2,18 @@ package cn.huanzi.qch.baseadmin.ccb.category.controller;
 
 import cn.huanzi.qch.baseadmin.ccb.category.pojo.Category;
 import cn.huanzi.qch.baseadmin.ccb.category.service.CategoryService;
-import cn.huanzi.qch.baseadmin.ccb.category.vo.CategoryVo;
+import cn.huanzi.qch.baseadmin.ccb.category.dto.CategoryDTO;
 import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
 import cn.huanzi.qch.baseadmin.ccb.video.service.VideoService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
-import jdk.internal.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ClassName: CategoryController
@@ -99,15 +96,15 @@ public class CategoryController {
     }
 
     @PostMapping("create")
-    public Result create(@RequestBody CategoryVo categoryVo) {
+    public Result create(@RequestBody CategoryDTO categoryDTO) {
 
         List<Video> videos = new ArrayList<>();
-        for (Integer videoId : categoryVo.getVideoIds()) {
+        for (Integer videoId : categoryDTO.getVideoIds()) {
             videos.add(videoService.getById(videoId));
         }
 
         Category category = new Category();
-        category.setCategoryName(categoryVo.getCategoryName());
+        category.setCategoryName(categoryDTO.getCategoryName());
         category.setVideos(videos);
         Category save = categoryService.create(category);
         return Result.of(save);
@@ -115,16 +112,16 @@ public class CategoryController {
     }
 
     @PostMapping("update")
-    public Result update(@RequestBody CategoryVo categoryVo) {
+    public Result update(@RequestBody CategoryDTO categoryDTO) {
 
         List<Video> videos = new ArrayList<>();
-        for (Integer videoId : categoryVo.getVideoIds()) {
+        for (Integer videoId : categoryDTO.getVideoIds()) {
             videos.add(videoService.getById(videoId));
         }
 
         Category category = new Category();
-        category.setId(categoryVo.getId());
-        category.setCategoryName(categoryVo.getCategoryName());
+        category.setId(categoryDTO.getId());
+        category.setCategoryName(categoryDTO.getCategoryName());
         category.setVideos(videos);
         Category save = categoryService.update(category);
         return Result.of(save);
