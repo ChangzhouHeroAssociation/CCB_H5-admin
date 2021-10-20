@@ -37,9 +37,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '主页列表'
         ,cols: [
             [
-                { field:'id', width:80, title: 'ID', sort: true }
-                , { field:'activity', width:300, title: '活动介绍', sort: true }
-                , { fixed: 'right', width:300, align:'center', toolbar: '#homepageBarDemo' }
+                { field:'id', width: '20%', title: 'ID', sort: true }
+                , { field:'activity', width: '40%', title: '活动介绍', sort: true }
+                , { fixed: 'right', width: '40%', align:'center', toolbar: '#homepageBarDemo' }
             ]
         ]
     });

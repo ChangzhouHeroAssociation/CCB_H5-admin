@@ -19,7 +19,7 @@ public class Select {
     /** 显示名字 */
     private String name;
     /** option的值 */
-    private String value;
+    private Integer value;
     /** 默认不选中 */
     private boolean selected = false;
     /** 默认启用 */

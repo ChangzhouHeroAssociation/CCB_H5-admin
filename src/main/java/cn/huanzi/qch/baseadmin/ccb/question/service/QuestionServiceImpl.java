@@ -41,11 +41,16 @@ public class QuestionServiceImpl implements QuestionService{
         Specification<Question> spec = new Specification<Question>() {
             @Override
             public Predicate toPredicate(Root<Question> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                // 按频道模糊查找
-                Join<Question, Channel> joinChannel = root.join(root.getModel().getSingularAttribute("channel", Channel.class), JoinType.LEFT);
-                Predicate channelNameLike = criteriaBuilder.like(joinChannel.get("channelName").as(String.class), "%" + keyword + "%");
+                if (keyword.trim().equals("")) {
+                    return null;
+                } else  {
+                    // 按频道id查找
+                    Join<Question, Channel> joinChannel = root.join(root.getModel().getSingularAttribute("channel", Channel.class), JoinType.LEFT);
+                    Predicate channelNameEqual = criteriaBuilder.equal(joinChannel.get("id").as(String.class), keyword);
 
-                return channelNameLike;
+                    return channelNameEqual;
+                }
+
             }
         };
 

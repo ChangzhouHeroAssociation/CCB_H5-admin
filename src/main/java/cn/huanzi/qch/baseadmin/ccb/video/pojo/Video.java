@@ -23,7 +23,6 @@ import java.util.Set;
 public class Video implements Serializable {
     /** 视频编号 */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     /** 视频标题 */
     private String videoTitle;

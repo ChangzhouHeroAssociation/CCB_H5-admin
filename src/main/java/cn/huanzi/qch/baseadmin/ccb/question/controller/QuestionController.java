@@ -27,7 +27,9 @@ public class QuestionController {
 
     @GetMapping("index")
     public ModelAndView index() {
-        return new ModelAndView("ccb/question/question");
+        ModelAndView mav = new ModelAndView("ccb/question/question");
+        mav.addObject("channels", channelService.getAll());
+        return mav;
     }
 
     @GetMapping("questionForm")

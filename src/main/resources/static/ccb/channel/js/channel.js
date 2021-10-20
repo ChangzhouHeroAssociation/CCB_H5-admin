@@ -53,6 +53,18 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 ,{ fixed: 'right', width:178, align:'center', toolbar: '#channelBarDemo' }
             ]
         ]
+        // , done: function (res, curr, count) {
+        //     if (curr > 1 && res.data.content.length === 0) {
+        //         curr = curr - 1;
+        //         tableIns.reload({
+        //             page: {
+        //                 curr: curr
+        //             },
+        //             where: {
+        //             },
+        //         });
+        //     }
+        // }
     });
 
     //头工具栏事件

@@ -84,7 +84,7 @@ public class VideoController {
         for (Teacher teacher : teachers) {
             Select tempSelect = new Select();
             tempSelect.setName(teacher.getTeacherName());
-            tempSelect.setValue(teacher.getId().toString());
+            tempSelect.setValue(teacher.getId());
             if (video != null) {
                 for (Teacher videoTeacher : video.getTeachers()) {
                     if (videoTeacher.getId().equals(teacher.getId())) {

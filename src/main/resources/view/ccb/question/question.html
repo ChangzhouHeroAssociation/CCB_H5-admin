@@ -23,20 +23,26 @@
                 <fieldset class="table-search-fieldset">
                     <legend>搜索信息</legend>
                     <div style="margin: 10px 10px 10px 10px" id="btn">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label">输入关键词</label>
-                                <div class="layui-input-inline">
-                                    <!--注意此处input标签里的id-->
-                                    <input class="layui-input" name="keyword" id="search-input" autocomplete="off"
-                                    placeholder="频道名">
+                        <div class="layui-form">
+                            <!-- 频道选择下拉框 -->
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">检索频道</label>
+                                    <div class="layui-input-inline">
+                                        <select id="channelId" name="channel"
+                                                class="layui-input">
+                                            <option value="" class="layui-input">全部</option>
+                                            <option th:each="channel:${channels}" class="layui-input"
+                                                    th:value="${channel.id}" th:text="${channel.channelName}">频道
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="layui-inline">
-                                <!--注意此处button标签里的type属性-->
-                                <button id="searchBtn" type="button" class="layui-btn layui-btn-primary"
-                                        lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                                <div class="layui-inline">
+                                    <!--注意此处button标签里的type属性-->
+                                    <button id="searchBtn" type="button" class="layui-btn layui-btn-primary"
+                                            lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                                </div>
                             </div>
                         </div>
                     </div>

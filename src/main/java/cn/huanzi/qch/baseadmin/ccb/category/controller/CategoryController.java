@@ -81,7 +81,7 @@ public class CategoryController {
         for (Video video : videos) {
             Select tempSelect = new Select();
             tempSelect.setName(video.getVideoTitle());
-            tempSelect.setValue(video.getId().toString());
+            tempSelect.setValue(video.getId());
             if (category != null) {
                 for (Video categoryVideo : category.getVideos()) {
                     if (categoryVideo.getId().equals(video.getId())) {

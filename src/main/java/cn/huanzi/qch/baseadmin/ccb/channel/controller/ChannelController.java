@@ -78,7 +78,7 @@ public class ChannelController {
         for (Video video : videos) {
             Select tempSelect = new Select();
             tempSelect.setName(video.getVideoTitle());
-            tempSelect.setValue(video.getId().toString());
+            tempSelect.setValue(video.getId());
             if (channel != null) {
                 for (Video channelVideo : channel.getVideos()) {
                     if (channelVideo.getId().equals(video.getId())) {

@@ -60,6 +60,27 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         });
 
     }
+
+    // 讲师与视频关联，复选框
+    var teachers = xmSelect.render({
+        el: "#teacher",
+        language: "zn",
+        tips: "选择视频中的讲师",
+        data: []
+    });
+
+    axios({
+        method: 'get',
+        url: '/ccb/video/teacherSelectList?id=' + $("#id").attr("value"),
+    }).then(response => {
+        var res = response.data;
+
+        teachers.update({
+            data: res.data,
+            autoRow: true,
+        })
+    });
+
     function resetForm() {
         $("#id").attr("value", "");
         $("#videoTitle").attr("value", "");
@@ -99,26 +120,6 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
                 uploadVideo.upload();
             });
         }
-    });
-
-    // 讲师与视频关联，复选框
-    var teachers = xmSelect.render({
-        el: "#teacher",
-        language: "zn",
-        tips: "选择视频中的讲师",
-        data: []
-    });
-
-    axios({
-        method: 'get',
-        url: '/ccb/video/teacherSelectList?id=' + $("#id").attr("value"),
-    }).then(response => {
-        var res = response.data;
-
-        teachers.update({
-            data: res.data,
-            autoRow: true,
-        })
     });
 
 });

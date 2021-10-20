@@ -58,7 +58,8 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
     // 搜索框监测
     var active = {
         reload: function(){
-            var demoReload = $('#search-input');	//得到搜索框里已输入的数据
+            var demoReload = $("#channelId option:selected");	//得到搜索框里已输入的数据
+            console.log($("#channelId option:selected").text());
             //执行重载
             table.reload('adTable', {
                 page: {

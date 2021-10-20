@@ -42,7 +42,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     var chString = "";
                     var channelLength = res.channels.length;
                     if (channelLength == 0) {
-                        return "";
+                        return "未选择所属频道";
                     } else {
                         chString = res.channels[0].channelName;
                         for (let i = 1; i < channelLength; i++) {

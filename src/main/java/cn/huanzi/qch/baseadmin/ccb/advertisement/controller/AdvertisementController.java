@@ -31,7 +31,9 @@ public class AdvertisementController {
 
     @GetMapping("index")
     public ModelAndView index() {
-        return new ModelAndView("ccb/advertisement/advertisement");
+        ModelAndView mav = new ModelAndView("ccb/advertisement/advertisement");
+        mav.addObject("channels", channelService.getAll());
+        return mav;
     }
 
     @GetMapping("adForm")

@@ -38,11 +38,15 @@ public class AdvertisementServiceImpl implements AdvertisementService{
         Specification<Advertisement> spec = new Specification<Advertisement>() {
             @Override
             public Predicate toPredicate(Root<Advertisement> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                // 按频道模糊查找
-                Join<Advertisement, Channel> joinChannel = root.join(root.getModel().getSingularAttribute("channel", Channel.class), JoinType.LEFT);
-                Predicate channelNameLike = criteriaBuilder.like(joinChannel.get("channelName").as(String.class), "%" + keyword + "%");
 
-                return channelNameLike;
+                if (keyword.trim().equals("")) {
+                    return null;
+                } else {
+                    // 按id查找
+                    Join<Advertisement, Channel> joinChannel = root.join(root.getModel().getSingularAttribute("channel", Channel.class), JoinType.LEFT);
+                    Predicate channelNameEqual = criteriaBuilder.equal(joinChannel.get("id").as(String.class), keyword);
+                    return channelNameEqual;
+                }
             }
         };
 

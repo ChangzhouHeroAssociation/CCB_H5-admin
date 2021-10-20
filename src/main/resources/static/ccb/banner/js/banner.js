@@ -40,15 +40,15 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '轮播图列表'
         ,cols: [
             [
-                {field:'id', width:80, title: 'ID', sort: true}
-                ,{field:'bannerName', width:150, title: '轮播图名字', sort: true}
-                ,{field:'url', width:150, title: '轮播图', templet: function(res) {
+                { field:'id', width:80, title: 'ID', sort: true }
+                ,{ field:'bannerName', width:150, title: '轮播图名字', sort: true }
+                ,{ field:'url', width:150, title: '轮播图', templet: function(res) {
                     return "<img src='" + res.url +"'/>"
-                }}
-                ,{field:'weight', width:80, title: '排序', sort: true}
-                ,{field:'createTime', title: '创建时间', minWidth: 160, sort: true}
-                ,{field:'updateTime', width:160, title: '更新时间', sort: true}
-                ,{fixed: 'right', width:160, align:'center', toolbar: '#bannerBarDemo'}
+                } }
+                ,{ field:'weight', width:80, title: '排序', sort: true }
+                ,{ field:'createTime', title: '创建时间', minWidth: 160, sort: true }
+                ,{ field:'updateTime', width:160, title: '更新时间', sort: true }
+                ,{ fixed: 'right', width:160, align:'center', toolbar: '#bannerBarDemo' }
             ]
         ]
     });

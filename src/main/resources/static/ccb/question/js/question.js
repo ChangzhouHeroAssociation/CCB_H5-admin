@@ -74,7 +74,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
     // 搜索框监测
     var active = {
         reload: function(){
-            var demoReload = $('#search-input');	//得到搜索框里已输入的数据
+            var demoReload = $("#channelId option:selected");	//得到搜索框里已输入的数据
             //执行重载
             table.reload('questionTable', {
                 page: {
@@ -129,6 +129,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 }, "json");
                 layer.close(index);
                 tableIns.reload();
+
             });
         } else if(obj.event === 'edit'){
             /* 编辑操作 */
