@@ -10,33 +10,42 @@ Base Admin一套简单通用的后台管理系统<br/>
 java后端：SpringBoot + Thymeleaf + WebSocket + Spring Security + SpringData-Jpa + MySql<br/> 
 
 ## 文件上传相关<br/>
-文件上传目录设置在 `application.properties` 文件中
+文件上传目录和大小设置在 `application.properties` 文件中
 
 ```
-# 设置文件上传的路径，图片会上传到该目录的image文件夹下，视频放到video文件夹下
-# 路径结尾一定要写 '/'
-file.upload-path.image=upload/img/
-file.upload-path.video=upload/video/
+# 设置文件上传的路径，图片会上传到该目录的img文件夹下，视频放到video文件夹下
+# 设置绝对路径，并确保有权限创建目录，否则需手动创建，路径结尾一定要写 '/'
+file.upload-path.image=/data/wwwroot/CCB_H5-admin/upload/img/
+file.upload-path.video=data/wwwroot/CCB_H5-admin/upload/video/
 
 # 上传文件的最大限制
-spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-file-size=20MB
 # 单次请求文件的最大限制
-spring.servlet.multipart.max-request-size=10MB
+spring.servlet.multipart.max-request-size=20MB
 ```
-还有上传文件返回的url前缀（协议、主机、端口）在ccb/upload/controller/UploadService.java中修改
+还有上传文件返回的url前缀（协议、主机、端口）在src/.../ccb/upload/service/UploadService.java中修改
 > 注意： 确保有权限创建目录
 
-
 ## 快速开始
-1. 克隆源码到本地<br/>
+
+1. 克隆源码到本地
+
 ```
 git clone https://github.com/ChangzhouHeroAssociation/CCB_H5-admin.git
 ```
+
 2. 创建数据库并导入数据
-数据库文件在 `src/main/resources/static/sql/ccb.sql`
-3. 修改配置文件`applicaition.properties`和`application.yml` <br/>
-修改mysql的数据源和文件上传的目录<br/>
-修改ccb.upload.service包下的上传控制器，如果没有域名，使用本地访问的话，需要获取本机的协议、主机、端口。
+
+首先创建一个数据库，导入数据。数据库文件在 `src/main/resources/static/sql/ccb_h5_admin.sql`
+
+3. 修改配置文件
+
+在application.yml中修改mysql的数据源和运行环境（默认为开发环境，生产环境需将13行的dev改为prod）
+   
+在application.properties中修改文件上传的目录
+
+修改src/.../ccb/upload/service.java中的上传方法返回的url前缀。xxxx://xxx.xx:xxxx/upload/img/
+
 4. 修改 `start.sh` 中生成jar包的路径，然后运行 start.sh 脚本启动程序。
 
 ## 常见问题<br/>
