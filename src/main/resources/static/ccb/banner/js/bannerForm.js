@@ -81,6 +81,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             //上传成功的一些操作
             $('#uImage').attr('src', res.data.url);
             $('#demoText').html(''); //置空上传失败的状态
+            layer.msg('上传成功');
         }
         , error: function () {
             //演示失败状态，并实现重传

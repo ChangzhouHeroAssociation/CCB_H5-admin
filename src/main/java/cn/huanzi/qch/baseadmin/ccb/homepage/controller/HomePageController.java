@@ -32,10 +32,11 @@ public class HomePageController {
     @GetMapping("index")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView("ccb/homepage/homepage");
+        mav.addObject("homepage", homePageService.getFirst());
         return mav;
     }
 
-    @GetMapping("homepageForm")
+//    @GetMapping("homepageForm")
     public ModelAndView homePageForm(Integer id) {
         ModelAndView mav = new ModelAndView("ccb/homepage/homepageForm");
         if (id == null) {

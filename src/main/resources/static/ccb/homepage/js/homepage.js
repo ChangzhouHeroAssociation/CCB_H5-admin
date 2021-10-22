@@ -1,112 +1,110 @@
-let tableIns;
-let contextPath = window.location.protocol + "://" + window.location.host;
-layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
-    var table = layui.table
-        , layer = layui.layer;
+layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
+    var form = layui.form
+        , upload = layui.upload
+        , layer = layui.layer
+        , element = layui.element;
 
-    tableIns = table.render({
-        elem: '#homepageTable'
-        , height: 'full-200'
-        , cellMinWidth: 80
-        , page: true
-        ,url:'/ccb/homepage/page'
-        , method: 'GET'
-        //请求前参数处理
-        , request: {
-            pageName: 'page' //页码的参数名称，默认：page
-            , limitName: 'limit' //每页数据量的参数名，默认：limit
+    // 自定义验证规则
+    form.verify({
+        content: function(value){
+            if(value.trim() == ''){
+                return '内容不能为空';
+            }
         }
-        , response: {
-            statusName: 'flag' //规定数据状态的字段名称，默认：code
-            , statusCode: true //规定成功的状态码，默认：0
-            , msgName: 'msg' //规定状态信息的字段名称，默认：msg
-            , countName: 'records' //规定数据总数的字段名称，默认：count
-            , dataName: 'rows' //规定数据列表的字段名称，默认：data
-        }
-        //响应后数据处理
-        , parseData: function (res) { //res 即为原始返回的数据
-            var data = res.data;
-            return {
-                "flag": res.flag, //解析接口状态
-                "msg": res.msg, //解析提示文本
-                "records": data.totalElements, //解析数据长度
-                "rows": data.content //解析数据列表
-            };
-        }
-        , toolbar: '#homepageTableToolbarDemo'
-        , title: '主页列表'
-        ,cols: [
-            [
-                { field:'id', width: '20%', title: 'ID', sort: true }
-                , { field:'activity', width: '40%', title: '活动介绍', sort: true }
-                , { fixed: 'right', width: '40%', align:'center', toolbar: '#homepageBarDemo' }
-            ]
-        ]
+        , video: [ /(^$)|(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/, "图片格式不正确" ]
     });
 
-    //头工具栏事件
-    table.on('toolbar(homepage)', function(obj){
-        switch(obj.event){
-            case 'createHomepage':
-                layer.open({
-                    type: 2,
-                    title: '新增',          // 弹窗标题
-                    shadeClose: true,           //弹出框之外的地方是否可以点击
-                    offset: 'auto',
-                    area: ['60%', '80%'],
-                    content: '/ccb/homepage/homepageForm',
-                    end: function () {
-                        tableIns.reload();
-                    }
-                });
-                break;
-
-            //自定义头工具栏右侧图标 - 提示
-            case 'LAYTABLE_TIPS':
-                layer.alert('这是工具栏右侧自定义的一个图标按钮');
-                break;
-        };
+    form.on('submit(commit)', function (data) {
+        saveHomepage();
+        return false;
     });
 
-    // 监听右侧工具条
-    table.on('tool(homepage)', function(obj){
-        let data = obj.data;
-        if(obj.event === 'del'){
-            /* 删除操作 */
-            layer.confirm('真的删除行么', function(index){
-                $.post("/ccb/homepage/delete", {
-                    "id": data.id
-                }, function (data) {
-                    console.log(data.msg);
-                }, "json");
-                layer.close(index);
-                tableIns.reload();
+    $("#resetBtn").click(function() {
+        resetForm();
+    });
+
+    $("#videoDetail").click(function () {
+        var videoUrl = $("#videoUrl").attr("src");
+        if (videoUrl.trim() === '') {
+            layer.msg("请先上传视频");
+            return;
+        }
+        // 查看视频
+        var videoElem =
+            '<video width="100%" height="100%" controls autobuffer autoplay="autoplay" loop="loop">' +
+            '<source src="' + $("#videoUrl").attr("src") + '" type="video/mp4"/>' +
+            '</video>'
+        layer.open({
+            type: 1,
+            area: ['960px', '600px'],
+            title: '播放视频',
+            content: videoElem,
+        });
+    });
+
+// 保存
+    function saveHomepage() {
+        let homepageId = $("#id").attr("value");
+        let formData = $("#homepageForm").serializeObject();
+        formData.id = homepageId;
+        formData.videoUrl = $("#videoUrl").attr("src");
+        console.log(JSON.stringify(formData));
+
+        let postUrl;
+        if (homepageId == '') {
+            postUrl = "/ccb/homepage/create";
+        } else {
+            postUrl = "/ccb/homepage/update";
+        }
+
+        $.post(postUrl, formData, function (data) {
+            if (data.code == '200') {
+                layer.msg(data.msg);
+            } else {
+                layer.msg(data.msg);
+            }
+        }, "json");
+
+    }
+    function resetForm() {
+        $("#videoUrl").attr("src", "");
+        $("#activity").text("");
+    }
+
+// 讲师照片上传
+    var uploadVideo = upload.render({
+        elem: '#uploadVideo'
+        , url: '/uploadFile/video' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+        , method: 'POST'
+        // 限制格式
+        , ext: 'mp4|mov|avi|flv|mpeg'
+        , accept: 'video'
+        , before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#videoUrl').attr('src', result); //视频链接
             });
-        } else if(obj.event === 'edit'){
-            /* 编辑操作 */
-            layer.open({
-                type: 2,
-                title: '编辑',          // 弹窗标题
-                shadeClose: true,           //弹出框之外的地方是否可以点击
-                offset: 'auto',
-                area: ['60%', '80%'],
-                content: '/ccb/homepage/homepageForm?id=' + data.id,
-                end: function () {
-                    tableIns.reload();
-                }
-            });
-        } else if (obj.event === 'video') {
-            // 查看视频
-            var videoElem =
-                '<video width="100%" height="100%" controls autobuffer autoplay="autoplay" loop="loop">' +
-                '<source src="' + data.videoUrl + '" type="video/mp4"/>' +
-                '</video>'
-            layer.open({
-                type: 1,
-                area: ['960px', '600px'],
-                title: '播放视频',
-                content: videoElem,
+        }
+        , done: function (res) {
+            //如果上传失败
+            if (res.code == '400') {
+                layer.msg('上传失败');
+                return;
+            }
+            //上传成功的一些操作
+
+            $('#videoUrl').attr('src', res.data.url);
+            $('#videoText').html(''); //置空上传失败的状态
+            layer.msg('上传成功');
+        }
+        , error: function () {
+            //演示失败状态，并实现重传
+            var videoText = $('#videoText');
+            videoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            videoText.find('.demo-reload').on('click', function () {
+                uploadVideo.upload();
             });
         }
     });
+
 });

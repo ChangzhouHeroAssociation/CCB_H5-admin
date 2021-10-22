@@ -86,7 +86,6 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public Video create(Video video) {
-        video.setId(videoRepository.getMaxId() + 1);
         video.setCreateTime(new Date());
         video.setUpdateTime(new Date());
         video.setViews(0);

@@ -14,32 +14,47 @@
 <div class="layui-row layui-col-space15">
     <!-- 分页表格 -->
     <div class="layui-col-md12">
-        <div class="layui-card">
-            <div class="layui-card-header">主页列表</div>
-            <div class="layui-card-body">
 
-                <!--主页列表-->
-                <table class="layui-hide" id="homepageTable" lay-filter="homepage">
+        <!-- 操作表单 -->
+        <div style="margin: 25px 60px 0 0;">
+            <form class="layui-form" id="homepageForm" lay-filter="example">
+                <!-- id -->
+                <label id="id" th:value="${homepage!=null?homepage.id:''}" class="layui-form-label" style="display: none">问题id</label>
 
-                </table>
-
-                <!-- 上方工具栏 -->
-                <script type="text/html" id="homepageTableToolbarDemo">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-sm" lay-event="createHomepage">新增<i
-                                class="layui-icon layui-icon-add-1"></i></button>
+                <!-- 活动介绍 -->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">活动介绍</label>
+                    <div class="layui-input-block">
+                        <textarea id="activity" name="activity" th:text="${homepage!=null?homepage.activity:''}" placeholder="请输入题目" class="layui-textarea" lay-verify="required"></textarea>
                     </div>
-                </script>
-                <!--操作按钮-->
-                <script type="text/html" id="homepageBarDemo">
-                    <button class="layui-btn layui-btn-sm layui-btn-primary" lay-event="video">
-                        <i class="fa fa-play" aria-hidden="true"></i>&nbsp;&nbsp;查看视频
-                    </button>
-                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                </script>
-            </div>
+                </div>
+
+                <!-- 视频上传 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">视频</label>
+                    <div class="layui-input-block">
+                        <div class="layui-upload">
+                            <button type="button" class="layui-btn" id="uploadVideo">上传视频</button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="videoDetail">查看视频</button>
+                            <div class="layui-upload-list">
+                                <video id="videoUrl" name="videoUrl" th:src="${homepage!=null?homepage.videoUrl:''}"
+                                       lay-verify="video" class="layui-upload-video" style="max-height: 200px">
+                                </video>
+                                <p id="videoText"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
+                        <button id="resetBtn" type="reset" class="layui-btn layui-btn-primary">清空</button>
+                    </div>
+                </div>
+            </form>
         </div>
+
     </div>
 </div>
 

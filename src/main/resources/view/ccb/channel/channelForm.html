@@ -36,7 +36,7 @@
                 <label class="layui-form-label">频道图标</label>
                 <div class="layui-input-block">
                     <div class="layui-upload">
-                        <button type="button" class="layui-btn" id="uploadIconImage">上传频道图标</button>
+                        <button type="button" class="layui-btn" id="uploadIconImage">上传频道图标</button> （图片大小不超过10MB）
                         <div class="layui-upload-list">
                             <img id="iImage" name="icon" th:src="${channel!=null?channel.icon:''}" lay-verify="image" class="layui-upload-img" style="max-height: 200px">
                             <p id="iconText"></p>
@@ -50,7 +50,7 @@
                 <label class="layui-form-label">频道图片</label>
                 <div class="layui-input-block">
                     <div class="layui-upload">
-                        <button type="button" class="layui-btn" id="uploadImage">上传频道大图</button>
+                        <button type="button" class="layui-btn" id="uploadImage">上传频道大图</button> （图片大小不得超过10MB）
                         <div class="layui-upload-list">
                             <img id="uImage" name="image" th:src="${channel!=null?channel.image:''}" lay-verify="image" class="layui-upload-img" style="max-height: 200px">
                             <p id="ImageText"></p>

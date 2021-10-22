@@ -30,6 +30,11 @@ public class HomePageServiceImpl implements HomePageService{
     }
 
     @Override
+    public HomePage getFirst() {
+        return homePageRepository.getFirst();
+    }
+
+    @Override
     public HomePage getById(Integer id) {
         HomePage homePage = homePageRepository.findById(id).get();
         return homePage;

@@ -6,6 +6,8 @@ import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.GeneratorType;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +25,7 @@ import java.util.Set;
 public class Video implements Serializable {
     /** 视频编号 */
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     /** 视频标题 */
     private String videoTitle;

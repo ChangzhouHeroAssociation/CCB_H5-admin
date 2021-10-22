@@ -7,6 +7,8 @@ public interface HomePageService {
 
     Page<HomePage> pagination(Integer page, Integer limit);
 
+    HomePage getFirst();
+
     HomePage getById(Integer id);
 
     HomePage create(HomePage homePage);

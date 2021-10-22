@@ -34,7 +34,7 @@
             <label class="layui-form-label">广告图片</label>
             <div class="layui-input-block">
                 <div class="layui-upload">
-                    <button type="button" class="layui-btn" id="uploadAdImage">上传广告图片</button>
+                    <button type="button" class="layui-btn" id="uploadAdImage">上传广告图片</button> （图片大小不得超过10MB）
                     <div class="layui-upload-list">
                         <img th:src="${ad!=null?ad.imageUrl:''}" name="imageUrl" class="layui-upload-img" id="adImage"
                              lay-verify="image" style="max-height: 200px">
