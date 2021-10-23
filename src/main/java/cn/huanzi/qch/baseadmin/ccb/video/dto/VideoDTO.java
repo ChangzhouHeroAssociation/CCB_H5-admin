@@ -37,4 +37,6 @@ public class VideoDTO {
     private Date updateTime;
     /** 讲师 */
     private List<Integer> teacherIds;
+    /** 频道id */
+    private Integer channelId;
 }

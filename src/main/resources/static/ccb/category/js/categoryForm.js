@@ -66,6 +66,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     var videosInCategory = xmSelect.render({
         el: "#video",
         language: "zn",
+        filterable: true,
         tips: "选择分组内的视频",
         data: []
     });

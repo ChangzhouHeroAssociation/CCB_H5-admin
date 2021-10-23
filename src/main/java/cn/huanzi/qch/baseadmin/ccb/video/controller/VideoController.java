@@ -33,9 +33,6 @@ public class VideoController {
     private ChannelService channelService;
 
     @Autowired
-    private CategoryService categoryService;
-
-    @Autowired
     private TeacherService teacherService;
 
     @GetMapping("index")
@@ -111,8 +108,8 @@ public class VideoController {
         video.setVideoTitle(videoDTO.getVideoTitle());
         video.setDescription(videoDTO.getDescription());
         video.setUrl(videoDTO.getUrl());
-        video.setStatus(1);
         video.setTeachers(teachers);
+        video.setChannel(channelService.getById(videoDTO.getChannelId()));
         Video save = videoService.create(video);
         return Result.of(save);
 
@@ -132,8 +129,8 @@ public class VideoController {
         video.setVideoTitle(videoDTO.getVideoTitle());
         video.setDescription(videoDTO.getDescription());
         video.setUrl(videoDTO.getUrl());
-        video.setStatus(1);
         video.setTeachers(teachers);
+        video.setChannel(channelService.getById(videoDTO.getChannelId()));
 
         Video save = videoService.update(video);
         return Result.of(save);

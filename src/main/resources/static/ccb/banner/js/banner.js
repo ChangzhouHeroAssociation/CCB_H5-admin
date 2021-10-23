@@ -9,7 +9,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
 
     tableIns = table.render({
         elem: '#bannerTable'
-        , height: 'full-200'
+        , height: 'full-85'
         , cellMinWidth: 80
         , page: true
         ,url:'/ccb/banner/page'

@@ -83,6 +83,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     var videosInChannel = xmSelect.render({
         el: "#video",
         language: "zn",
+        filterable: true,
         tips: "选择频道内的视频",
         data: []
     });

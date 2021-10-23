@@ -51,7 +51,7 @@ public class VideoServiceImpl implements VideoService {
                 Join<Video, Teacher> joinTeacher = root.joinList("teachers", JoinType.LEFT);
                 Predicate teahcerNameLike = criteriaBuilder.like(joinTeacher.get("teacherName").as(String.class), "%" + keyword + "%");
                 // 按频道模糊查找
-                Join<Video, Channel> joinChannel = root.joinList("channels", JoinType.LEFT);
+                Join<Video, Channel> joinChannel = root.join("channel", JoinType.LEFT);
                 Predicate channelName = criteriaBuilder.like(joinChannel.get("channelName").as(String.class), "%" + keyword + "%");
                 Predicate videoOrTeacherOrChannel = criteriaBuilder.or(videoTitleLike, teahcerNameLike, channelName);
                 Predicate and = criteriaBuilder.and(equal, videoOrTeacherOrChannel);
@@ -91,6 +91,7 @@ public class VideoServiceImpl implements VideoService {
         video.setViews(0);
         video.setEnjoyCount(0);
         video.setShareCount(0);
+        video.setStatus(1);
         Video save = videoRepository.save(video);
         return save;
     }
@@ -104,6 +105,7 @@ public class VideoServiceImpl implements VideoService {
         video.setViews(origin.getViews());
         video.setEnjoyCount(origin.getEnjoyCount());
         video.setShareCount(origin.getShareCount());
+        video.setStatus(origin.getStatus());
         Video save = videoRepository.save(video);
         return save;
     }

@@ -18,6 +18,20 @@
     <form class="layui-form" id="videoForm" lay-filter="example">
         <label id="id" th:value="${video!=null?video.id:''}" class="layui-form-label" style="display: none">视频id</label>
 
+        <!-- 频道选择下拉框 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">频道</label>
+            <div class="layui-input-block">
+                <select id="channelId" name="interest" lay-verify="required" lay-filter="aihao">
+                    <option value=""></option>
+                    <option th:each="channel:${channels}"
+                            th:selected="${video != null} and ${video.channel.id} == ${channel.id}"
+                            th:value="${channel.id}" th:text="${channel.channelName}">频道
+                    </option>
+                </select>
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">视频标题</label>
             <div class="layui-input-block">

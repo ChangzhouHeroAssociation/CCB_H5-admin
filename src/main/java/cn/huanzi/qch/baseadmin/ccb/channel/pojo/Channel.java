@@ -40,7 +40,7 @@ public class Channel implements Serializable {
     private Integer enabled;//是否开启 1 开启: 0 关闭
 
     /** 视频列表 */
-    @ManyToMany(targetEntity = Video.class, fetch = FetchType.EAGER)
+    @OneToMany
     @JoinTable(
             name = "channel_video_relation",
             joinColumns = @JoinColumn(name = "channel_id", referencedColumnName = "id"),

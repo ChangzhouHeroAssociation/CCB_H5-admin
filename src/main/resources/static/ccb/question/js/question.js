@@ -6,7 +6,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
 
     tableIns = table.render({
         elem: '#questionTable'
-        , height: 'full-200'
+        , height: 'full-195'
         , cellMinWidth: 80
         , page: true
         ,url:'/ccb/question/page'

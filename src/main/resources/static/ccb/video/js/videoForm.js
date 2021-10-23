@@ -65,6 +65,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     var teachers = xmSelect.render({
         el: "#teacher",
         language: "zn",
+        filterable: true,
         tips: "选择视频中的讲师",
         data: []
     });
@@ -83,10 +84,12 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
 
     function resetForm() {
         $("#id").attr("value", "");
+        $("#channelId").empty();
         $("#videoTitle").attr("value", "");
         $("#description").text("");
         $("#url").attr("src", '');
         teachers.setValue([]);
+        teachers.empty();
     }
 
 // 讲师照片上传

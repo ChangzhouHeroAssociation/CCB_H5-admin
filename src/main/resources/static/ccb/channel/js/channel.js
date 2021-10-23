@@ -7,7 +7,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
 
     tableIns = table.render({
         elem: '#channelTable'
-        , height: 'full-200'
+        , height: 'full-85'
         , cellMinWidth: 80
         , page: true
         ,url:'/ccb/channel/page'

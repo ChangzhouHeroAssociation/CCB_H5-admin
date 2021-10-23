@@ -6,7 +6,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
 
     tableIns = table.render({
         elem: '#videoTable'
-        , height: 'full-200'
+        , height: 'full-195'
         , cellMinWidth: 80
         , page: true
         ,url:'/ccb/video/page'
@@ -39,17 +39,12 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             [
                 { field:'id', width:80, title: 'ID', sort: true }
                 , { field: 'channelName', width: 150, title: '频道', templet: function(res){
-                    var chString = "";
-                    var channelLength = res.channels.length;
-                    if (channelLength == 0) {
-                        return "未选择所属频道";
+                    if (res.channel == null) {
+                        return "";
                     } else {
-                        chString = res.channels[0].channelName;
-                        for (let i = 1; i < channelLength; i++) {
-                            chString += ", " + res.channels[i].channelName;
-                        }
-                        return chString;
+                        return res.channel.channelName;
                     }
+
                 } }
                 , { field:'videoTitle', width:150, title: '视频标题', sort: true }
                 , { field:'views', width:100, title: '观看数', sort: true }

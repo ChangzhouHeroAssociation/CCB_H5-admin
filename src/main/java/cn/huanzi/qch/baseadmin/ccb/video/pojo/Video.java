@@ -55,8 +55,13 @@ public class Video implements Serializable {
     )
     private List<Teacher> teachers;
 
-    @ManyToMany(mappedBy = "videos")
-    private List<Channel> channels;
+    @ManyToOne
+    @JoinTable(
+            name = "channel_video_relation",
+            joinColumns = @JoinColumn(name = "video_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "channel_id", referencedColumnName = "id")
+    )
+    private Channel channel;
 
     @Override
     public String toString() {
@@ -162,12 +167,12 @@ public class Video implements Serializable {
         this.teachers = teachers;
     }
 
-    public List<Channel> getChannels() {
-        return channels;
+    public Channel getChannel() {
+        return channel;
     }
 
-    public void setChannels(List<Channel> channels) {
-        this.channels = channels;
+    public void setChannel(Channel channel) {
+        this.channel = channel;
     }
 }
 

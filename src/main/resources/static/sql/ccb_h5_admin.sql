@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 22/10/2021 22:00:09
+ Date: 23/10/2021 13:09:49
 */
 
 SET NAMES utf8mb4;
@@ -205,9 +205,10 @@ CREATE TABLE `persistent_logins`  (
 -- ----------------------------
 -- Records of persistent_logins
 -- ----------------------------
-INSERT INTO `persistent_logins` VALUES ('jGCW6HaAnio5WPxqHlBiXg==', 'sa', 'wc9UEuVpT5ZCcsVS0w3jng==', '2021-10-22 15:13:40');
-INSERT INTO `persistent_logins` VALUES ('ND9QSDQXPZ6BEgxibbieKA==', 'sa', 'wL84gcCwmXNX+3QqvFSjfA==', '2021-10-22 20:48:42');
-INSERT INTO `persistent_logins` VALUES ('Uh8meI49x9ULB+OBQz5WHQ==', 'admin', 'yye7WbRoxIsEUTf5t6m6Jw==', '2021-10-22 20:37:07');
+INSERT INTO `persistent_logins` VALUES ('/JJZ4opanChqqm+7uo97lQ==', 'sa', 'RnNV6B3rlxVAHgIkZGal9w==', '2021-10-23 13:00:34');
+INSERT INTO `persistent_logins` VALUES ('3jmpmlnfWvcc9BERy5a7kQ==', 'admin', 'LHTNYTiYziQT3PtQBBggDg==', '2021-10-23 09:24:42');
+INSERT INTO `persistent_logins` VALUES ('EtlYffUr5lM1rAsVsJvNlQ==', 'sa', 'AjKr33eUPlv0EG8vOOvA4Q==', '2021-10-23 10:55:22');
+INSERT INTO `persistent_logins` VALUES ('QqPdlBKG6tSrzr+sZQyzzw==', 'sa', 'xcGbDbCkP59h+Igxy/lr0g==', '2021-10-23 12:48:36');
 
 -- ----------------------------
 -- Table structure for question
@@ -307,7 +308,7 @@ CREATE TABLE `sys_setting`  (
 -- ----------------------------
 -- Records of sys_setting
 -- ----------------------------
-INSERT INTO `sys_setting` VALUES ('1', 'Base Admin', 'https://avatar.gitee.com/uploads/0/5137900_huanzi-qch.png!avatar100?1562729811', '© 2019 - 2020  XXX系统', '<h1 style=\"white-space: normal; text-align: center;\"><span style=\"color: rgb(255, 0, 0);\">通知</span></h1><p style=\"white-space: normal;\"><span style=\"color: rgb(255, 0, 0);\">1、不得在公共场合吸烟；</span></p><p style=\"white-space: normal;\"><span style=\"color: rgb(255, 0, 0);\">2、xxxxxxx；</span></p><p><br/></p>', '2019-09-17 10:15:38', '2019-09-17 10:15:40', '123456', 'rgba(54, 123, 183,  0.73)', 'Y', 'N');
+INSERT INTO `sys_setting` VALUES ('1', '建行攻守传管理系统', 'https://github.com/ChangzhouHeroAssociation/CCB_H5-admin/blob/main/logo.jpg?raw=true', '建行攻守传管理系统', '<h1 style=\"white-space: normal; text-align: center;\"><span style=\"color: rgb(255, 0, 0);\">通知</span></h1><p style=\"white-space: normal;\"><span style=\"color: rgb(255, 0, 0);\">1、不得在公共场合吸烟；</span></p><p style=\"white-space: normal;\"><span style=\"color: rgb(255, 0, 0);\">2、xxxxxxx；</span></p><p><br/></p>', '2019-09-17 10:15:38', '2021-10-23 12:11:43', '123456', 'rgba(54, 123, 183,  0.73)', 'Y', 'N');
 
 -- ----------------------------
 -- Table structure for sys_shortcut_menu
@@ -360,8 +361,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-22 20:48:42', 'Y', '2019-07-19 16:36:03', '2021-10-22 15:19:21');
-INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-22 20:37:07', 'N', '2019-07-19 16:36:03', '2021-10-22 20:37:46');
+INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-23 13:00:34', 'Y', '2019-07-19 16:36:03', '2021-10-22 15:19:21');
+INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-23 09:24:42', 'Y', '2019-07-19 16:36:03', '2021-10-22 22:07:59');
 INSERT INTO `sys_user` VALUES ('3fb1c570496d4c09ab99b8d31b0671cf', 'daji', '妲己', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'Y', '2019-09-11 18:11:41', '2019-09-17 12:09:47');
 INSERT INTO `sys_user` VALUES ('b5ac62e154964151a19c565346bb354a', 'xiaofang', '小芳', '96E79218965EB72C92A549DD5A330112', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'N', '2019-09-17 14:12:41', '2019-09-17 14:28:57');
 
@@ -382,11 +383,11 @@ CREATE TABLE `sys_user_authority`  (
 -- Records of sys_user_authority
 -- ----------------------------
 INSERT INTO `sys_user_authority` VALUES ('719a91d4715b4d2e99deef1a3d8a265a', '1', '3fb1c570496d4c09ab99b8d31b06zzz', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
+INSERT INTO `sys_user_authority` VALUES ('7a53d99fc3544de79ef9ec8818cb2f25', '2', '3fb1c570496d4c09ab99b8d31b06ccc', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_authority` VALUES ('7b15ed54a109446e8413bda40013f9d3', '1', '3fb1c570496d4c09ab99b8d31b06ccc', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_authority` VALUES ('90c18739f3ad41ae8010f6c2b7eeaac5', '3fb1c570496d4c09ab99b8d31b0671cf', '3fb1c570496d4c09ab99b8d31b06ccc', '2019-09-17 12:09:47', '2019-09-17 12:09:47');
-INSERT INTO `sys_user_authority` VALUES ('95e3292a876a458bb46b99c009db6bbb', '2', '3fb1c570496d4c09ab99b8d31b06zzz', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
+INSERT INTO `sys_user_authority` VALUES ('c996f0f974e14e22a2d81b45cb11b507', '2', '3fb1c570496d4c09ab99b8d31b06zzz', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_authority` VALUES ('de60e5bbbacf4c739e44a60130d0f534', 'b5ac62e154964151a19c565346bb354a', '3fb1c570496d4c09ab99b8d31b06ccc', '2019-09-17 14:28:58', '2019-09-17 14:28:58');
-INSERT INTO `sys_user_authority` VALUES ('e593c22694c344999ebe1c56b2cf53e6', '2', '3fb1c570496d4c09ab99b8d31b06ccc', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
 INSERT INTO `sys_user_authority` VALUES ('fb71d3cea6a244398301a0e7ebd71344', '1', '3fb1c570496d4c09ab99b8d31b06xxx', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 
 -- ----------------------------
@@ -405,29 +406,29 @@ CREATE TABLE `sys_user_menu`  (
 -- ----------------------------
 -- Records of sys_user_menu
 -- ----------------------------
-INSERT INTO `sys_user_menu` VALUES ('0d9b2dce24d54428a1ef91bd3a422d5d', '2', '2741ff82d20a4dec904269bef1040017', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
-INSERT INTO `sys_user_menu` VALUES ('0f7de40e766b4b208c2be34d4acc9dd7', '2', 'b74d2bc328034cdcb5bc84cecd3797b7', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
-INSERT INTO `sys_user_menu` VALUES ('296cc98f4e6c43eb891573b657a4fbf6', '2', '698d588e500a42dd8c955ec96aad67e2', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
+INSERT INTO `sys_user_menu` VALUES ('1c3db7330b734c53be5b001d4db29f5e', '2', '2741ff82d20a4dec904269bef1040017', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_menu` VALUES ('2d8a605a5341469aac5ed6f690c4fff2', '1', '45421a14448342519d3a5b592f283c89', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
-INSERT INTO `sys_user_menu` VALUES ('2e2cca8240d24c4c90198a5f77826e5e', '2', '78185417f1c34ea1bf6232fd8d2ebeb8', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
+INSERT INTO `sys_user_menu` VALUES ('4351370acb4544df82165f0006f58907', '2', '3dd381899bab495096a0ae627797eed2', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
+INSERT INTO `sys_user_menu` VALUES ('4645b887830e443380d6e84bc9e1b570', '2', '45421a14448342519d3a5b592f283c89', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
+INSERT INTO `sys_user_menu` VALUES ('4a73d3b2428d4154956b1fb9aa289906', '2', 'b74d2bc328034cdcb5bc84cecd3797b7', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_menu` VALUES ('4b609c139cdf45d0acb2d9038a2ddf25', '1', '74315e162f524a4d88aa931f02416f26', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('4e66eb19fca24540bafffaabcc231947', '1', 'a9d7a113aefd4e88a704c8f05b231100', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
-INSERT INTO `sys_user_menu` VALUES ('597e93919990434186d4926177847a8c', '2', 'cf17fadfa4834402b814fcd9b2614099', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
+INSERT INTO `sys_user_menu` VALUES ('4ef91de47cd74394b41d5fddd1064fa6', '2', '698d588e500a42dd8c955ec96aad67e2', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_menu` VALUES ('5e78a60c2048448884bdc70dd55423ce', '1', '3dd381899bab495096a0ae627797eed2', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('61f79b135e5b439e859627c323ab5574', '1', '35cb950cebb04bb18bb1d8b742a02xxx', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
-INSERT INTO `sys_user_menu` VALUES ('62ee57789f4745f895014d30e2d0a2a9', '2', '3dd381899bab495096a0ae627797eed2', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
 INSERT INTO `sys_user_menu` VALUES ('74b91996fb764930b1cf8974932326fd', '1', '78185417f1c34ea1bf6232fd8d2ebeb8', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('7533be6c06cb4e278b9b603a307f8844', '1', 'b74d2bc328034cdcb5bc84cecd3797b7', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('7fa05720c2aa423ba7a437c801ffee0f', '1', '698d588e500a42dd8c955ec96aad67e2', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('81d8d2f9e42e42fe885250a5fd625b82', '1', '2741ff82d20a4dec904269bef1040017', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
+INSERT INTO `sys_user_menu` VALUES ('8605f0cacffc471c9c55b6e9f0b0884a', '2', '78185417f1c34ea1bf6232fd8d2ebeb8', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_menu` VALUES ('8e93a13399c24121adfda4c59f2eed1c', '1', '35cb950cebb04bb18bb1d8b742a02xaa', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('935b2ab522a14b0e9ea741ccad40dc24', '1', 'bcf17dc0ce304f0ba02d64ce21ddb4f9', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
-INSERT INTO `sys_user_menu` VALUES ('ab97c73723694e019f3ad79db7fd5d86', '2', 'a9d7a113aefd4e88a704c8f05b231100', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
+INSERT INTO `sys_user_menu` VALUES ('a26139f7ab59495d943d8e21fa462b7a', '2', 'cf17fadfa4834402b814fcd9b2614099', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 INSERT INTO `sys_user_menu` VALUES ('b67eb3226ff248c6914ad924eb5df8d9', '1', 'cf17fadfa4834402b814fcd9b2614099', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('bc4bff30c3b14952a99dfa517e8115ba', '1', '35cb950cebb04bb18bb1d8b742a02xcc', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('d11c72f8a2414c399a1ee5f4558b5600', '1', '35cb950cebb04bb18bb1d8b742a02xzz', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
 INSERT INTO `sys_user_menu` VALUES ('d1ffc173786e490a8f3eb0bad136b2cc', '1', '914aa22c78af4327822061f3eada4067', '2021-10-22 15:19:21', '2021-10-22 15:19:21');
-INSERT INTO `sys_user_menu` VALUES ('df65b89e3d4e4a7f8c271c9db4df7fe4', '2', '45421a14448342519d3a5b592f283c89', '2021-10-22 20:37:47', '2021-10-22 20:37:47');
+INSERT INTO `sys_user_menu` VALUES ('e2abce5eb5c8410d82a4489b1ec3054e', '2', 'a9d7a113aefd4e88a704c8f05b231100', '2021-10-22 22:08:00', '2021-10-22 22:08:00');
 
 -- ----------------------------
 -- Table structure for teacher
@@ -442,12 +443,14 @@ CREATE TABLE `teacher`  (
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
 INSERT INTO `teacher` VALUES (5, '讲师1', '讲师', 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1, '2021-10-22 21:03:02', '2021-10-22 21:03:02');
+INSERT INTO `teacher` VALUES (6, '讲师2', '讲师2', 'http://ccb-admin.cczuit.cn/upload/img/20211022220818301.jpg', 1, '2021-10-22 22:08:20', '2021-10-22 22:08:20');
+INSERT INTO `teacher` VALUES (7, '讲师3', '讲师', 'http://ccb-admin.cczuit.cn/upload/img/20211023092541910.jpg', 1, '2021-10-23 09:25:44', '2021-10-23 09:25:44');
 
 -- ----------------------------
 -- Table structure for video
@@ -470,6 +473,7 @@ CREATE TABLE `video`  (
 -- ----------------------------
 -- Records of video
 -- ----------------------------
+INSERT INTO `video` VALUES (1, '视频1', '视频', 1, 'http://ccb-admin.cczuit.cn/upload/video/20211023092559098.mp4', 1, 0, 0, '2021-10-22 22:47:42', '2021-10-23 12:15:58');
 
 -- ----------------------------
 -- Table structure for video_category_relation
@@ -495,10 +499,12 @@ CREATE TABLE `video_teacher_relation`  (
   `video_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '视频编号',
   `teacher_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '讲师编号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频和讲师一对多关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频和讲师一对多关系表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of video_teacher_relation
 -- ----------------------------
+INSERT INTO `video_teacher_relation` VALUES (9, 1, 5);
+INSERT INTO `video_teacher_relation` VALUES (10, 1, 6);
 
 SET FOREIGN_KEY_CHECKS = 1;
