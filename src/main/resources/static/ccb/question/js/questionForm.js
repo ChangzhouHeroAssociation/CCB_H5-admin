@@ -59,19 +59,26 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function () {
             } else {
                 layer.msg(data.msg);
             }
-        }, "json")
+        }, "json");
 
     }
 
     function resetForm() {
-        $("#id").attr("value", "");
-        $("#channelId").empty();
-        $("#category").empty();
+        // $("#id").attr("value", "");
+        $("#channelId").val("");
+        form.render('select');
+        $("#category").val("");
+        form.render('select');
         $("#title").text("");
         $("#option").val("");
-        for (var i = 0; i < optionCount - 1; i++){
-            $("#optionList").children(".layui-input-item").get(i).remove();
+        /* 移除多余选项 1 - n */
+        var optionList = $("#optionList").children(".layui-input-item");
+        optionList.eq(0).val("");
+        for (var i = 1; i < optionCount; i++){
+            optionList.eq(i).remove();
         }
+        optionCount = $("#optionList").children(".layui-input-item").length;
+
         $("#weight").attr("value", "");
     }
 
@@ -113,7 +120,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function () {
         //判断新生成的name值是否在已存在的数组中
         if ($.inArray(newCount1, arr1) === -1) {
             fieldCount = fieldCount;
-            var inputBox = "<input type='text' name='optionList[" + fieldCount + "]' value='' autocomplete='off' placeholder='请输入选项' lay-verify='required' class='layui-input'>"
+            var inputBox = "<input type='text' name='optionList[" + fieldCount + "]' value='' autocomplete='off' placeholder='请输入选项' class='layui-input'>"
             var removeBtn = "<i class='layui-icon removeOption' onclick='removeOption(this)'>&#x1006;</i>";
             inputLine.append(inputBox);
             inputItem.append(inputLine, removeBtn)
@@ -130,7 +137,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function () {
             $(this).parent('div').remove(); //移除对应的父级div元素
             optionCount--; //decrement textbox
         } else {
-            alert("请至少填写1个选项");
+            alert("至少保留1个选项，填空题可为空");
             return false;
         }
     })

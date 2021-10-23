@@ -34,7 +34,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.enabled = isEnable;
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
-        formData.videoIds = videosInChannel.getValue('value');
+        // formData.videoIds = videosInChannel.getValue('value');
 
         console.log(JSON.stringify(formData));
 
@@ -65,7 +65,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
 
     }
     function resetForm() {
-        $("#id").attr("value", "");
+        // $("#id").attr("value", "");
         $("#channelName").attr("value", "");
         $("#content").text("");
 
@@ -80,25 +80,28 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
 
     }
 
-    var videosInChannel = xmSelect.render({
-        el: "#video",
-        language: "zn",
-        filterable: true,
-        tips: "选择频道内的视频",
-        data: []
-    });
-
-    axios({
-        method: 'get',
-        url: '/ccb/channel/videoSelectList?id=' + $("#id").attr("value"),
-    }).then(response => {
-        var res = response.data;
-
-        videosInChannel.update({
-            data: res.data,
-            autoRow: true,
-        })
-    });
+    // var videosInChannel = xmSelect.render({
+    //     el: "#video",
+    //     language: "zn",
+    //     toolbar: {
+    //         show: true
+    //     },
+    //     filterable: true,
+    //     tips: "选择频道内的视频",
+    //     data: []
+    // });
+    //
+    // axios({
+    //     method: 'get',
+    //     url: '/ccb/channel/videoSelectList?id=' + $("#id").attr("value"),
+    // }).then(response => {
+    //     var res = response.data;
+    //
+    //     videosInChannel.update({
+    //         data: res.data,
+    //         autoRow: true,
+    //     })
+    // });
 
 
 // 频道图标上传

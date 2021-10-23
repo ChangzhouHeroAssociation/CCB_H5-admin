@@ -52,7 +52,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
 
     }
     function resetForm() {
-        $("#id").attr("value", '');
+        // $("#id").attr("value", '');
         $("#bannerName").attr("value", '');
         $("#weight").attr("value", '');
         $("#uImage").attr("src", null);

@@ -58,7 +58,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     }
 
     function resetForm() {
-        $("#id").attr("value", "");
+        // $("#id").attr("value", "");
         $("#categoryName").attr("value", "");
         videosInCategory.setValue([]);
     }
@@ -66,6 +66,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     var videosInCategory = xmSelect.render({
         el: "#video",
         language: "zn",
+        toolbar: {
+            show: true
+        },
         filterable: true,
         tips: "选择分组内的视频",
         data: []

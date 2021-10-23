@@ -54,7 +54,8 @@
             <label class="layui-form-label">视频</label>
             <div class="layui-input-block">
                 <div class="layui-upload">
-                    <button type="button" class="layui-btn" id="uploadVideo">上传视频</button> （视频大小不得超过20MB）
+                    <button type="button" class="layui-btn" id="uploadVideo">上传视频</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="videoDetail">查看视频</button>（视频大小不得超过20MB）
                     <div class="layui-upload-list">
                         <video id="url" name="url" th:src="${video!=null?video.url:''}"
                                lay-verify="video" class="layui-upload-video" style="max-height: 200px">
@@ -76,7 +77,7 @@
         <!-- 保存 -->
         <div class="layui-input-block">
             <button type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>
-            <button id="resetBtn" type="reset" class="layui-btn layui-btn-primary">清空</button>
+            <button id="resetBtn" type="button" class="layui-btn layui-btn-primary">清空</button>
         </div>
     </form>
 </div>

@@ -50,7 +50,8 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
 
     }
     function resetForm() {
-        $("#channelId").empty();
+        $("#channelId").val("");
+        form.render('select');
         $("#adImage").attr("src", "");
         $("#targetUrl").text("");
     }

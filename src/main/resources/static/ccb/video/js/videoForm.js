@@ -22,6 +22,26 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         resetForm();
     });
 
+    $("#videoDetail").click(function () {
+        var videoUrl = $("#url").attr("src");
+        if (videoUrl.trim() === '') {
+            layer.msg("请先上传视频");
+            return;
+        }
+        // 查看视频
+        var videoElem =
+            '<video width="100%" height="100%" controls autobuffer autoplay="autoplay" loop="loop">' +
+            '<source src="' + $("#url").attr("src") + '" type="video/mp4"/>' +
+            '</video>'
+        layer.open({
+            type: 1,
+            area: ['960px', '600px'],
+            title: '播放视频',
+            content: videoElem,
+            shadeClose: false
+        });
+    });
+
 // 保存
     function saveVideo() {
         let videoId = $("#id").attr("value");
@@ -64,6 +84,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     // 讲师与视频关联，复选框
     var teachers = xmSelect.render({
         el: "#teacher",
+        toolbar: {
+            show: true
+        },
         language: "zn",
         filterable: true,
         tips: "选择视频中的讲师",
@@ -83,13 +106,13 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     });
 
     function resetForm() {
-        $("#id").attr("value", "");
-        $("#channelId").empty();
+        // $("#id").attr("value", "");
+        $("#channelId").val("");
+        form.render('select');
         $("#videoTitle").attr("value", "");
         $("#description").text("");
         $("#url").attr("src", '');
-        teachers.setValue([]);
-        teachers.empty();
+        teachers.setValue([ ]);
     }
 
 // 讲师照片上传

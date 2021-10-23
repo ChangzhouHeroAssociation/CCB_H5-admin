@@ -39,15 +39,6 @@ public class Channel implements Serializable {
 
     private Integer enabled;//是否开启 1 开启: 0 关闭
 
-    /** 视频列表 */
-    @OneToMany
-    @JoinTable(
-            name = "channel_video_relation",
-            joinColumns = @JoinColumn(name = "channel_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "video_id", referencedColumnName = "id")
-    )
-    private List<Video> videos;
-
     @Override
     public String toString() {
         return "Channel{" +
@@ -135,13 +126,5 @@ public class Channel implements Serializable {
         this.enabled = enabled;
     }
 
-    @JsonIgnore
-    public List<Video> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
-    }
 }
 

@@ -67,30 +67,30 @@ public class ChannelController {
         return Result.of(channels);
     }
 
-    @GetMapping("videoSelectList")
-    public Result videosInChannel(Integer id) {
-        Channel channel = null;
-        if (id != null) {
-            channel = channelService.getById(id);
-        }
-        List<Select> selects = new ArrayList<>();
-        List<Video> videos = videoService.getAll();
-        for (Video video : videos) {
-            Select tempSelect = new Select();
-            tempSelect.setName(video.getVideoTitle());
-            tempSelect.setValue(video.getId());
-            if (channel != null) {
-                for (Video channelVideo : channel.getVideos()) {
-                    if (channelVideo.getId().equals(video.getId())) {
-                        tempSelect.setSelected(true);
-                    }
-                }
-            }
-            selects.add(tempSelect);
-        }
-
-        return Result.of(selects);
-    }
+//    @GetMapping("videoSelectList")
+//    public Result videosInChannel(Integer id) {
+//        Channel channel = null;
+//        if (id != null) {
+//            channel = channelService.getById(id);
+//        }
+//        List<Select> selects = new ArrayList<>();
+//        List<Video> videos = videoService.getAll();
+//        for (Video video : videos) {
+//            Select tempSelect = new Select();
+//            tempSelect.setName(video.getVideoTitle());
+//            tempSelect.setValue(video.getId());
+//            if (channel != null) {
+//                for (Video channelVideo : channel.getVideos()) {
+//                    if (channelVideo.getId().equals(video.getId())) {
+//                        tempSelect.setSelected(true);
+//                    }
+//                }
+//            }
+//            selects.add(tempSelect);
+//        }
+//
+//        return Result.of(selects);
+//    }
 
     @GetMapping("get")
     public Result getOne(Integer id) {
@@ -104,27 +104,27 @@ public class ChannelController {
     @PostMapping("create")
     public Result create(@RequestBody ChannelDTO channelDTO) {
 
-        List<Video> videos = new ArrayList<>();
-        for (Integer videoId : channelDTO.getVideoIds()) {
-            videos.add(videoService.getById(videoId));
-        }
+//        List<Video> videos = new ArrayList<>();
+//        for (Integer videoId : channelDTO.getVideoIds()) {
+//            videos.add(videoService.getById(videoId));
+//        }
         Channel channel = new Channel();
         channel.setChannelName(channelDTO.getChannelName());
         channel.setIcon(channelDTO.getIcon());
         channel.setContent(channelDTO.getContent());
         channel.setImage(channelDTO.getImage());
         channel.setEnabled(channelDTO.getEnabled());
-        channel.setVideos(videos);
+//        channel.setVideos(videos);
         Channel save = channelService.create(channel);
         return Result.of(save);
     }
 
     @PostMapping("update")
     public Result update(@RequestBody ChannelDTO channelDTO) {
-        List<Video> videos = new ArrayList<>();
-        for (Integer videoId : channelDTO.getVideoIds()) {
-            videos.add(videoService.getById(videoId));
-        }
+//        List<Video> videos = new ArrayList<>();
+//        for (Integer videoId : channelDTO.getVideoIds()) {
+//            videos.add(videoService.getById(videoId));
+//        }
         Channel channel = new Channel();
         channel.setId(channelDTO.getId());
         channel.setChannelName(channelDTO.getChannelName());
@@ -133,7 +133,7 @@ public class ChannelController {
         channel.setImage(channelDTO.getImage());
         channel.setEnabled(channelDTO.getEnabled());
         channel.setStatus(channelDTO.getStatus());
-        channel.setVideos(videos);
+//        channel.setVideos(videos);
         Channel save = channelService.update(channel);
         return Result.of(save);
     }

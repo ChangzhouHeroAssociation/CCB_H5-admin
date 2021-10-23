@@ -1,6 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.video.controller;
 
 import cn.huanzi.qch.baseadmin.ccb.category.service.CategoryService;
+import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
 import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
@@ -37,7 +38,9 @@ public class VideoController {
 
     @GetMapping("index")
     public ModelAndView index() {
-        return new ModelAndView("ccb/video/video");
+        ModelAndView mav = new ModelAndView("ccb/video/video");
+        mav.addObject("channels", channelService.getAll());
+        return mav;
     }
 
     @GetMapping("videoForm")
@@ -54,7 +57,9 @@ public class VideoController {
     }
 
     @GetMapping("page")
-    public Result<Page<Video>> page(Integer page, Integer limit, @RequestParam(name = "name", required = false, defaultValue = "") String keyword) {
+    public Result<Page<Video>> page(Integer page, Integer limit,
+                                    @RequestParam(name = "keyword", required = false, defaultValue = "") String keyword,
+                                    @RequestParam(name = "channelId", required = false, defaultValue = "") String channelId) {
         if (page == null || page < 1) {
             page = 1;
         }
@@ -64,8 +69,11 @@ public class VideoController {
         if (keyword == null) {
             keyword = "";
         }
+        if (channelId == null) {
+            channelId = "";
+        }
 
-        Page<Video> videoPage = videoService.pagination(page - 1, limit, keyword);
+        Page<Video> videoPage = videoService.pagination(page - 1, limit, channelId, keyword);
         return Result.of(videoPage);
     }
 
@@ -123,6 +131,8 @@ public class VideoController {
         for (Integer teacherId : teacherIds) {
             teachers.add(teacherService.getById(teacherId));
         }
+        List<Channel> channels = new ArrayList<>();
+        channels.add(channelService.getById(videoDTO.getChannelId()));
 
         Video video = new Video();
         video.setId(videoDTO.getId());

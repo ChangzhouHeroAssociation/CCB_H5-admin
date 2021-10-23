@@ -52,7 +52,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
 
     }
     function resetForm() {
-        $("#id").attr("value", "");
+        // $("#id").attr("value", "");
         $("#teacherName").attr("value", "");
         $("#description").text("");
 

@@ -55,12 +55,8 @@ public class Video implements Serializable {
     )
     private List<Teacher> teachers;
 
-    @ManyToOne
-    @JoinTable(
-            name = "channel_video_relation",
-            joinColumns = @JoinColumn(name = "video_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "channel_id", referencedColumnName = "id")
-    )
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
+    @JoinColumn(name = "channel_id", referencedColumnName = "id")
     private Channel channel;
 
     @Override

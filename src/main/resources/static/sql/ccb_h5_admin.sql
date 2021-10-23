@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 23/10/2021 13:09:49
+ Date: 23/10/2021 20:14:29
 */
 
 SET NAMES utf8mb4;
@@ -111,21 +111,6 @@ CREATE TABLE `channel`  (
 INSERT INTO `channel` VALUES (14, '频道1', 'http://ccb-admin.cczuit.cn/upload/img/20211022204254835.jpg', '123', 'http://ccb-admin.cczuit.cn/upload/img/20211022204258336.jpg', '2021-10-22 20:43:04', '2021-10-22 20:43:04', 1, 1);
 
 -- ----------------------------
--- Table structure for channel_video_relation
--- ----------------------------
-DROP TABLE IF EXISTS `channel_video_relation`;
-CREATE TABLE `channel_video_relation`  (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `channel_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
-  `video_id` bigint(20) UNSIGNED NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of channel_video_relation
--- ----------------------------
-
--- ----------------------------
 -- Table structure for home_page
 -- ----------------------------
 DROP TABLE IF EXISTS `home_page`;
@@ -206,7 +191,7 @@ CREATE TABLE `persistent_logins`  (
 -- Records of persistent_logins
 -- ----------------------------
 INSERT INTO `persistent_logins` VALUES ('/JJZ4opanChqqm+7uo97lQ==', 'sa', 'RnNV6B3rlxVAHgIkZGal9w==', '2021-10-23 13:00:34');
-INSERT INTO `persistent_logins` VALUES ('3jmpmlnfWvcc9BERy5a7kQ==', 'admin', 'LHTNYTiYziQT3PtQBBggDg==', '2021-10-23 09:24:42');
+INSERT INTO `persistent_logins` VALUES ('3jmpmlnfWvcc9BERy5a7kQ==', 'admin', 'N1+dbMicbUG8fqBmtf4MPw==', '2021-10-23 19:51:38');
 INSERT INTO `persistent_logins` VALUES ('EtlYffUr5lM1rAsVsJvNlQ==', 'sa', 'AjKr33eUPlv0EG8vOOvA4Q==', '2021-10-23 10:55:22');
 INSERT INTO `persistent_logins` VALUES ('QqPdlBKG6tSrzr+sZQyzzw==', 'sa', 'xcGbDbCkP59h+Igxy/lr0g==', '2021-10-23 12:48:36');
 
@@ -362,7 +347,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-23 13:00:34', 'Y', '2019-07-19 16:36:03', '2021-10-22 15:19:21');
-INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-23 09:24:42', 'Y', '2019-07-19 16:36:03', '2021-10-22 22:07:59');
+INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-23 19:51:38', 'Y', '2019-07-19 16:36:03', '2021-10-22 22:07:59');
 INSERT INTO `sys_user` VALUES ('3fb1c570496d4c09ab99b8d31b0671cf', 'daji', '妲己', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'Y', '2019-09-11 18:11:41', '2019-09-17 12:09:47');
 INSERT INTO `sys_user` VALUES ('b5ac62e154964151a19c565346bb354a', 'xiaofang', '小芳', '96E79218965EB72C92A549DD5A330112', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'N', '2019-09-17 14:12:41', '2019-09-17 14:28:57');
 
@@ -467,13 +452,14 @@ CREATE TABLE `video`  (
   `share_count` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '分享数量',
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL COMMENT '更新时间',
+  `channel_id` bigint(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '频道ID',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of video
 -- ----------------------------
-INSERT INTO `video` VALUES (1, '视频1', '视频', 1, 'http://ccb-admin.cczuit.cn/upload/video/20211023092559098.mp4', 1, 0, 0, '2021-10-22 22:47:42', '2021-10-23 12:15:58');
+INSERT INTO `video` VALUES (1, '视频1', '视频', 1, 'http://ccb-admin.cczuit.cn/upload/video/20211023092559098.mp4', 1, 0, 0, '2021-10-22 22:47:42', '2021-10-23 12:15:58', 0);
 
 -- ----------------------------
 -- Table structure for video_category_relation

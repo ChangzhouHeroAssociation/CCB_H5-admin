@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.channel.service;
 
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.repository.ChannelRepository;
+import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,8 +49,15 @@ public class ChannelServiceImpl implements ChannelService{
         };
 
         Pageable pageable = PageRequest.of(page, limit);
-        Page<Channel> channels = channelRepository.findAll(spec, pageable);
+        Page<Channel> channels = channelRepository.findAll(Specification.where(spec).and(distinct()), pageable);
         return channels;
+    }
+
+    private Specification<Channel> distinct() {
+        return (Root<Channel> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) -> {
+            criteriaQuery.distinct(true);
+            return criteriaQuery.getRestriction();
+        };
     }
 
     /**

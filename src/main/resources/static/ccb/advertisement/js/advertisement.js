@@ -59,7 +59,6 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
     var active = {
         reload: function(){
             var demoReload = $("#channelId option:selected");	//得到搜索框里已输入的数据
-            console.log($("#channelId option:selected").text());
             //执行重载
             table.reload('adTable', {
                 page: {
