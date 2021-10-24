@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- 样式 -->
+    <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+    <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+    <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/answer/js/answer.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-row">
+    <!-- 分页表格 -->
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">问卷结果列表</div>
+            <div class="layui-card-body">
+
+                <!-- 搜索框 -->
+                <fieldset class="table-search-fieldset">
+                    <legend>搜索信息</legend>
+                    <div style="margin: 10px 10px 10px 10px" id="btn">
+                        <div class="layui-form">
+                            <!-- 检索信息 -->
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">查找筛选</label>
+                                    <div class="layui-input-inline">
+                                        <select id="channelId" name="channel"
+                                                class="layui-input">
+                                            <option value="" class="layui-input">全部</option>
+                                            <option th:each="channel:${channels}" class="layui-input"
+                                                    th:value="${channel.id}" th:text="${channel.channelName}">频道
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <!--注意此处input标签里的id-->
+                                        <input class="layui-input" name="keyword" id="search-input" autocomplete="off"
+                                               placeholder="问卷题目或回答">
+                                    </div>
+                                </div>
+
+                                <div class="layui-inline">
+                                    <!--注意此处button标签里的type属性-->
+                                    <button id="searchBtn" type="button" class="layui-btn layui-btn-primary"
+                                            lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!--讲师列表-->
+                <table class="layui-hide" id="answerTable"  lay-filter="answer">
+
+                </table>
+
+<!--                &lt;!&ndash;操作按钮&ndash;&gt;-->
+<!--                <script type="text/html" id="teacherBarDemo">-->
+<!--                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+<!--                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+<!--                </script>-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    .layui-table-cell {
+        height: auto;
+        line-height: 60px;
+    }
+    th .layui-table-cell {
+        height: 30px;
+        line-height: 30px;
+    }
+</style>
+</html>
