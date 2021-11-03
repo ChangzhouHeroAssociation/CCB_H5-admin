@@ -1,8 +1,9 @@
 let tableIns;
 let contextPath = window.location.protocol + "://" + window.location.host;
-layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
+layui.use(['table', 'form', 'layer'], function(){
     var table = layui.table
-        , layer = layui.layer;
+        , layer = layui.layer
+        , form = layui.form;
 
     tableIns = table.render({
         elem: '#videoTable'
@@ -37,8 +38,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '视频列表'
         ,cols: [
             [
-                { field:'id', width:80, title: 'ID', sort: true }
-                , { field: 'channelName', width: 150, title: '频道', templet: function(res){
+                { field:'id', width: '5%', title: 'ID', sort: true }
+                , { field:'isRecommend', title: '推荐', width: '5%', sort: true, templet: '#switchRecommend' }
+                , { field: 'channelName', width: '5%', title: '频道', templet: function(res){
                     if (res.channel == null) {
                         return "";
                     } else {
@@ -46,11 +48,11 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     }
 
                 } }
-                , { field:'videoTitle', width:150, title: '视频标题', sort: true }
-                , { field:'views', width:100, title: '观看数', sort: true }
-                , { field:'enjoyCount', width:100, title: '点赞数', sort: true }
-                , { field:'shareCount', width:100, title: '分享数', sort: true }
-                , { field:'teacherName', width:150, title: '讲师', templet: function(res) {
+                , { field:'videoTitle', width: '10%', title: '视频标题', sort: true }
+                , { field:'textPage', width: '10%', title: '视频文稿', templet: function(res) {
+                    return "<img src='" + res.textPage +"'/>"
+                } }
+                , { field:'teacherName', width: '10%', title: '讲师', templet: function(res) {
                     console.log(JSON.stringify(res.teachers));
                     var tString = "";
                     var teacherLength = res.teachers.length;
@@ -64,9 +66,12 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     }
                     return tString;
                 } }
-                , { field:'createTime', title: '创建时间', minWidth: 160, sort: true }
-                , { field:'updateTime', width:160, title: '更新时间', sort: true }
-                , { fixed: 'right', width:300, align:'center', toolbar: '#videoBarDemo' }
+                , { field:'views', width: '5%', title: '观看数', sort: true }
+                , { field:'enjoyCount', width: '5%', title: '点赞数', sort: true }
+                , { field:'shareCount', width: '5%', title: '分享数', sort: true }
+                , { field:'createTime', title: '创建时间', width: '10%', sort: true }
+                , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
+                , { fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#videoBarDemo' }
             ]
         ]
     });
@@ -159,4 +164,16 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             });
         }
     });
+
+    //监听状态操作
+    form.on('switch(enable)', function(obj){
+        let isRecommend = obj.elem.checked == true ? 1 : 0;
+        $.post('/ccb/video/switch', {
+            "id": this.value,
+            "isRecommend": isRecommend
+        }, function (data) {
+            layer.msg(data.msg);
+        }, "json")
+    });
+
 });

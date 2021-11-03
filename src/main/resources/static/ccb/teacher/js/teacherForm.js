@@ -11,6 +11,11 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             }
         }
         , image: [ /(^$)|(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/, "图片格式不正确" ]
+        , lengthLess30: function(value) {
+            if (value.length > 30) {
+                return '不得超过30字';
+            }
+        }
     });
 
     form.on('submit(commit)', function (data) {
@@ -55,7 +60,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         // $("#id").attr("value", "");
         $("#teacherName").attr("value", "");
         $("#description").text("");
-
+        $("#job").text("");
         $("#tImage").attr("src", '');
     }
 

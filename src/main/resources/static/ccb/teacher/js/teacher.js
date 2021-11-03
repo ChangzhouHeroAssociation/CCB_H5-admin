@@ -37,15 +37,15 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '讲师列表'
         ,cols: [
             [
-                { field:'id', width:80, title: 'ID', sort: true }
-                , { field:'teacherName', width:150, title: '讲师名字', sort: true }
+                { field:'id', width: '5%', title: 'ID', sort: true }
+                , { field:'teacherName', width: '15%', title: '讲师名字', sort: true }
                 // , { field:'description', width:150, title: '讲师简介' }
-                , { field:'teacherPhoto', width:150, title: '讲师照片', templet: function(res) {
+                , { field:'teacherPhoto', width: '40%', title: '讲师照片', templet: function(res) {
                     return "<img src='" + res.teacherPhoto +"'/>"
                 } }
-                , { field:'createTime', title: '创建时间', minWidth: 160, sort: true }
-                , { field:'updateTime', width:160, title: '更新时间', sort: true }
-                , { fixed: 'right', width:160, align:'center', toolbar: '#teacherBarDemo' }
+                , { field:'createTime', title: '创建时间', width: '10%', sort: true }
+                , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
+                , { fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#teacherBarDemo' }
             ]
         ]
     });

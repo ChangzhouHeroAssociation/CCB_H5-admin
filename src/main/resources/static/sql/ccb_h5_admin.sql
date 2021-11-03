@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : local
+ Source Server         : huike
  Source Server Type    : MySQL
- Source Server Version : 50732
- Source Host           : localhost:3306
+ Source Server Version : 50734
+ Source Host           : 39.96.56.19:3306
  Source Schema         : ccb
 
  Target Server Type    : MySQL
- Target Server Version : 50732
+ Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 25/10/2021 15:21:37
+ Date: 03/11/2021 22:45:22
 */
 
 SET NAMES utf8mb4;
@@ -34,6 +34,7 @@ CREATE TABLE `advertisement`  (
 -- ----------------------------
 -- Records of advertisement
 -- ----------------------------
+INSERT INTO `advertisement` VALUES (7, 'http://ccb-admin.cczuit.cn/upload/img/20211022204312939.jpg', '2021-10-22 20:43:24', '2021-10-22 20:43:24', 'http://www.baidu.com', 14);
 
 -- ----------------------------
 -- Table structure for answer
@@ -52,6 +53,12 @@ CREATE TABLE `answer`  (
 -- ----------------------------
 -- Records of answer
 -- ----------------------------
+INSERT INTO `answer` VALUES (37, 9, 'A', 14, '2021-10-24 05:13:51', '2021-10-24 20:43:04');
+INSERT INTO `answer` VALUES (38, 9, 'B', 14, '2021-10-24 05:13:51', '2021-10-24 20:43:09');
+INSERT INTO `answer` VALUES (39, 7, 'AB', 15, '2021-10-24 12:19:44', '2021-10-24 20:43:43');
+INSERT INTO `answer` VALUES (40, 7, 'AB', 15, '2021-10-24 12:20:06', '2021-10-24 20:43:46');
+INSERT INTO `answer` VALUES (41, 7, 'AB', 15, '2021-10-24 12:20:20', '2021-10-24 20:43:51');
+INSERT INTO `answer` VALUES (42, 3, 'AB', 1, '2021-10-24 12:51:54', '2021-10-24 12:51:54');
 
 -- ----------------------------
 -- Table structure for banner
@@ -65,11 +72,12 @@ CREATE TABLE `banner`  (
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of banner
 -- ----------------------------
+INSERT INTO `banner` VALUES (25, 'test1', 'http://ccb-admin.cczuit.cn/upload/img/20211022204235763.jpg', 0, '2021-10-07 11:14:07', '2021-10-22 20:42:37');
 
 -- ----------------------------
 -- Table structure for category
@@ -84,6 +92,7 @@ CREATE TABLE `category`  (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+INSERT INTO `category` VALUES (5, '分组1');
 
 -- ----------------------------
 -- Table structure for channel
@@ -100,11 +109,15 @@ CREATE TABLE `channel`  (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：1正常 0删除 --> 软删除',
   `enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态：是否开启 1是 0否',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of channel
 -- ----------------------------
+INSERT INTO `channel` VALUES (14, '频道1', 'http://ccb-admin.cczuit.cn/upload/img/20211022204254835.jpg', '123', 'http://ccb-admin.cczuit.cn/upload/img/20211022204258336.jpg', '2021-10-22 20:43:04', '2021-10-25 18:24:44', 1, 1);
+INSERT INTO `channel` VALUES (15, '频道2', 'http://ccb-admin.cczuit.cn/upload/img/20211024202035874.jpg', '频道2', 'http://ccb-admin.cczuit.cn/upload/img/20211024202038915.jpg', '2021-10-24 20:20:41', '2021-10-25 18:24:50', 1, 1);
+INSERT INTO `channel` VALUES (16, '频道344', 'http://ccb-admin.cczuit.cn/upload/img/20211024202108719.jpg', '频道3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202111741.jpg', '2021-10-24 20:21:14', '2021-10-24 20:21:30', 0, 1);
+INSERT INTO `channel` VALUES (17, '资产配置', '', '资产配置', '', '2021-11-01 21:23:22', '2021-11-01 21:23:22', 1, 1);
 
 -- ----------------------------
 -- Table structure for home_page
@@ -120,6 +133,7 @@ CREATE TABLE `home_page`  (
 -- ----------------------------
 -- Records of home_page
 -- ----------------------------
+INSERT INTO `home_page` VALUES (2, 'http://ccb-admin.cczuit.cn/upload/video/20211024201922919.mp4', '活动介绍111');
 
 -- ----------------------------
 -- Table structure for log_channel
@@ -136,6 +150,7 @@ CREATE TABLE `log_channel`  (
 -- ----------------------------
 -- Records of log_channel
 -- ----------------------------
+INSERT INTO `log_channel` VALUES (58, 1, '频道1', '2021-10-24');
 
 -- ----------------------------
 -- Table structure for log_teacher
@@ -147,11 +162,13 @@ CREATE TABLE `log_teacher`  (
   `teacher_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `create_time` date NOT NULL COMMENT '创建日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 67 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log_teacher
 -- ----------------------------
+INSERT INTO `log_teacher` VALUES (66, 1, '讲师1', '2021-10-24');
+INSERT INTO `log_teacher` VALUES (67, 1, '讲师1', '2021-10-31');
 
 -- ----------------------------
 -- Table structure for log_video
@@ -169,6 +186,7 @@ CREATE TABLE `log_video`  (
 -- ----------------------------
 -- Records of log_video
 -- ----------------------------
+INSERT INTO `log_video` VALUES (65, 1, 1, '视频一', '2021-10-24');
 
 -- ----------------------------
 -- Table structure for persistent_logins
@@ -205,6 +223,8 @@ CREATE TABLE `question`  (
 -- ----------------------------
 -- Records of question
 -- ----------------------------
+INSERT INTO `question` VALUES (7, '测试题', 'A&B&C', 14, 1, '2021-10-22 21:03:34', '2021-10-22 21:03:34', 1);
+INSERT INTO `question` VALUES (9, '测试题3', '对&错', 15, 3, '2021-10-24 20:23:26', '2021-10-24 20:23:26', 54);
 
 -- ----------------------------
 -- Table structure for sys_authority
@@ -338,7 +358,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-24 20:15:01', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:49');
-INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-24 19:38:21', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:54');
+INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-11-01 21:59:34', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:54');
 INSERT INTO `sys_user` VALUES ('3fb1c570496d4c09ab99b8d31b0671cf', 'daji', '妲己', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'Y', '2019-09-11 18:11:41', '2019-09-17 12:09:47');
 INSERT INTO `sys_user` VALUES ('b5ac62e154964151a19c565346bb354a', 'xiaofang', '小芳', '96E79218965EB72C92A549DD5A330112', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'N', '2019-09-17 14:12:41', '2019-09-17 14:28:57');
 
@@ -418,6 +438,7 @@ CREATE TABLE `teacher`  (
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '讲师简介',
   `teacher_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '头像url',
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：1正常 0删除 --> 软删除',
+  `job` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '讲师职务',
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
@@ -426,6 +447,11 @@ CREATE TABLE `teacher`  (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
+INSERT INTO `teacher` VALUES (5, '讲师1', '讲师', 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1, '软件工程师', '2021-10-22 21:03:02', '2021-10-22 21:03:02');
+INSERT INTO `teacher` VALUES (6, '讲师2', '讲师2', 'http://ccb-admin.cczuit.cn/upload/img/20211022220818301.jpg', 1, '软件工程师', '2021-10-22 22:08:20', '2021-10-22 22:08:20');
+INSERT INTO `teacher` VALUES (7, '讲师3', '讲师', 'http://ccb-admin.cczuit.cn/upload/img/20211023092541910.jpg', 0, '软件工程师', '2021-10-23 09:25:44', '2021-10-23 09:25:44');
+INSERT INTO `teacher` VALUES (8, '讲师5', '讲师5', 'http://ccb-admin.cczuit.cn/upload/img/20211024202420269.jpg', 1, '软件工程师', '2021-10-24 20:24:21', '2021-10-24 20:24:33');
+INSERT INTO `teacher` VALUES (9, '讲师3', '讲师3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202459549.jpg', 0, '软件工程师', '2021-10-24 20:25:00', '2021-10-24 20:25:00');
 
 -- ----------------------------
 -- Table structure for video
@@ -443,12 +469,19 @@ CREATE TABLE `video`  (
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `update_time` datetime(0) NOT NULL COMMENT '更新时间',
   `channel_id` bigint(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '频道ID',
+  `text_page` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0' COMMENT '视频文稿图片URL',
+  `is_recommend` tinyint(2) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否推荐',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of video
 -- ----------------------------
+INSERT INTO `video` VALUES (1, '视频一', '视频描述一', 29, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 143, 129, '2020-10-23 00:00:00', '2020-10-23 00:00:00', 14, 'ttt', 1);
+INSERT INTO `video` VALUES (2, '视频二', '视频描述二', 655, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 0, 145, 176, '2020-10-23 00:00:00', '2021-10-24 20:25:30', 14, 'ttttt', 1);
+INSERT INTO `video` VALUES (3, '视频三', '视频描述三', 618, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 115, 116, '2020-10-23 00:00:00', '2021-10-24 20:25:35', 14, 'tttt', 1);
+INSERT INTO `video` VALUES (8, '视频4', '视频4', 0, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 0, 0, '2021-10-24 20:32:44', '2021-10-24 20:32:44', 15, 'tttt', 0);
+INSERT INTO `video` VALUES (9, '视频5', '视频5', 0, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 0, 0, '2021-10-26 18:16:44', '2021-10-26 18:16:47', 14, 'tttt', 0);
 
 -- ----------------------------
 -- Table structure for video_category_relation
@@ -464,6 +497,7 @@ CREATE TABLE `video_category_relation`  (
 -- ----------------------------
 -- Records of video_category_relation
 -- ----------------------------
+INSERT INTO `video_category_relation` VALUES (9, 5, 1);
 
 -- ----------------------------
 -- Table structure for video_teacher_relation
@@ -479,5 +513,11 @@ CREATE TABLE `video_teacher_relation`  (
 -- ----------------------------
 -- Records of video_teacher_relation
 -- ----------------------------
+INSERT INTO `video_teacher_relation` VALUES (9, 1, 5);
+INSERT INTO `video_teacher_relation` VALUES (10, 1, 6);
+INSERT INTO `video_teacher_relation` VALUES (13, 2, 6);
+INSERT INTO `video_teacher_relation` VALUES (14, 2, 8);
+INSERT INTO `video_teacher_relation` VALUES (15, 3, 5);
+INSERT INTO `video_teacher_relation` VALUES (16, 8, 6);
 
 SET FOREIGN_KEY_CHECKS = 1;

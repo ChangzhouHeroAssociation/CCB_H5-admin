@@ -53,6 +53,10 @@
                     </div>
                 </fieldset>
 
+                <script type="text/html" id="switchRecommend">
+                    <input type="checkbox" name="isRecommend" value="{{d.id}}" lay-skin="switch" lay-filter="enable" lay-text="是|否"  {{ d.isRecommend == 1 ? 'checked' : '' }}>
+                </script>
+
                 <!--视频列表-->
                 <table class="layui-hide" id="videoTable" lay-size="lg" lay-filter="video">
 
@@ -80,14 +84,14 @@
 </div>
 </body>
 <style>
-    /*.layui-table-cell {*/
-    /*  height: auto;*/
-    /*  line-height: 60px;*/
-    /*}*/
-    /*th .layui-table-cell {*/
-    /*  height: 30px;*/
-    /*  line-height: 30px;*/
-    /*}*/
+    .layui-table-cell {
+        height: auto;
+        line-height: 60px;
+    }
+    th .layui-table-cell {
+        height: 30px;
+        line-height: 30px;
+    }
 </style>
 
 </html>

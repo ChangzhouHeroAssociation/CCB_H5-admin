@@ -66,6 +66,30 @@
             </div>
         </div>
 
+        <!-- 视频文稿上传 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">视频文稿</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="uploadTextPage">上传视频文稿</button> （图片大小不超过10MB）
+                    <div class="layui-upload-list">
+                        <img id="iImage" name="icon" th:src="${video!=null?video.textPage:''}"
+                             lay-verify="image" class="layui-upload-img" style="max-height: 200px">
+                        <p id="iconText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">是否推荐</label>
+            <div class="layui-input-block">
+                <input id="switchRecommend" type="checkbox" name="isRecommend" th:value="${video!=null?video.id:''}"
+                       th:checked="${video==null or video.isRecommend==1 ?'checked':'false'}" lay-skin="switch"
+                       lay-filter="switchTest" title="开关">
+            </div>
+        </div>
+
         <!-- 讲师多选 -->
         <div class="layui-form-item" pane="">
             <label class="layui-form-label">讲师</label>

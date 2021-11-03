@@ -40,17 +40,17 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '广告列表'
         ,cols: [
             [
-                { field:'id', width:80, title: 'ID', sort: true }
-                , { field:'channelName', width:150, title: '频道', sort: true, templet: function(res) {
+                { field:'id', width: '5%', title: 'ID', sort: true }
+                , { field:'channelName', width: '10%', title: '频道', sort: true, templet: function(res) {
                     return res.channel.channelName;
                 } }
-                , { field:'imageUrl', width:150, title: '广告大图', templet: function(res) {
+                , { field:'imageUrl', width: '20%', title: '广告大图', templet: function(res) {
                     return "<img src='" + res.imageUrl +"'/>"
                 } }
-                , { field:'targetUrl', width:300, title: '目标链接' }
-                , { field:'createTime', title: '创建时间', minWidth: 160, sort: true }
-                , { field:'updateTime', width:160, title: '更新时间', sort: true }
-                , { fixed: 'right', width:160, align:'center', toolbar: '#adBarDemo' }
+                , { field:'targetUrl', width:'25%', title: '目标链接' }
+                , { field:'createTime', title: '创建时间', width: '10%', sort: true }
+                , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
+                , { fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#adBarDemo' }
             ]
         ]
     });

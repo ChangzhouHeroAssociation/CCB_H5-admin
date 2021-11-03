@@ -80,7 +80,6 @@ public class TeacherServiceImpl implements TeacherService{
         teacher.setCreateTime(origin.getCreateTime());
 
         Teacher save = teacherRepository.save(teacher);
-        System.out.println("save -> " + save);
         return save;
     }
 

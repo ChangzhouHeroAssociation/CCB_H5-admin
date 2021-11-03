@@ -39,7 +39,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
             [
                 { field:'id', width: '20%', title: 'ID', sort: true }
                 , { field:'categoryName', width: '40%', title: '分组名', sort: true }
-                , { fixed: 'right', width: '40%', align:'center', toolbar: '#categoryBarDemo' }
+                , { fixed: 'right', width: '40%', title: '操作', align:'center', toolbar: '#categoryBarDemo' }
             ]
         ]
     });

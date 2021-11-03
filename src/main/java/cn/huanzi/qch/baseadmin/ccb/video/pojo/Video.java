@@ -1,18 +1,12 @@
 package cn.huanzi.qch.baseadmin.ccb.video.pojo;
 
-import cn.huanzi.qch.baseadmin.ccb.category.pojo.Category;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  *  实体类
@@ -41,6 +35,10 @@ public class Video implements Serializable {
     private Integer enjoyCount;
     /** 分享数量 */
     private Integer shareCount;
+    /** 视频文稿 */
+    private String textPage;
+    /** 是否推荐 1 -> 推荐；0 -> 不推荐 */
+    private Integer isRecommend;
     /** 创建时间 */
     private Date createTime;
     /** 更新时间 */
@@ -137,6 +135,22 @@ public class Video implements Serializable {
 
     public void setShareCount(Integer shareCount) {
         this.shareCount = shareCount;
+    }
+
+    public String getTextPage() {
+        return textPage;
+    }
+
+    public void setTextPage(String textPage) {
+        this.textPage = textPage;
+    }
+
+    public Integer getIsRecommend() {
+        return isRecommend;
+    }
+
+    public void setIsRecommend(Integer isRecommend) {
+        this.isRecommend = isRecommend;
     }
 
     public Date getCreateTime() {

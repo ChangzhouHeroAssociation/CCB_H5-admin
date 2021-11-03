@@ -27,6 +27,9 @@ public class Teacher implements Serializable {
 
     private Integer status;//状态：1正常 0删除 --> 软删除
 
+    /** 讲师职务 */
+    private String job;
+
     private Date createTime;//创建时间
 
     private Date updateTime;//更新时间

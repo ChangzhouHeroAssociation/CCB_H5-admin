@@ -37,11 +37,11 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '问卷列表'
         ,cols: [
             [
-                { field:'id', width:80, title: 'ID', sort: true }
-                , { field:'channel', width:150, title: '频道', sort: true, templet: function(res) {
+                { field:'id', width: '5%', title: 'ID', sort: true }
+                , { field:'channel', width: '10%', title: '频道', sort: true, templet: function(res) {
                     return res.channel.channelName;
                 } }
-                , { field:'category', width:150, title: '问题类型', sort: true, templet: function(res) {
+                , { field:'category', width: '10%', title: '问题类型', sort: true, templet: function(res) {
                     switch (res.category) {
                         case 1:
                             return "单选";
@@ -59,15 +59,15 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                             return "";
                     }
                 } }
-                , { field:'title', width:300, title: '题目', sort: true }
-                , { field:'option', width:300, title: '选项', templet: function(res) {
+                , { field:'title', width: '15%', title: '题目', sort: true }
+                , { field:'option', width: '15%', title: '选项', templet: function(res) {
                     var content = res.option.replaceAll("&", "</br>");
                     return '<p style="line-height: 16px">' + content + '</p>';
                 } }
-                , { field:'weight', width:150, title: '排序', sort: true }
-                , { field:'createTime', title: '创建时间', minWidth: 160, sort: true }
-                , { field:'updateTime', width:160, title: '更新时间', sort: true }
-                , { fixed: 'right', width:160, align:'center', toolbar: '#questionBarDemo' }
+                , { field:'weight', width: '5%', title: '排序', sort: true }
+                , { field:'createTime', title: '创建时间', width: '10%', sort: true }
+                , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
+                , { fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#questionBarDemo' }
             ]
         ]
     });

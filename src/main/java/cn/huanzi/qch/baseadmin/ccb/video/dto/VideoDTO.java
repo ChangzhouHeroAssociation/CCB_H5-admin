@@ -31,6 +31,10 @@ public class VideoDTO {
     private Integer enjoyCount;
     /** 分享数量 */
     private Integer shareCount;
+    /** 视频文稿 */
+    private String textPage;
+    /** 是否推荐 1 -> 推荐；0 -> 不推荐 */
+    private Integer isRecommend;
     /** 创建时间 */
     private Date createTime;
     /** 更新时间 */

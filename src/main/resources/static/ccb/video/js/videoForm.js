@@ -48,6 +48,8 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         let formData = $("#videoForm").serializeObject();
         formData.id = videoId;
         formData.url = $("#url").attr("src");
+        formData.textPage = $("#iImage").attr("src");
+        formData.isRecommend = $("#switchRecommend").is(':checked') == true ? 1 : 0;
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
         formData.channelId = $("#channelId option:selected").val();
@@ -106,16 +108,21 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
     });
 
     function resetForm() {
-        // $("#id").attr("value", "");
         $("#channelId").val("");
         form.render('select');
         $("#videoTitle").attr("value", "");
         $("#description").text("");
         $("#url").attr("src", '');
+        $("#uploadTextPage").attr("src", '');
+
+        /* 默认关闭 */
+        $("#switchRecommend").val("");
+        $("#switchRecommend").removeAttr("checked");
+
         teachers.setValue([ ]);
     }
 
-// 讲师照片上传
+// 视频上传
     var uploadVideo = upload.render({
         elem: '#uploadVideo'
         , url: '/uploadFile/video' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
@@ -148,6 +155,40 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             });
         }
     });
+
+    // 视频文稿上传
+    var uploadTextPage = upload.render({
+        elem: '#uploadTextPage'
+        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+        , method: 'POST'
+        // 限制格式
+        , ext: 'jpg|png|gif|bmp|jpeg'
+        , before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#iImage').attr('src', result); //图片链接（base64）
+            });
+        }
+        , done: function (res) {
+            //如果上传失败
+            if (res.code == '400') {
+                return layer.msg('上传失败');
+            }
+            //上传成功的一些操作
+            $('#iImage').attr('src', res.data.url);
+            $('#iconText').html(''); //置空上传失败的状态
+            layer.msg('上传成功');
+        }
+        , error: function () {
+            //演示失败状态，并实现重传
+            var iconText = $('#iconText');
+            iconText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            iconText.find('.demo-reload').on('click', function () {
+                uploadTextPage.upload();
+            });
+        }
+    });
+
 
 });
 

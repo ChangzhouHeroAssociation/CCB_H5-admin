@@ -1,14 +1,13 @@
 package cn.huanzi.qch.baseadmin.ccb.video.controller;
 
-import cn.huanzi.qch.baseadmin.ccb.category.service.CategoryService;
 import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
 import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.ccb.teacher.service.TeacherService;
+import cn.huanzi.qch.baseadmin.ccb.video.dto.VideoDTO;
 import cn.huanzi.qch.baseadmin.ccb.video.pojo.Video;
 import cn.huanzi.qch.baseadmin.ccb.video.service.VideoService;
-import cn.huanzi.qch.baseadmin.ccb.video.dto.VideoDTO;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -118,6 +117,8 @@ public class VideoController {
         video.setUrl(videoDTO.getUrl());
         video.setTeachers(teachers);
         video.setChannel(channelService.getById(videoDTO.getChannelId()));
+        video.setTextPage(videoDTO.getTextPage());
+        video.setIsRecommend(videoDTO.getIsRecommend());
         Video save = videoService.create(video);
         return Result.of(save);
 
@@ -140,10 +141,26 @@ public class VideoController {
         video.setDescription(videoDTO.getDescription());
         video.setUrl(videoDTO.getUrl());
         video.setTeachers(teachers);
+        video.setTextPage(videoDTO.getTextPage());
+        video.setIsRecommend(videoDTO.getIsRecommend());
         video.setChannel(channelService.getById(videoDTO.getChannelId()));
 
         Video save = videoService.update(video);
         return Result.of(save);
+    }
+
+    @PostMapping("switch")
+    public Result<Video> switchRecommend(Integer id, Integer isRecommend) {
+        if (id == null || isRecommend == null) {
+            return Result.of(null, false, 400, "参数错误");
+        }
+        Video one = videoService.getById(id);
+        if (one == null) {
+            return Result.of(null, false, 400, "未找到数据");
+        }
+        one.setIsRecommend(isRecommend);
+        Video update = videoService.update(one);
+        return Result.of(update);
     }
 
     @PostMapping("delete")

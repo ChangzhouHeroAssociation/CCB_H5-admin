@@ -32,7 +32,15 @@
             </div>
         </div>
 
-        <!-- 图标上传 -->
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">讲师职务</label>
+            <div class="layui-input-block">
+                <textarea id="job" name="job" th:text="${teacher!=null?teacher.job:''}"
+                          placeholder="请输入讲师职务（30字以内）" class="layui-textarea" lay-verify="required|lengthLess30"></textarea>
+            </div>
+        </div>
+
+        <!-- 讲师照片上传 -->
         <div class="layui-form-item">
             <label class="layui-form-label">讲师照片</label>
             <div class="layui-input-block">
