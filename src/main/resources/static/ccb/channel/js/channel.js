@@ -39,15 +39,12 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         ,cols: [
             [
                 { field:'id', width: '5%', title: 'ID', sort: true }
-                , { field:'enabled', title: '是否开启', width: '5%', sort: true, templet: '#switchEnable' }
-                , { field:'channelName', width: '10%', title: '频道名字', sort: true }
+                , { field:'enabled', title: '是否开启', width: '10%', sort: true, templet: '#switchEnable' }
+                , { field:'channelName', width: '15%', title: '频道名字', sort: true }
                 // , { field:'content', width:150, title: '频道描述', sort: true }
-                , { field:'icon', width: '20%', title: '频道图标', templet: function(res) {
+                , { field:'icon', width: '30%', title: '频道图标', templet: function(res) {
                     return "<img src='" + res.icon +"'/>"
                 }}
-                , { field:'image', width: '20%', title: '频道大图', templet: function(res) {
-                    return "<img src='" + res.image +"'/>";
-                } }
                 ,{ field:'createTime', title: '创建时间', width:  '10%', sort: true }
                 ,{ field:'updateTime', width: '10%', title: '更新时间', sort: true }
                 ,{ fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#channelBarDemo' }
@@ -117,6 +114,22 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 end: function () {
                     tableIns.reload();
                 }
+            });
+        } else if (obj.event === 'video') {
+            if (data.video.trim() == '') {
+                layer.msg("没有找到视频，请先添加视频");
+                return;
+            }
+            // 查看视频
+            var videoElem =
+                '<video width="100%" height="100%" controls autobuffer autoplay="autoplay" loop="loop">' +
+                '<source src="' + data.video + '" type="video/mp4"/>' +
+                '</video>'
+            layer.open({
+                type: 1,
+                area: ['960px', '600px'],
+                title: '播放视频',
+                content: videoElem,
             });
         }
     });

@@ -46,26 +46,35 @@
             </div>
 
             <!-- 频道大图上传 -->
+<!--            <div class="layui-form-item">-->
+<!--                <label class="layui-form-label">频道图片</label>-->
+<!--                <div class="layui-input-block">-->
+<!--                    <div class="layui-upload">-->
+<!--                        <button type="button" class="layui-btn" id="uploadImage">上传频道大图</button> （图片大小不得超过10MB）-->
+<!--                        <div class="layui-upload-list">-->
+<!--                            <img id="uImage" name="image" th:src="${channel!=null?channel.image:''}" lay-verify="image" class="layui-upload-img" style="max-height: 200px">-->
+<!--                            <p id="ImageText"></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <!-- 视频上传 -->
             <div class="layui-form-item">
-                <label class="layui-form-label">频道图片</label>
+                <label class="layui-form-label">视频</label>
                 <div class="layui-input-block">
                     <div class="layui-upload">
-                        <button type="button" class="layui-btn" id="uploadImage">上传频道大图</button> （图片大小不得超过10MB）
+                        <button type="button" class="layui-btn" id="uploadVideo">上传视频</button>
+                        <button type="button" class="layui-btn layui-btn-primary" id="videoDetail">查看视频</button>（视频大小不得超过20MB）
                         <div class="layui-upload-list">
-                            <img id="uImage" name="image" th:src="${channel!=null?channel.image:''}" lay-verify="image" class="layui-upload-img" style="max-height: 200px">
-                            <p id="ImageText"></p>
+                            <video id="url" name="url" th:src="${channel!=null?channel.video:''}"
+                                   lay-verify="video" class="layui-upload-video" style="max-height: 200px">
+                            </video>
+                            <p id="videoText"></p>
                         </div>
                     </div>
                 </div>
             </div>
-
-<!--            &lt;!&ndash; 视频复选框 &ndash;&gt;-->
-<!--            <div class="layui-form-item" pane="">-->
-<!--                <label class="layui-form-label">频道内视频</label>-->
-<!--                <div id="video" class="layui-input-block">-->
-
-<!--                </div>-->
-<!--            </div>-->
 
             <div class="layui-form-item" pane="">
                 <label class="layui-form-label">是否启用</label>

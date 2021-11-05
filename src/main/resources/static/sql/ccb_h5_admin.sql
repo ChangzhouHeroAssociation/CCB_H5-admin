@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 03/11/2021 22:45:22
+ Date: 05/11/2021 16:53:49
 */
 
 SET NAMES utf8mb4;
@@ -108,16 +108,17 @@ CREATE TABLE `channel`  (
   `update_time` datetime(0) NOT NULL COMMENT '更新时间',
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：1正常 0删除 --> 软删除',
   `enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态：是否开启 1是 0否',
+  `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '简介视频的url',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of channel
 -- ----------------------------
-INSERT INTO `channel` VALUES (14, '频道1', 'http://ccb-admin.cczuit.cn/upload/img/20211022204254835.jpg', '123', 'http://ccb-admin.cczuit.cn/upload/img/20211022204258336.jpg', '2021-10-22 20:43:04', '2021-10-25 18:24:44', 1, 1);
-INSERT INTO `channel` VALUES (15, '频道2', 'http://ccb-admin.cczuit.cn/upload/img/20211024202035874.jpg', '频道2', 'http://ccb-admin.cczuit.cn/upload/img/20211024202038915.jpg', '2021-10-24 20:20:41', '2021-10-25 18:24:50', 1, 1);
-INSERT INTO `channel` VALUES (16, '频道344', 'http://ccb-admin.cczuit.cn/upload/img/20211024202108719.jpg', '频道3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202111741.jpg', '2021-10-24 20:21:14', '2021-10-24 20:21:30', 0, 1);
-INSERT INTO `channel` VALUES (17, '资产配置', '', '资产配置', '', '2021-11-01 21:23:22', '2021-11-01 21:23:22', 1, 1);
+INSERT INTO `channel` VALUES (14, '频道1', 'http://ccb-admin.cczuit.cn/upload/img/20211022204254835.jpg', '123', 'http://ccb-admin.cczuit.cn/upload/img/20211022204258336.jpg', '2021-10-22 20:43:04', '2021-10-25 18:24:44', 1, 1, '');
+INSERT INTO `channel` VALUES (15, '频道2', 'http://ccb-admin.cczuit.cn/upload/img/20211024202035874.jpg', '频道2', 'http://ccb-admin.cczuit.cn/upload/img/20211024202038915.jpg', '2021-10-24 20:20:41', '2021-10-25 18:24:50', 1, 1, '');
+INSERT INTO `channel` VALUES (16, '频道344', 'http://ccb-admin.cczuit.cn/upload/img/20211024202108719.jpg', '频道3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202111741.jpg', '2021-10-24 20:21:14', '2021-10-24 20:21:30', 0, 1, '');
+INSERT INTO `channel` VALUES (17, '资产配置', '', '资产配置', '', '2021-11-01 21:23:22', '2021-11-01 21:23:22', 1, 1, '');
 
 -- ----------------------------
 -- Table structure for home_page
@@ -181,12 +182,17 @@ CREATE TABLE `log_video`  (
   `video_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `create_time` date NOT NULL COMMENT '创建日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 66 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 71 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log_video
 -- ----------------------------
 INSERT INTO `log_video` VALUES (65, 1, 1, '视频一', '2021-10-24');
+INSERT INTO `log_video` VALUES (66, 3, 0, '视频一', '2021-11-04');
+INSERT INTO `log_video` VALUES (67, 1, 0, '视频三', '2021-11-04');
+INSERT INTO `log_video` VALUES (68, 1, 0, '视频二', '2021-11-04');
+INSERT INTO `log_video` VALUES (69, 33, 0, '视频一', '2021-11-04');
+INSERT INTO `log_video` VALUES (70, 2, 0, '视频一', '2021-11-05');
 
 -- ----------------------------
 -- Table structure for persistent_logins
@@ -357,7 +363,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-10-24 20:15:01', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:49');
+INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-11-04 19:05:44', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:49');
 INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-11-01 21:59:34', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:54');
 INSERT INTO `sys_user` VALUES ('3fb1c570496d4c09ab99b8d31b0671cf', 'daji', '妲己', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'Y', '2019-09-11 18:11:41', '2019-09-17 12:09:47');
 INSERT INTO `sys_user` VALUES ('b5ac62e154964151a19c565346bb354a', 'xiaofang', '小芳', '96E79218965EB72C92A549DD5A330112', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'N', '2019-09-17 14:12:41', '2019-09-17 14:28:57');
@@ -477,11 +483,11 @@ CREATE TABLE `video`  (
 -- ----------------------------
 -- Records of video
 -- ----------------------------
-INSERT INTO `video` VALUES (1, '视频一', '视频描述一', 29, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 143, 129, '2020-10-23 00:00:00', '2020-10-23 00:00:00', 14, 'ttt', 1);
-INSERT INTO `video` VALUES (2, '视频二', '视频描述二', 655, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 0, 145, 176, '2020-10-23 00:00:00', '2021-10-24 20:25:30', 14, 'ttttt', 1);
-INSERT INTO `video` VALUES (3, '视频三', '视频描述三', 618, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 115, 116, '2020-10-23 00:00:00', '2021-10-24 20:25:35', 14, 'tttt', 1);
-INSERT INTO `video` VALUES (8, '视频4', '视频4', 0, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 0, 0, '2021-10-24 20:32:44', '2021-10-24 20:32:44', 15, 'tttt', 0);
-INSERT INTO `video` VALUES (9, '视频5', '视频5', 0, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 0, 0, '2021-10-26 18:16:44', '2021-10-26 18:16:47', 14, 'tttt', 0);
+INSERT INTO `video` VALUES (1, '视频一', '视频描述一', 67, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 143, 129, '2020-10-23 00:00:00', '2020-10-23 00:00:00', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1);
+INSERT INTO `video` VALUES (2, '视频二', '视频描述二', 656, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 0, 145, 176, '2020-10-23 00:00:00', '2021-10-24 20:25:30', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1);
+INSERT INTO `video` VALUES (3, '视频三', '视频描述三', 619, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 115, 116, '2020-10-23 00:00:00', '2021-10-24 20:25:35', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1);
+INSERT INTO `video` VALUES (8, '视频4', '视频4', 0, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 0, 0, '2021-10-24 20:32:44', '2021-10-24 20:32:44', 15, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 0);
+INSERT INTO `video` VALUES (9, '视频5', '视频5', 0, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 0, 0, '2021-10-26 18:16:44', '2021-10-26 18:16:47', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 0);
 
 -- ----------------------------
 -- Table structure for video_category_relation

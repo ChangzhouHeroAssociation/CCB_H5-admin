@@ -151,6 +151,10 @@ layui.use(['table', 'form', 'layer'], function(){
                 }
             });
         } else if (obj.event === 'video') {
+            if (data.url.trim() == '') {
+                layer.msg("没有找到视频，请先添加视频");
+                return;
+            }
             // 查看视频
             var videoElem =
                 '<video width="100%" height="100%" controls autobuffer autoplay="autoplay" loop="loop">' +
