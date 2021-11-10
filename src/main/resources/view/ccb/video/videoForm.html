@@ -55,7 +55,8 @@
             <div class="layui-input-block">
                 <div class="layui-upload">
                     <button type="button" class="layui-btn" id="uploadVideo">上传视频</button>
-                    <button type="button" class="layui-btn layui-btn-primary" id="videoDetail">查看视频</button>（视频大小不得超过20MB）
+                    <button type="button" class="layui-btn layui-btn-primary" id="videoDetail">查看视频</button>
+                    （视频大小不得超过20MB）
                     <div class="layui-upload-list">
                         <video id="url" name="url" th:src="${video!=null?video.url:''}"
                                lay-verify="video" class="layui-upload-video" style="max-height: 200px">
@@ -71,7 +72,9 @@
             <label class="layui-form-label">视频文稿</label>
             <div class="layui-input-block">
                 <div class="layui-upload">
-                    <button type="button" class="layui-btn" id="uploadTextPage">上传视频文稿</button> （图片大小不超过10MB）
+                    <button type="button" class="layui-btn" id="uploadTextPage">上传视频文稿</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="showTextPage">查看文稿</button>
+                    （图片大小不超过10MB）
                     <div class="layui-upload-list">
                         <img id="iImage" name="icon" th:src="${video!=null?video.textPage:''}"
                              lay-verify="image" class="layui-upload-img" style="max-height: 200px">

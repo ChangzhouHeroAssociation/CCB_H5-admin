@@ -42,6 +42,27 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         });
     });
 
+    $("#showTextPage").click(function() {
+        var textPageUrl = $("#iImage").attr("src");
+        if (textPageUrl.trim() == '') {
+            layer.msg("请先上传文稿");
+            return;
+        }
+        // 查看文稿
+        var textPageElem =
+            '<div style="width: 960px; height: 720px; display: table-cell; vertical-align: middle">' +
+            '<img src="' + textPageUrl + '" style="max-width: 100%; display: block; margin: auto" />' +
+            '</div>';
+        layer.open({
+            type: 1,
+            shade: 0.8,
+            offset: 'auto',
+            title: false,
+            area: ['80%', '80%'],
+            content: textPageElem,
+        });
+    });
+
 // 保存
     function saveVideo() {
         let videoId = $("#id").attr("value");

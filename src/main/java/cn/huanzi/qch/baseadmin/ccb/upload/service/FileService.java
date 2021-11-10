@@ -36,7 +36,7 @@ public class FileService {
 
     /** 常见图片格式后缀 */
     public static List imageSuffix = new ArrayList<String>(Arrays.asList(".PNG", ".JPG", ".GIF", ".BMP", ".DIB",
-            ".PCP", ".DIF", ".WMF", ".TIF", ".EPS", ".PSD", ".CDR", ".IFF", ".TGA", ".PCD", ".MPT"));
+            ".PCP", ".DIF", ".WMF", ".TIF", ".EPS", ".PSD", ".CDR", ".IFF", ".TGA", ".PCD", ".MPT", ".JPEG", ".ICO"));
 
     /** 常见视频格式后缀 */
     public static List videoSuffix = new ArrayList<String>(Arrays.asList(".MP4", ".AVI", ".FLV",

@@ -40,7 +40,7 @@ layui.use(['table', 'form', 'layer'], function(){
             [
                 { field:'id', width: '5%', title: 'ID', sort: true }
                 , { field:'isRecommend', title: '推荐', width: '5%', sort: true, templet: '#switchRecommend' }
-                , { field: 'channelName', width: '5%', title: '频道', templet: function(res){
+                , { field: 'channelName', width: '10%', title: '频道', templet: function(res){
                     if (res.channel == null) {
                         return "";
                     } else {
@@ -49,9 +49,6 @@ layui.use(['table', 'form', 'layer'], function(){
 
                 } }
                 , { field:'videoTitle', width: '10%', title: '视频标题', sort: true }
-                , { field:'textPage', width: '10%', title: '视频文稿', templet: function(res) {
-                    return "<img src='" + res.textPage +"'/>"
-                } }
                 , { field:'teacherName', width: '10%', title: '讲师', templet: function(res) {
                     console.log(JSON.stringify(res.teachers));
                     var tString = "";
@@ -66,9 +63,9 @@ layui.use(['table', 'form', 'layer'], function(){
                     }
                     return tString;
                 } }
-                , { field:'views', width: '5%', title: '观看数', sort: true }
-                , { field:'enjoyCount', width: '5%', title: '点赞数', sort: true }
-                , { field:'shareCount', width: '5%', title: '分享数', sort: true }
+                , { field:'views', width: '7%', title: '观看数', sort: true }
+                , { field:'enjoyCount', width: '7%', title: '点赞数', sort: true }
+                , { field:'shareCount', width: '6%', title: '分享数', sort: true }
                 , { field:'createTime', title: '创建时间', width: '10%', sort: true }
                 , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
                 , { fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#videoBarDemo' }
@@ -165,6 +162,25 @@ layui.use(['table', 'form', 'layer'], function(){
                 area: ['960px', '600px'],
                 title: '播放视频',
                 content: videoElem,
+            });
+        } else if (obj.event === 'textPage') {
+            if (data.textPage.trim() == '') {
+                layer.msg("没有找到文稿，请先添加文稿");
+                return;
+            }
+
+            // 查看文稿
+            var textPageElem =
+                '<div style="width: 960px; height: 720px; display: table-cell; vertical-align: middle">' +
+                    '<img src="' + data.textPage + '" style="max-width: 100%; display: block; margin: auto" />' +
+                '</div>';
+            layer.open({
+                type: 1,
+                shade: 0.8,
+                offset: 'auto',
+                title: false,
+                area: ['960px', '720px'],
+                content: textPageElem,
             });
         }
     });
