@@ -16,6 +16,14 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
                 return '不得超过30字';
             }
         }
+        , weight: function (value) {
+            if (isNaN(value)) {
+                return '请输入数字';
+            }
+            if (value < 0 || value > 100) {
+                return "请输入0 - 100 的数字";
+            }
+        }
     });
 
     form.on('submit(commit)', function (data) {

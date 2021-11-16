@@ -40,7 +40,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '广告列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
+                { field:'id', width: '5%', title: '序号', sort: true }
                 , { field:'channelName', width: '10%', title: '频道', sort: true, templet: function(res) {
                     return res.channel.channelName;
                 } }

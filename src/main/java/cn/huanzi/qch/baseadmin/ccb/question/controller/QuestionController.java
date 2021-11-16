@@ -4,11 +4,17 @@ import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
 import cn.huanzi.qch.baseadmin.ccb.question.pojo.Question;
 import cn.huanzi.qch.baseadmin.ccb.question.service.QuestionService;
+import cn.huanzi.qch.baseadmin.ccb.select.pojo.Select;
+import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  Controller
@@ -46,6 +52,30 @@ public class QuestionController {
         return mav;
     }
 
+    @GetMapping("channelSelectList")
+    public Result<List<Select>> channelsInQuestion(Integer id) {
+        Question question = null;
+        if (id != null) {
+            question = questionService.getById(id);
+        }
+        List<Select> channelSelects = new ArrayList<>();
+        List<Channel> channels = channelService.getAll();
+        for (Channel channel : channels) {
+            Select tempSelect = new Select();
+            tempSelect.setName(channel.getChannelName());
+            tempSelect.setValue(channel.getId());
+            if (question != null) {
+                for (String s : question.getChannelId().split(",")) {
+                    if (s.equals(channel.getId().toString())) {
+                        tempSelect.setSelected(true);
+                    }
+                }
+            }
+            channelSelects.add(tempSelect);
+        }
+        return Result.of(channelSelects);
+    }
+
     @GetMapping("page")
     public Result<Page<Question>> queryPage(Integer page, Integer limit,
                                             @RequestParam(name = "name", required = false, defaultValue = "") String keyword) {
@@ -58,6 +88,13 @@ public class QuestionController {
         }
 
         Page<Question> questions = questionService.pagination(page - 1, limit, keyword);
+        for (Question question : questions.getContent()) {
+            List<Channel> channels = new ArrayList<>();
+            for (String s : question.getChannelId().split(",")) {
+                channels.add(channelService.getById(Integer.parseInt(s)));
+            }
+            question.setChannels(channels);
+        }
         return Result.of(questions);
     }
 
@@ -70,33 +107,22 @@ public class QuestionController {
         if (question == null) {
             return Result.of(null, true, 405, "未查找到数据");
         }
+        List<Channel> channels = new ArrayList<>();
+        for (String s : question.getChannelId().split(",")) {
+            channels.add(channelService.getById(Integer.parseInt(s)));
+        }
+        question.setChannels(channels);
         return Result.of(question);
     }
 
     @PostMapping("create")
-    public Result create(Question question, Integer channelId) {
-        if (channelId == null) {
-            return Result.of(null, false, 400, "频道id不能为空");
-        }
-        Channel channel = channelService.getById(channelId);
-        if (channel == null) {
-            return Result.of(null, false, 400, "未查找到频道");
-        }
-        question.setChannel(channel);
+    public Result create(Question question) {
         Question save = questionService.create(question);
         return Result.of(save);
     }
 
     @PostMapping("update")
-    public Result update(Question question, Integer channelId) {
-        if (channelId == null) {
-            return Result.of(null, false, 400, "频道id不能为空");
-        }
-        Channel channel = channelService.getById(channelId);
-        if (channel == null) {
-            return Result.of(null, false, 400, "未查找到频道");
-        }
-        question.setChannel(channel);
+    public Result update(Question question) {
         Question save = questionService.update(question);
         return Result.of(save);
     }

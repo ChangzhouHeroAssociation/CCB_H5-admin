@@ -38,7 +38,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '频道列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
+                { field:'id', width: '5%', title: '序号', sort: true }
                 , { field:'enabled', title: '是否开启', width: '10%', sort: true, templet: '#switchEnable' }
                 , { field:'channelName', width: '15%', title: '频道名字', sort: true }
                 // , { field:'content', width:150, title: '频道描述', sort: true }

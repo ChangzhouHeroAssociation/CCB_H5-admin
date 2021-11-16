@@ -37,9 +37,18 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '问卷列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
-                , { field:'channel', width: '10%', title: '频道', sort: true, templet: function(res) {
-                    return res.channel.channelName;
+                { field:'id', width: '5%', title: '序号', sort: true }
+                , { field:'channels', width: '10%', title: '频道', sort: true, templet: function(res) {
+                    var channelStr = "";
+                    var channelLength = res.channels.length;
+                    if (channelLength == 0) {
+                        return "";
+                    }
+                    channelStr = res.channels[0].channelName;
+                    for (var i = 1; i < channelLength; i++) {
+                        channelStr += ", " + res.channels[i].channelName;
+                    }
+                    return channelStr;
                 } }
                 , { field:'category', width: '10%', title: '问题类型', sort: true, templet: function(res) {
                     switch (res.category) {

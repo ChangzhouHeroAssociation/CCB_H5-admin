@@ -37,16 +37,20 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '视频列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
-                , { field: 'channelName', width: '10%', title: '频道', templet: function(res){
-                    if (res.channel == null) {
+                { field:'id', width: '5%', title: '序号', sort: true }
+                , { field: 'channels', width: '15%', title: '频道', templet: function(res){
+                    var channelStr = "";
+                    var channelLength = res.question.channels.length;
+                    if (channelLength == 0) {
                         return "";
-                    } else {
-                        return res.channel.channelName;
                     }
-
+                    channelStr = res.question.channels[0].channelName;
+                    for (var i = 1; i < channelLength; i++) {
+                        channelStr += ", " + res.question.channels[i].channelName;
+                    }
+                    return channelStr;
                 } }
-                , { field:'category', width: '15%', title: '问题类型', templet: function(res) {
+                , { field:'category', width: '10%', title: '问题类型', templet: function(res) {
                     switch (res.question.category) {
                         case 1:
                             return "单选";
@@ -71,7 +75,10 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     var content = res.question.option.replaceAll("&", "</br>");
                     return '<p style="line-height: 16px">' + content + '</p>';
                 } }
-                , { field: 'result', width: '15%', title: '回答' }
+                , { field: 'result', width: '15%', title: '回答', templet: function(res) {
+                    var result = res.result.replaceAll("&", "</br>");
+                    return '<p style="line-height: 16px">' + result + '</p>';
+                } }
                 , { field:'createTime', title: '创建时间', width: '10%', sort: true }
                 , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
             ]

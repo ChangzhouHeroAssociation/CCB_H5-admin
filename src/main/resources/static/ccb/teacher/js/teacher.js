@@ -37,12 +37,13 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '讲师列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
+                { field:'id', width: '5%', title: '序号', sort: true }
                 , { field:'teacherName', width: '15%', title: '讲师名字', sort: true }
                 // , { field:'description', width:150, title: '讲师简介' }
-                , { field:'teacherPhoto', width: '40%', title: '讲师照片', templet: function(res) {
+                , { field:'teacherPhoto', width: '30%', title: '讲师照片', templet: function(res) {
                     return "<img src='" + res.teacherPhoto +"'/>"
                 } }
+                , { field: 'weight', width: '10%', title: '排序', sort: true }
                 , { field:'createTime', title: '创建时间', width: '10%', sort: true }
                 , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
                 , { fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#teacherBarDemo' }

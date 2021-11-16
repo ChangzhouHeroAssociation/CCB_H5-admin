@@ -35,7 +35,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             '</video>'
         layer.open({
             type: 1,
-            area: ['960px', '600px'],
+            shade: 0.8,
+            offset: 'auto',
+            area: ['80%', '80%'],
             title: '播放视频',
             content: videoElem,
             shadeClose: false
@@ -50,7 +52,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         }
         // 查看文稿
         var textPageElem =
-            '<div style="width: 960px; height: 720px; display: table-cell; vertical-align: middle">' +
+            '<div style="width: 100%; height: 100%; display: table-cell; vertical-align: middle">' +
             '<img src="' + textPageUrl + '" style="max-width: 100%; display: block; margin: auto" />' +
             '</div>';
         layer.open({
@@ -63,12 +65,35 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         });
     });
 
+    // 查看视频封面
+    $("#showPicture").click(function() {
+        var picture = $("#picture").attr("src");
+        if (picture.trim() == '') {
+            layer.msg("请先上传视频封面");
+            return;
+        }
+        // 封面
+        var pictureElem =
+            '<div style="width: 100%; height: 100%; text-align: center;">' +
+            '<img src="' + picture + '" style="max-height: 100%; margin: auto;" />' +
+            '</div>';
+        layer.open({
+            type: 1,
+            shade: 0.8,
+            offset: 'auto',
+            title: '视频封面',
+            area: ['80%', '80%'],
+            content: pictureElem,
+        });
+    });
+
 // 保存
     function saveVideo() {
         let videoId = $("#id").attr("value");
         let formData = $("#videoForm").serializeObject();
         formData.id = videoId;
         formData.url = $("#url").attr("src");
+        formData.picture = $("#picture").attr("src");
         formData.textPage = $("#iImage").attr("src");
         formData.isRecommend = $("#switchRecommend").is(':checked') == true ? 1 : 0;
         /* 能编辑的肯定没有被删除 */
@@ -133,8 +158,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         form.render('select');
         $("#videoTitle").attr("value", "");
         $("#description").text("");
-        $("#url").attr("src", '');
-        $("#uploadTextPage").attr("src", '');
+        $("#url").attr("src", "");
+        $("#picture").attr("src", "");
+        $("#uploadTextPage").attr("src", "");
 
         /* 默认关闭 */
         $("#switchRecommend").val("");
@@ -205,6 +231,39 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             var iconText = $('#iconText');
             iconText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
             iconText.find('.demo-reload').on('click', function () {
+                uploadTextPage.upload();
+            });
+        }
+    });
+
+    // 视频封面上传
+    var uploadTextPage = upload.render({
+        elem: '#uploadPicture'
+        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+        , method: 'POST'
+        // 限制格式
+        , ext: 'jpg|png|gif|bmp|jpeg'
+        , before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#picture').attr('src', result); //图片链接（base64）
+            });
+        }
+        , done: function (res) {
+            //如果上传失败
+            if (res.code == '400') {
+                return layer.msg('上传失败');
+            }
+            //上传成功的一些操作
+            $('#picture').attr('src', res.data.url);
+            $('#pictureText').html(''); //置空上传失败的状态
+            layer.msg('上传成功');
+        }
+        , error: function () {
+            //演示失败状态，并实现重传
+            var pictureText = $('#pictureText');
+            pictureText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            pictureText.find('.demo-reload').on('click', function () {
                 uploadTextPage.upload();
             });
         }

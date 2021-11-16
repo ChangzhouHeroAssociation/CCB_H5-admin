@@ -37,6 +37,8 @@ public class Video implements Serializable {
     private Integer shareCount;
     /** 视频文稿 */
     private String textPage;
+    /** 视频封面图片 */
+    private String picture;
     /** 是否推荐 1 -> 推荐；0 -> 不推荐 */
     private Integer isRecommend;
     /** 创建时间 */
@@ -143,6 +145,14 @@ public class Video implements Serializable {
 
     public void setTextPage(String textPage) {
         this.textPage = textPage;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Integer getIsRecommend() {

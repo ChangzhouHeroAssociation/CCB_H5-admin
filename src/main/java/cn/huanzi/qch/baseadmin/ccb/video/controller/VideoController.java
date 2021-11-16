@@ -118,6 +118,7 @@ public class VideoController {
         video.setTeachers(teachers);
         video.setChannel(channelService.getById(videoDTO.getChannelId()));
         video.setTextPage(videoDTO.getTextPage());
+        video.setPicture(videoDTO.getPicture());
         video.setIsRecommend(videoDTO.getIsRecommend());
         Video save = videoService.create(video);
         return Result.of(save);
@@ -142,6 +143,7 @@ public class VideoController {
         video.setUrl(videoDTO.getUrl());
         video.setTeachers(teachers);
         video.setTextPage(videoDTO.getTextPage());
+        video.setPicture(videoDTO.getPicture());
         video.setIsRecommend(videoDTO.getIsRecommend());
         video.setChannel(channelService.getById(videoDTO.getChannelId()));
 

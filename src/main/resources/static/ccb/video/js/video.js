@@ -38,7 +38,7 @@ layui.use(['table', 'form', 'layer'], function(){
         , title: '视频列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
+                { field:'id', width: '5%', title: '序号', sort: true }
                 , { field:'isRecommend', title: '推荐', width: '5%', sort: true, templet: '#switchRecommend' }
                 , { field: 'channelName', width: '10%', title: '频道', templet: function(res){
                     if (res.channel == null) {

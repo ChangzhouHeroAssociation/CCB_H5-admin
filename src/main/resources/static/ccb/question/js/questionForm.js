@@ -35,6 +35,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function () {
         formData.option = $("#optionList").find("input").map(function (index, value) {
             return $(this).val();
         }).get().join("&");
+        formData.channelId = channels.getValue("valueStr");
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
         if (formData.category != 4 && formData.option == '') {
@@ -80,7 +81,33 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function () {
         optionCount = $("#optionList").children(".layui-input-item").length;
 
         $("#weight").attr("value", "");
+        channels.setValue([ ]);
     }
+
+    // 问卷与频道关联，多选
+    var channels = xmSelect.render({
+        el: "#channels",
+        toolbar: {
+            show: true
+        },
+        language: "zn",
+        filterable: true,
+        tips: "选择问卷所属的频道",
+        data: []
+    });
+
+    axios({
+        method: 'get',
+        url: '/ccb/question/channelSelectList?id=' + $("#id").attr("value"),
+    }).then(response => {
+        var res = response.data;
+
+        channels.update({
+            data: res.data,
+            autoRow: true,
+        })
+    });
+
 
     /* 动态添加选项输入框 */
     // 选项个数

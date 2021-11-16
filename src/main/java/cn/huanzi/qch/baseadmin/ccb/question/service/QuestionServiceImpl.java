@@ -45,10 +45,10 @@ public class QuestionServiceImpl implements QuestionService{
                     return null;
                 } else  {
                     // 按频道id查找
-                    Join<Question, Channel> joinChannel = root.join(root.getModel().getSingularAttribute("channel", Channel.class), JoinType.LEFT);
-                    Predicate channelNameEqual = criteriaBuilder.equal(joinChannel.get("id").as(String.class), keyword);
+                    Expression<Integer> channelInSet = criteriaBuilder.function("FIND_IN_SET", Integer.class,
+                            criteriaBuilder.literal(keyword), root.get("channelId"));
 
-                    return channelNameEqual;
+                    return criteriaBuilder.greaterThan(channelInSet, 0);
                 }
 
             }

@@ -40,7 +40,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '轮播图列表'
         ,cols: [
             [
-                { field:'id', width: '5%', title: 'ID', sort: true }
+                { field:'id', width: '5%', title: '序号', sort: true }
                 ,{ field:'bannerName', width: '20%', title: '轮播图名字', sort: true }
                 ,{ field:'url', width: '20%', title: '轮播图', templet: function(res) {
                     return "<img src='" + res.url +"'/>"

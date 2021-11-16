@@ -67,6 +67,23 @@
             </div>
         </div>
 
+        <!-- 视频封面上传 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">封面</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="uploadPicture">上传视频封面</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="showPicture">查看封面</button>
+                    （图片大小不超过10MB）
+                    <div class="layui-upload-list">
+                        <img id="picture" name="picture" th:src="${video!=null?video.picture:''}"
+                             lay-verify="image" class="layui-upload-img" style="max-height: 200px">
+                        <p id="pictureText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 视频文稿上传 -->
         <div class="layui-form-item">
             <label class="layui-form-label">视频文稿</label>

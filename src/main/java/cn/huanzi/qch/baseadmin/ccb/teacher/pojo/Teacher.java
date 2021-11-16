@@ -1,6 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.teacher.pojo;
 
 import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,24 +16,34 @@ import java.util.Date;
 @Table(name = "teacher")
 @Data
 public class Teacher implements Serializable {
+    /** 讲师编号 */
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;//讲师编号
+    private Integer id;
 
-    private String teacherName;//讲师姓名
+    /** 讲师姓名 */
+    private String teacherName;
 
-    private String description;//讲师简介
+    /** 讲师简介 */
+    private String description;
 
-    private String teacherPhoto;//头像url
+    /** 头像url */
+    private String teacherPhoto;
 
-    private Integer status;//状态：1正常 0删除 --> 软删除
+    /** 状态：1正常 0删除 --> 软删除 */
+    private Integer status;
 
     /** 讲师职务 */
     private String job;
 
-    private Date createTime;//创建时间
+    /** 排序 0 - 100 数字越大，排名越靠前 */
+    private Integer weight;
 
-    private Date updateTime;//更新时间
+    /** 创建时间 */
+    private Date createTime;
+
+    /** 更新时间 */
+    private Date updateTime;
 
 }
 

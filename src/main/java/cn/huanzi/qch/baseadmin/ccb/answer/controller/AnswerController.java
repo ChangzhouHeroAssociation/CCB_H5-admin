@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.answer.controller;
 
 import cn.huanzi.qch.baseadmin.ccb.answer.pojo.Answer;
 import cn.huanzi.qch.baseadmin.ccb.answer.service.AnswerService;
+import cn.huanzi.qch.baseadmin.ccb.channel.pojo.Channel;
 import cn.huanzi.qch.baseadmin.ccb.channel.service.ChannelService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +50,15 @@ public class AnswerController {
         }
 
         Page<Answer> answerPage = answerService.pagination(page - 1, limit, channelId, keyword);
+
+        for (Answer answer : answerPage.getContent()) {
+            List<Channel> channels = new ArrayList<>();
+            for (String s : answer.getQuestion().getChannelId().split(",")) {
+                channels.add(channelService.getById(Integer.parseInt(s)));
+            }
+            answer.getQuestion().setChannels(channels);
+        }
+
         return Result.of(answerPage);
     }
 
@@ -57,6 +68,11 @@ public class AnswerController {
         if (answer == null) {
             return Result.of(null, true, 405, "未查询到数据");
         }
+        List<Channel> channels = new ArrayList<>();
+        for (String s : answer.getQuestion().getChannelId().split(",")) {
+            channels.add(channelService.getById(Integer.parseInt(s)));
+        }
+        answer.getQuestion().setChannels(channels);
         return Result.of(answer);
     }
 

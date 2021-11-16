@@ -33,12 +33,10 @@ public class VideoDTO {
     private Integer shareCount;
     /** 视频文稿 */
     private String textPage;
+    /** 视频封面图片 */
+    private String picture;
     /** 是否推荐 1 -> 推荐；0 -> 不推荐 */
     private Integer isRecommend;
-    /** 创建时间 */
-    private Date createTime;
-    /** 更新时间 */
-    private Date updateTime;
     /** 讲师 */
     private List<Integer> teacherIds;
     /** 频道id */

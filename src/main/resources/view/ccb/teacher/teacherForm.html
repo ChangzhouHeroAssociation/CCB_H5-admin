@@ -55,6 +55,14 @@
             </div>
         </div>
 
+        <!-- 排序 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-block">
+                <input id="weight" th:value="${teacher!=null?teacher.weight:''}" type="text" name="weight" lay-verify="required|weight" autocomplete="off" placeholder="0 - 100（倒序，数字越大越靠前）" class="layui-input">
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button type="submit" class="layui-btn" lay-submit="" lay-filter="commit">保存</button>

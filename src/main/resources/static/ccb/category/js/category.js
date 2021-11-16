@@ -37,7 +37,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
         , title: '分组列表'
         ,cols: [
             [
-                { field:'id', width: '20%', title: 'ID', sort: true }
+                { field:'id', width: '20%', title: '序号', sort: true }
                 , { field:'categoryName', width: '40%', title: '分组名', sort: true }
                 , { fixed: 'right', width: '40%', title: '操作', align:'center', toolbar: '#categoryBarDemo' }
             ]
