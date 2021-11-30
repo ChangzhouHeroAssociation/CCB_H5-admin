@@ -25,4 +25,6 @@ public class HomePage {
     private String videoUrl;
     /** 活动介绍 */
     private String activity;
+    /** 封面URL */
+    private String picture;
 }

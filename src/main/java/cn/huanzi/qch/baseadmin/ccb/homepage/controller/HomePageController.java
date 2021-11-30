@@ -47,7 +47,7 @@ public class HomePageController {
         return mav;
     }
 
-    @GetMapping("page")
+//    @GetMapping("page")
     public Result page(Integer page, Integer limit) {
         if (page == null || page < 1) {
             page = 1;
