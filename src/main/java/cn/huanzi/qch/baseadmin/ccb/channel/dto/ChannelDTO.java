@@ -36,4 +36,6 @@ public class ChannelDTO {
     private Integer enabled;
     /** 关联视频id */
     private List<Integer> videoIds;
+    /** 排序 0 - 100 倒序 */
+    private Integer weight;
 }

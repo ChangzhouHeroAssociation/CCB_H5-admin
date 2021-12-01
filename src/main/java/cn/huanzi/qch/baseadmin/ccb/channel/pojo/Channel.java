@@ -35,6 +35,8 @@ public class Channel implements Serializable {
     private Integer status;
     /** 是否开启 1 开启: 0 关闭 */
     private Integer enabled;
+    /** 排序 0 - 100 倒序 */
+    private Integer weight;
 
     @Override
     public String toString() {
@@ -131,5 +133,12 @@ public class Channel implements Serializable {
         this.enabled = enabled;
     }
 
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
 }
 

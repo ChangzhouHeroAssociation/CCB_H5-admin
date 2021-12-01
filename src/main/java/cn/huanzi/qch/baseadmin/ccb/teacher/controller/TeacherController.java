@@ -3,6 +3,8 @@ package cn.huanzi.qch.baseadmin.ccb.teacher.controller;
 import cn.huanzi.qch.baseadmin.ccb.teacher.pojo.Teacher;
 import cn.huanzi.qch.baseadmin.ccb.teacher.service.TeacherService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/ccb/teacher/")
 public class TeacherController {
+    Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private TeacherService teacherService;
 
@@ -69,6 +73,7 @@ public class TeacherController {
 
     @PostMapping("update")
     public Result<Teacher> update(Teacher teacher) {
+        logger.info(teacher.toString());
         Teacher save = teacherService.update(teacher);
         return Result.of(save);
     }

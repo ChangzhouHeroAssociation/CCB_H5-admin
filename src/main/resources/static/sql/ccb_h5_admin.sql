@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 30/11/2021 09:29:37
+ Date: 01/12/2021 10:11:53
 */
 
 SET NAMES utf8mb4;
@@ -340,19 +340,20 @@ CREATE TABLE `channel`  (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1 COMMENT '状态：1正常 0删除 --> 软删除',
   `enabled` tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态：是否开启 1是 0否',
   `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '简介视频的url',
+  `weight` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '倒序 数据校验最大值100 最小0',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of channel
 -- ----------------------------
-INSERT INTO `channel` VALUES (14, '保险保障', 'http://ccb-admin.cczuit.cn/upload/img/20211109163046347.png', '保险金信托、大额保单……全面解读高净值人士的保险保障。', '', '2021-10-22 20:43:04', '2021-11-12 19:28:21', 1, 1, 'http://ccb-admin.cczuit.cn/upload/video/20211109105023192.mp4');
-INSERT INTO `channel` VALUES (15, '家族传承', 'http://ccb-admin.cczuit.cn/upload/img/20211109163025817.png', '家族信托教你守富“道与术”：家族财富保护、传承、管理一体化。', '', '2021-10-24 20:20:41', '2021-11-11 11:21:23', 1, 1, '');
-INSERT INTO `channel` VALUES (16, '频道344', 'http://ccb-admin.cczuit.cn/upload/img/20211024202108719.jpg', '频道3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202111741.jpg', '2021-10-24 20:21:14', '2021-10-24 20:21:30', 0, 1, '');
-INSERT INTO `channel` VALUES (17, '资产配置', 'http://ccb-admin.cczuit.cn/upload/img/20211109163011289.png', '资产配置到底是指什么？如何做好资产配置？\r\n在这里，看懂高净值人群资产配置的那些事。', '', '2021-11-01 21:23:22', '2021-11-12 19:27:27', 1, 1, 'http://ccb-admin.cczuit.cn/upload/video/20211105191409578.mp4');
-INSERT INTO `channel` VALUES (18, '养老规划', 'http://ccb-admin.cczuit.cn/upload/img/20211109163112532.png', '养老还涉财富传承、管理问题？来看看我们需要做哪些准备。', '', '2021-11-09 16:31:19', '2021-11-11 11:22:16', 1, 1, '');
-INSERT INTO `channel` VALUES (19, '公益慈善', 'http://ccb-admin.cczuit.cn/upload/img/20211109164509595.png', '高净值人士为何热衷慈善？慈善能做哪些事？慈善工具怎么用？答案全在这。', '', '2021-11-09 16:33:32', '2021-11-11 11:22:36', 1, 1, '');
-INSERT INTO `channel` VALUES (20, '法律法规', 'http://ccb-admin.cczuit.cn/upload/img/20211109164521276.png', '看法律小剧场，避守富大风险。股权代持、遗产传承、家庭婚变、公私不分……预知如何规避风险，看这！', '', '2021-11-09 16:43:54', '2021-11-11 11:22:59', 1, 1, '');
+INSERT INTO `channel` VALUES (14, '保险保障', 'http://ccb-admin.cczuit.cn/upload/img/20211109163046347.png', '保险金信托、大额保单……全面解读高净值人士的保险保障。', '', '2021-10-22 20:43:04', '2021-11-12 19:28:21', 1, 1, 'http://ccb-admin.cczuit.cn/upload/video/20211109105023192.mp4', 80);
+INSERT INTO `channel` VALUES (15, '家族传承', 'http://ccb-admin.cczuit.cn/upload/img/20211109163025817.png', '家族信托教你守富“道与术”：家族财富保护、传承、管理一体化。', '', '2021-10-24 20:20:41', '2021-11-11 11:21:23', 1, 1, '', 90);
+INSERT INTO `channel` VALUES (16, '频道344', 'http://ccb-admin.cczuit.cn/upload/img/20211024202108719.jpg', '频道3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202111741.jpg', '2021-10-24 20:21:14', '2021-10-24 20:21:30', 0, 1, '', 0);
+INSERT INTO `channel` VALUES (17, '资产配置', 'http://ccb-admin.cczuit.cn/upload/img/20211109163011289.png', '资产配置到底是指什么？如何做好资产配置？\r\n在这里，看懂高净值人群资产配置的那些事。', '', '2021-11-01 21:23:22', '2021-11-12 19:27:27', 1, 1, 'http://ccb-admin.cczuit.cn/upload/video/20211105191409578.mp4', 100);
+INSERT INTO `channel` VALUES (18, '养老规划', 'http://ccb-admin.cczuit.cn/upload/img/20211109163112532.png', '养老还涉财富传承、管理问题？来看看我们需要做哪些准备。', '', '2021-11-09 16:31:19', '2021-11-11 11:22:16', 1, 1, '', 70);
+INSERT INTO `channel` VALUES (19, '公益慈善', 'http://ccb-admin.cczuit.cn/upload/img/20211109164509595.png', '高净值人士为何热衷慈善？慈善能做哪些事？慈善工具怎么用？答案全在这。', '', '2021-11-09 16:33:32', '2021-11-11 11:22:36', 1, 1, '', 60);
+INSERT INTO `channel` VALUES (20, '法律法规', 'http://ccb-admin.cczuit.cn/upload/img/20211109164521276.png', '看法律小剧场，避守富大风险。股权代持、遗产传承、家庭婚变、公私不分……预知如何规避风险，看这！', '', '2021-11-09 16:43:54', '2021-11-11 11:22:59', 1, 1, '', 50);
 
 -- ----------------------------
 -- Table structure for home_page
@@ -369,7 +370,7 @@ CREATE TABLE `home_page`  (
 -- ----------------------------
 -- Records of home_page
 -- ----------------------------
-INSERT INTO `home_page` VALUES (2, 'http://ccb-admin.cczuit.cn/upload/video/20211024201922919.mp4', '2022年“财富守攻传”私人银行观点分享节目全新上线，多位总行级财富顾问再度集结，紧跟高净值人群的财富管理需求，围绕资产配置、家族信托及传承、保险保障、养老规划、公益慈善和法律六大方向，展开系列话题分享，共论财富守攻传承之道。', '0');
+INSERT INTO `home_page` VALUES (2, 'http://ccb-admin.cczuit.cn/upload/video/20211024201922919.mp4', '2022年“财富守攻传”私人银行观点分享全新上线，多位总行级财富顾问再度集结，紧跟高净值人群的财富管理需求，围绕资产配置、家族信托及传承、保险保障、养老规划、公益慈善和法律六大方向，展开系列话题分享，共论财富守攻传承之道。', '0');
 
 -- ----------------------------
 -- Table structure for log_channel
@@ -381,7 +382,7 @@ CREATE TABLE `log_channel`  (
   `channel_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `create_time` date NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 270 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 332 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log_channel
@@ -598,6 +599,68 @@ INSERT INTO `log_channel` VALUES (266, 1, '资产配置', '2021-11-30');
 INSERT INTO `log_channel` VALUES (267, 1, '法律法规', '2021-11-30');
 INSERT INTO `log_channel` VALUES (268, 1, '资产配置', '2021-11-30');
 INSERT INTO `log_channel` VALUES (269, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (270, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (271, 1, '资产配置', '2021-11-30');
+INSERT INTO `log_channel` VALUES (272, 1, '资产配置', '2021-11-30');
+INSERT INTO `log_channel` VALUES (273, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (274, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (275, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (276, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (277, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (278, 1, '资产配置', '2021-11-30');
+INSERT INTO `log_channel` VALUES (279, 2, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (280, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (281, 1, '公益慈善', '2021-11-30');
+INSERT INTO `log_channel` VALUES (282, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (283, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (284, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (285, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (286, 1, '资产配置', '2021-11-30');
+INSERT INTO `log_channel` VALUES (287, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (288, 1, '公益慈善', '2021-11-30');
+INSERT INTO `log_channel` VALUES (289, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (290, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (291, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (292, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (293, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (294, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (295, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (296, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (297, 2, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (298, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (299, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (300, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (301, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (302, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (303, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (304, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (305, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (306, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (307, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (308, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (309, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (310, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (311, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (312, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (313, 2, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (314, 1, '资产配置', '2021-11-30');
+INSERT INTO `log_channel` VALUES (315, 1, '家族传承', '2021-11-30');
+INSERT INTO `log_channel` VALUES (316, 1, '资产配置', '2021-11-30');
+INSERT INTO `log_channel` VALUES (317, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (318, 1, '保险保障', '2021-11-30');
+INSERT INTO `log_channel` VALUES (319, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (320, 1, '公益慈善', '2021-11-30');
+INSERT INTO `log_channel` VALUES (321, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (322, 1, '法律法规', '2021-11-30');
+INSERT INTO `log_channel` VALUES (323, 1, '养老规划', '2021-11-30');
+INSERT INTO `log_channel` VALUES (324, 1, '资产配置', '2021-12-01');
+INSERT INTO `log_channel` VALUES (325, 1, '保险保障', '2021-12-01');
+INSERT INTO `log_channel` VALUES (326, 1, '养老规划', '2021-12-01');
+INSERT INTO `log_channel` VALUES (327, 1, '养老规划', '2021-12-01');
+INSERT INTO `log_channel` VALUES (328, 1, '保险保障', '2021-12-01');
+INSERT INTO `log_channel` VALUES (329, 1, '养老规划', '2021-12-01');
+INSERT INTO `log_channel` VALUES (330, 2, '资产配置', '2021-12-01');
+INSERT INTO `log_channel` VALUES (331, 1, '养老规划', '2021-12-01');
 
 -- ----------------------------
 -- Table structure for log_teacher
@@ -609,7 +672,7 @@ CREATE TABLE `log_teacher`  (
   `teacher_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `create_time` date NOT NULL COMMENT '创建日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 236 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 277 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log_teacher
@@ -784,6 +847,47 @@ INSERT INTO `log_teacher` VALUES (232, 1, '黄光涛', '2021-11-29');
 INSERT INTO `log_teacher` VALUES (233, 1, '陈静', '2021-11-30');
 INSERT INTO `log_teacher` VALUES (234, 2, '陈静', '2021-11-30');
 INSERT INTO `log_teacher` VALUES (235, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (236, 1, '郭娜', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (237, 1, '郭娜', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (238, 1, '郭娜', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (239, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (240, 1, '讲师3', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (241, 1, '郭娜', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (242, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (243, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (244, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (245, 1, '刘非', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (246, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (247, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (248, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (249, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (250, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (251, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (252, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (253, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (254, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (255, 1, '黄光涛', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (256, 1, '毛宇', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (257, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (258, 1, '刘非', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (259, 1, '万辉斌', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (260, 1, '万辉斌', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (261, 1, '讲师3', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (262, 1, '讲师3', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (263, 1, '方一男', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (264, 1, '方一男', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (265, 1, '王虹', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (266, 2, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (267, 1, '王虹', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (268, 1, '王虹', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (269, 1, '方芃芃', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (270, 1, '刘非', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (271, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (272, 1, '万辉斌', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (273, 1, '毕文婷', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (274, 1, '陈静', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (275, 1, '王虹', '2021-11-30');
+INSERT INTO `log_teacher` VALUES (276, 1, '刘非', '2021-12-01');
 
 -- ----------------------------
 -- Table structure for log_video
@@ -796,7 +900,7 @@ CREATE TABLE `log_video`  (
   `video_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `create_time` date NOT NULL COMMENT '创建日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 949 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1095 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of log_video
@@ -1685,6 +1789,152 @@ INSERT INTO `log_video` VALUES (945, 2, 0, '我们该为养老做哪些准备', 
 INSERT INTO `log_video` VALUES (946, 2, 0, '视频二', '2021-11-30');
 INSERT INTO `log_video` VALUES (947, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
 INSERT INTO `log_video` VALUES (948, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (949, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (950, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (951, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (952, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (953, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (954, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (955, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (956, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (957, 3, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (958, 3, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (959, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (960, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (961, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (962, 1, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (963, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (964, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (965, 2, 0, '亿元保单频现背后，高净值人群配置保险用意何在？', '2021-11-30');
+INSERT INTO `log_video` VALUES (966, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (967, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (968, 2, 0, '法律剧场', '2021-11-30');
+INSERT INTO `log_video` VALUES (969, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (970, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (971, 1, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (972, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (973, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (974, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (975, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (976, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (977, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (978, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (979, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (980, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (981, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (982, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (983, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (984, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (985, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (986, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (987, 1, 0, '视频二', '2021-11-30');
+INSERT INTO `log_video` VALUES (988, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (989, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (990, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (991, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (992, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (993, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (994, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (995, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (996, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (997, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (998, 4, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (999, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1000, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1001, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1002, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1003, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (1004, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (1005, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1006, 4, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1007, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1008, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1009, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1010, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1011, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1012, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (1013, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1014, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1015, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1016, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1017, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1018, 1, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1019, 2, 0, '亿元保单频现背后，高净值人群配置保险用意何在？', '2021-11-30');
+INSERT INTO `log_video` VALUES (1020, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1021, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1022, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (1023, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (1024, 3, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1025, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1026, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1027, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1028, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (1029, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1030, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1031, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1032, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1033, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (1034, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1035, 1, 0, '视频二', '2021-11-30');
+INSERT INTO `log_video` VALUES (1036, 2, 0, '视频二', '2021-11-30');
+INSERT INTO `log_video` VALUES (1037, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1038, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (1039, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1040, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1041, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1042, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1043, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1044, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1045, 4, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1046, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1047, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1048, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1049, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1050, 2, 0, '“第三次分配”火了，国内越来越多富人热衷公益', '2021-11-30');
+INSERT INTO `log_video` VALUES (1051, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1052, 2, 0, '从资管新规出发，聊聊资产配置的那些事', '2021-11-30');
+INSERT INTO `log_video` VALUES (1053, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1054, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1055, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1056, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1057, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1058, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1059, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1060, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1061, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1062, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1063, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1064, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1065, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-11-30');
+INSERT INTO `log_video` VALUES (1066, 2, 0, '我们该为养老做哪些准备', '2021-11-30');
+INSERT INTO `log_video` VALUES (1067, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-12-01');
+INSERT INTO `log_video` VALUES (1068, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-12-01');
+INSERT INTO `log_video` VALUES (1069, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1070, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1071, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1072, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1073, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1074, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1075, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1076, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1077, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1078, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1079, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1080, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1081, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1082, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1083, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1084, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-12-01');
+INSERT INTO `log_video` VALUES (1085, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1086, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1087, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1088, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1089, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1090, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1091, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-12-01');
+INSERT INTO `log_video` VALUES (1092, 2, 0, '我们该为养老做哪些准备', '2021-12-01');
+INSERT INTO `log_video` VALUES (1093, 2, 0, '亿元保单频现背后，高净值人群配置保险用意何在？', '2021-12-01');
+INSERT INTO `log_video` VALUES (1094, 2, 0, '家族信托知多少：专家教你保护、传承和管理家庭财富', '2021-12-01');
 
 -- ----------------------------
 -- Table structure for persistent_logins
@@ -1701,6 +1951,7 @@ CREATE TABLE `persistent_logins`  (
 -- ----------------------------
 -- Records of persistent_logins
 -- ----------------------------
+INSERT INTO `persistent_logins` VALUES ('W0jQ0LXIZjsrjiVkc3r2JQ==', 'admin', '6DSHqIuu2uIVLETltWc9uw==', '2021-12-01 08:20:02');
 
 -- ----------------------------
 -- Table structure for question
@@ -1887,8 +2138,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-11-29 15:19:36', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:49');
-INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-11-29 17:16:31', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:54');
+INSERT INTO `sys_user` VALUES ('1', 'sa', '超级管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-11-30 19:23:34', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:49');
+INSERT INTO `sys_user` VALUES ('2', 'admin', '管理员', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2021-12-01 08:20:02', 'Y', '2019-07-19 16:36:03', '2021-10-24 10:14:54');
 INSERT INTO `sys_user` VALUES ('3fb1c570496d4c09ab99b8d31b0671cf', 'daji', '妲己', 'E10ADC3949BA59ABBE56E057F20F883E', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'Y', '2019-09-11 18:11:41', '2019-09-17 12:09:47');
 INSERT INTO `sys_user` VALUES ('b5ac62e154964151a19c565346bb354a', 'xiaofang', '小芳', '96E79218965EB72C92A549DD5A330112', 'Y', '', NULL, '2019-09-17 12:00:36', '2019-09-17 12:00:36', 'N', '2019-09-17 14:12:41', '2019-09-17 14:28:57');
 
@@ -1978,20 +2229,20 @@ CREATE TABLE `teacher`  (
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES (5, '陈静', '26年金融从业经验，拥有CFP、CPB等专业资质。团队管理资产108亿元。曾多次获得总行私人银行业务多项荣誉和称号，2019年度“中国银行业协会优秀财富顾问”。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150421686.jpg', 1, '建行家族办公室北京团队主管', 0, '2021-10-22 21:03:02', '2021-11-22 15:04:23');
-INSERT INTO `teacher` VALUES (6, '黄光涛', '35年金融从业经验，拥有AFP、CFP、CPB、CRFA、CTP等专业资质。团队管理资产120亿元。曾荣获全国精英理财师40强,全国十佳明星理财师第一名,中国银行业“优秀私人财富顾问”等行内外荣誉和称号。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150433274.jpg', 1, '重庆分行私行首席高级财富顾问', 0, '2021-10-22 22:08:20', '2021-11-22 15:04:37');
+INSERT INTO `teacher` VALUES (5, '陈静', '26年金融从业经验，拥有CFP、CPB等专业资质。团队管理资产108亿元。曾多次获得总行私人银行业务多项荣誉和称号，2019年度“中国银行业协会优秀财富顾问”。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110112442.png', 1, '建行家族办公室北京团队主管', 0, '2021-10-22 21:03:02', '2021-11-30 11:01:14');
+INSERT INTO `teacher` VALUES (6, '黄光涛', '35年金融从业经验，拥有AFP、CFP、CPB、CRFA、CTP等专业资质。团队管理资产120亿元。曾荣获全国精英理财师40强,全国十佳明星理财师第一名,中国银行业“优秀私人财富顾问”等行内外荣誉和称号。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110102063.png', 1, '重庆分行私行首席高级财富顾问', 0, '2021-10-22 22:08:20', '2021-11-30 11:01:04');
 INSERT INTO `teacher` VALUES (7, '讲师3', '讲师', 'http://ccb-admin.cczuit.cn/upload/img/20211023092541910.jpg', 0, '软件工程师', 0, '2021-10-23 09:25:44', '2021-10-23 09:25:44');
-INSERT INTO `teacher` VALUES (8, '万辉斌', '28年银行从业经验，拥有RFP、GIA等专业资质。管理资产规模超100亿元，曾获中国百佳金融理财师称号。 ', 'http://ccb-admin.cczuit.cn/upload/img/20211122150527930.JPG', 1, '广东省分行首席财富顾问', 0, '2021-10-24 20:24:21', '2021-11-22 15:05:30');
-INSERT INTO `teacher` VALUES (9, '讲师3', '讲师3', 'http://ccb-admin.cczuit.cn/upload/img/20211024202459549.jpg', 0, '软件工程师', 0, '2021-10-24 20:25:00', '2021-10-24 20:25:00');
-INSERT INTO `teacher` VALUES (10, '王虹', '23年银行从业经验，直接管理客户家族资产50亿元，直接服务5个家族办公室家族客户，曾获2019年度“中国银行业协会优秀私人财富顾问”等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150543992.jpg', 1, '山东省分行私人银行部副总经理、家族办公室（山东中心）负责人', 0, '2021-11-12 18:44:55', '2021-11-22 15:05:46');
-INSERT INTO `teacher` VALUES (11, '方一男', '31年银行从业经验，管理资产规模超百亿。协助客户签署家族信托或跨境投资超100单。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150555877.JPG', 1, '国际公认“反洗钱师（CAMS）”', 0, '2021-11-12 18:45:57', '2021-11-22 15:05:57');
-INSERT INTO `teacher` VALUES (12, '毕文婷', '16年财富管理及私人银行从业经验，CFP持证。团队管理资产460亿元，曾获多项全国赛事奖项，受邀担任2019年中国私人银行精英赛专家评审。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150610108.jpg', 1, '上海分行私行财富顾问团队主管', 0, '2021-11-12 18:46:31', '2021-11-22 15:06:12');
-INSERT INTO `teacher` VALUES (13, '郭娜', '17年银行从业经验，12年私人银行从业经验，客户资产规模超百亿。新加坡管理大学财富管理硕士，清华大学工商管理硕士。曾获建行总行优秀百度顾问，北京银行业协会优秀理财师等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211112184735008.png', 1, '这里是空的', 0, '2021-11-12 18:47:36', '2021-11-12 18:47:36');
-INSERT INTO `teacher` VALUES (14, '毛宇', '从业二十多年，精研家族服务、慈善、股权投资、风险管理、税收筹划，服务多家上市公司，率先完成国内首单股票家族信托、深圳首单家族产业基金的方案设置及实践。国际金融理财师CFP，私人银行家CPB，新加坡私人银行家证书。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150633232.jpg', 1, '建行南山私人银行总经理、总行级财富顾问、培训师，', 0, '2021-11-12 18:48:46', '2021-11-22 15:06:39');
-INSERT INTO `teacher` VALUES (15, '梁凌', '16年银行从业经验，拥有CFP、CPB等专业资质。团队管理资产300亿元，曾获建行总行年度优秀财富顾问等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211112184914988.png', 1, '厦门分行私行财富顾问', 0, '2021-11-12 18:49:16', '2021-11-12 18:49:16');
-INSERT INTO `teacher` VALUES (16, '方芃芃', '15年银行从业经验，双硕士学位，CPB持证。建行家族办公室广东团队牵头人，团队管理资产规模140亿元，曾获首届中国优秀金融理财师称号。 受邀担任2021年第三届中国私人银行精英赛专家评审。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150709909.jpg', 1, '广东省分行私人银行首席财富顾问', 0, '2021-11-12 18:49:49', '2021-11-22 15:07:11');
-INSERT INTO `teacher` VALUES (17, '谢池', '11年银行从业经验，直接管理家族客户超100户，管理家族客户资产近30亿元，曾获建行总行年度优秀财富顾问等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211122150726228.jpg', 1, '福建分行私人银行财富顾问', 0, '2021-11-12 18:50:18', '2021-11-22 15:07:29');
-INSERT INTO `teacher` VALUES (18, '王刚', '11年私人银行财富顾问工作经验，拥有CFP、CPB等专业资质。团队管理资产100亿元，曾获建行总行年度优秀财富顾问等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211112185049138.png', 1, '大连星海湾私行中心主任', 0, '2021-11-12 18:50:50', '2021-11-12 18:50:50');
+INSERT INTO `teacher` VALUES (8, '万辉斌', '28年银行从业经验，拥有RFP、GIA等专业资质。管理资产规模超100亿元，曾获中国百佳金融理财师称号。 ', 'http://ccb-admin.cczuit.cn/upload/img/20211130110051383.png', 1, '广东省分行首席财富顾问', 0, '2021-10-24 20:24:21', '2021-11-30 11:00:53');
+INSERT INTO `teacher` VALUES (9, '讲师3', '讲师3', 'http://ccb-admin.cczuit.cn/upload/img/20211130104030480.jpg', 0, '软件工程师', 0, '2021-10-24 20:25:00', '2021-11-30 10:40:38');
+INSERT INTO `teacher` VALUES (10, '王虹', '23年银行从业经验，直接管理客户家族资产50亿元，直接服务5个家族办公室家族客户，曾获2019年度“中国银行业协会优秀私人财富顾问”等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110041274.png', 1, '山东省分行私人银行部副总经理、家族办公室（山东中心）负责人', 0, '2021-11-12 18:44:55', '2021-11-30 11:00:43');
+INSERT INTO `teacher` VALUES (11, '方一男', '31年银行从业经验，管理资产规模超百亿。协助客户签署家族信托或跨境投资超100单。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110033234.png', 1, '国际公认“反洗钱师（CAMS）”', 0, '2021-11-12 18:45:57', '2021-11-30 11:00:35');
+INSERT INTO `teacher` VALUES (12, '毕文婷', '16年财富管理及私人银行从业经验，CFP持证。团队管理资产460亿元，曾获多项全国赛事奖项，受邀担任2019年中国私人银行精英赛专家评审。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110024277.png', 1, '上海分行私行财富顾问团队主管', 0, '2021-11-12 18:46:31', '2021-11-30 11:00:26');
+INSERT INTO `teacher` VALUES (13, '刘非', '17年银行从业经验，12年私人银行从业经验，客户资产规模超百亿。新加坡管理大学财富管理硕士，清华大学工商管理硕士。曾获建行总行优秀百度顾问，北京银行业协会优秀理财师等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110015956.png', 1, '这里是空的', 100, '2021-11-12 18:47:36', '2021-11-30 11:00:17');
+INSERT INTO `teacher` VALUES (14, '毛宇', '从业二十多年，精研家族服务、慈善、股权投资、风险管理、税收筹划，服务多家上市公司，率先完成国内首单股票家族信托、深圳首单家族产业基金的方案设置及实践。国际金融理财师CFP，私人银行家CPB，新加坡私人银行家证书。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110005229.png', 1, '建行南山私人银行总经理、总行级财富顾问、培训师，', 0, '2021-11-12 18:48:46', '2021-11-30 11:00:07');
+INSERT INTO `teacher` VALUES (15, '陈晓颖', '陈晓颖资料待完善', 'http://ccb-admin.cczuit.cn/upload/img/20211130110526415.png', 1, '资料待完善', 0, '2021-11-12 18:49:16', '2021-11-30 11:05:28');
+INSERT INTO `teacher` VALUES (16, '方芃芃', '15年银行从业经验，双硕士学位，CPB持证。建行家族办公室广东团队牵头人，团队管理资产规模140亿元，曾获首届中国优秀金融理财师称号。 受邀担任2021年第三届中国私人银行精英赛专家评审。', 'http://ccb-admin.cczuit.cn/upload/img/20211130105952717.png', 1, '广东省分行私人银行首席财富顾问', 0, '2021-11-12 18:49:49', '2021-11-30 10:59:55');
+INSERT INTO `teacher` VALUES (17, '谢池', '11年银行从业经验，直接管理家族客户超100户，管理家族客户资产近30亿元，曾获建行总行年度优秀财富顾问等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211130110122204.png', 1, '福建分行私人银行财富顾问', 0, '2021-11-12 18:50:18', '2021-11-30 11:01:24');
+INSERT INTO `teacher` VALUES (18, '王刚', '11年私人银行财富顾问工作经验，拥有CFP、CPB等专业资质。团队管理资产100亿元，曾获建行总行年度优秀财富顾问等荣誉。', 'http://ccb-admin.cczuit.cn/upload/img/20211112185049138.png', 0, '大连星海湾私行中心主任', 0, '2021-11-12 18:50:50', '2021-11-12 18:50:50');
 
 -- ----------------------------
 -- Table structure for video
@@ -2018,13 +2269,13 @@ CREATE TABLE `video`  (
 -- ----------------------------
 -- Records of video
 -- ----------------------------
-INSERT INTO `video` VALUES (1, '亿元保单频现背后，高净值人群配置保险用意何在？', '2', 1159, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 165, 129, '2020-10-23 00:00:00', '2021-11-12 19:38:22', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
-INSERT INTO `video` VALUES (2, '视频二', '视频描述二', 861, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 0, 145, 176, '2020-10-23 00:00:00', '2021-10-24 20:25:30', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
-INSERT INTO `video` VALUES (3, '法律剧场', '大风浪下，如何“守”住家庭财富？', 715, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 124, 116, '2020-10-23 00:00:00', '2021-11-12 19:42:17', 20, 'http://ccb-admin.cczuit.cn/upload/img/20211110192000616.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
-INSERT INTO `video` VALUES (8, '“第三次分配”火了，国内越来越多富人热衷公益', '视频', 151, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 10, 0, '2021-10-24 20:32:44', '2021-11-12 19:37:07', 19, 'http://ccb-admin.cczuit.cn/upload/img/20211112193628392.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
-INSERT INTO `video` VALUES (9, '从资管新规出发，聊聊资产配置的那些事', '视频5', 178, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 12, 0, '2021-10-26 18:16:44', '2021-11-12 19:41:24', 17, 'http://ccb-admin.cczuit.cn/upload/img/20211112194118624.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
-INSERT INTO `video` VALUES (10, '我们该为养老做哪些准备', '1', 259, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 36, 0, '2021-11-09 10:51:55', '2021-11-12 19:39:16', 18, 'http://ccb-admin.cczuit.cn/upload/img/20211112193907294.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
-INSERT INTO `video` VALUES (11, '家族信托知多少：专家教你保护、传承和管理家庭财富', '1', 575, 'http://ccb-admin.cczuit.cn/upload/video/20211110151033648.mp4', 1, 24, 0, '2021-11-10 15:10:40', '2021-11-12 19:40:12', 15, 'http://ccb-admin.cczuit.cn/upload/img/20211112193958235.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
+INSERT INTO `video` VALUES (1, '亿元保单频现背后，高净值人群配置保险用意何在？', '2', 1165, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 165, 129, '2020-10-23 00:00:00', '2021-11-30 13:50:53', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211130135051416.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211130115047510.PNG');
+INSERT INTO `video` VALUES (2, '视频二', '视频描述二', 865, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 0, 145, 176, '2020-10-23 00:00:00', '2021-10-24 20:25:30', 14, 'http://ccb-admin.cczuit.cn/upload/img/20211022210300431.jpg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211112193810432.jpg');
+INSERT INTO `video` VALUES (3, '法律剧场', '大风浪下，如何“守”住家庭财富？', 717, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 124, 116, '2020-10-23 00:00:00', '2021-11-30 13:50:25', 20, 'http://ccb-admin.cczuit.cn/upload/img/20211130135023581.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211130115540152.PNG');
+INSERT INTO `video` VALUES (8, '“第三次分配”火了，国内越来越多富人热衷公益', '视频', 168, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 12, 0, '2021-10-24 20:32:44', '2021-11-30 13:50:01', 19, 'http://ccb-admin.cczuit.cn/upload/img/20211130134959355.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211130114737277.PNG');
+INSERT INTO `video` VALUES (9, '从资管新规出发，聊聊资产配置的那些事', '视频5', 201, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 12, 0, '2021-10-26 18:16:44', '2021-11-30 13:51:06', 17, 'http://ccb-admin.cczuit.cn/upload/img/20211130135104234.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211130115707948.PNG');
+INSERT INTO `video` VALUES (10, '我们该为养老做哪些准备', '1', 365, 'http://ccb-admin.cczuit.cn/upload/video/20211024203238143.mp4', 1, 36, 0, '2021-11-09 10:51:55', '2021-11-30 13:51:18', 18, 'http://ccb-admin.cczuit.cn/upload/img/20211130135116548.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211130115322875.PNG');
+INSERT INTO `video` VALUES (11, '家族信托知多少：专家教你保护、传承和管理家庭财富', '1', 712, 'http://ccb-admin.cczuit.cn/upload/video/20211110151033648.mp4', 1, 24, 0, '2021-11-10 15:10:40', '2021-11-30 13:50:40', 15, 'http://ccb-admin.cczuit.cn/upload/img/20211130135038365.jpeg', 1, 'http://ccb-admin.cczuit.cn/upload/img/20211130115351188.PNG');
 
 -- ----------------------------
 -- Table structure for video_category_relation
@@ -2051,17 +2302,17 @@ CREATE TABLE `video_teacher_relation`  (
   `video_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '视频编号',
   `teacher_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '讲师编号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频和讲师一对多关系表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 55 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频和讲师一对多关系表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of video_teacher_relation
 -- ----------------------------
 INSERT INTO `video_teacher_relation` VALUES (13, 2, 6);
 INSERT INTO `video_teacher_relation` VALUES (14, 2, 8);
-INSERT INTO `video_teacher_relation` VALUES (35, 8, 12);
-INSERT INTO `video_teacher_relation` VALUES (36, 1, 8);
-INSERT INTO `video_teacher_relation` VALUES (37, 10, 6);
-INSERT INTO `video_teacher_relation` VALUES (38, 11, 5);
-INSERT INTO `video_teacher_relation` VALUES (40, 9, 5);
+INSERT INTO `video_teacher_relation` VALUES (50, 8, 12);
+INSERT INTO `video_teacher_relation` VALUES (51, 11, 5);
+INSERT INTO `video_teacher_relation` VALUES (52, 1, 8);
+INSERT INTO `video_teacher_relation` VALUES (53, 9, 5);
+INSERT INTO `video_teacher_relation` VALUES (54, 10, 6);
 
 SET FOREIGN_KEY_CHECKS = 1;

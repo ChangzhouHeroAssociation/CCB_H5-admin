@@ -42,9 +42,10 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 , { field:'enabled', title: '是否开启', width: '10%', sort: true, templet: '#switchEnable' }
                 , { field:'channelName', width: '15%', title: '频道名字', sort: true }
                 // , { field:'content', width:150, title: '频道描述', sort: true }
-                , { field:'icon', width: '30%', title: '频道图标', templet: function(res) {
+                , { field:'icon', width: '20%', title: '频道图标', templet: function(res) {
                     return "<img src='" + res.icon +"'/>"
-                }}
+                } }
+                , { field: 'weight', width: '10%', title: '排序', sort: true }
                 ,{ field:'createTime', title: '创建时间', width:  '10%', sort: true }
                 ,{ field:'updateTime', width: '10%', title: '更新时间', sort: true }
                 ,{ fixed: 'right', width: '20%', title: '操作', align:'center', toolbar: '#channelBarDemo' }

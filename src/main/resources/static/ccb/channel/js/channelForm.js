@@ -11,6 +11,14 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             }
         }
         , image: [ /(^$)|(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/, "图片格式不正确" ]
+        , weight: function (value) {
+            if (isNaN(value)) {
+                return '请输入数字';
+            }
+            if (value < 0 || value > 100) {
+                return "请输入0 - 100 的数字";
+            }
+        }
     });
 
     form.on('submit(commit)', function (data) {
@@ -32,6 +40,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.icon = $("#iImage").attr("src");
         // formData.image = $("#uImage").attr("src");
         formData.video = $("#url").attr("src");
+        formData.weight = $("#weight").attr("value");
         formData.enabled = isEnable;
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
@@ -69,9 +78,10 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         $("#channelName").attr("value", "");
         $("#content").text("");
 
-        $("#uImage").attr("src", '');
+        $("#iImage").attr("src", '');
         // $("#iImage").attr("src", '');
         $("#url").attr("src", '');
+        $("#weight").attr("value", "");
 
         /* 默认开启 */
         $("#switchEnable").val("");

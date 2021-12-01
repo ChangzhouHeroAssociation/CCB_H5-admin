@@ -76,6 +76,16 @@
                 </div>
             </div>
 
+            <!-- 排序 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序</label>
+                <div class="layui-input-block">
+                    <input id="weight" th:value="${channel!=null?channel.weight:''}" type="text"
+                           name="weight" lay-verify="required|weight" autocomplete="off"
+                           placeholder="0 - 100（倒序，数字越大越靠前）" class="layui-input">
+                </div>
+            </div>
+
             <div class="layui-form-item" pane="">
                 <label class="layui-form-label">是否启用</label>
                 <div class="layui-input-block">
