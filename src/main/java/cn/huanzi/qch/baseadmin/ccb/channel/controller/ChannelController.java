@@ -112,6 +112,7 @@ public class ChannelController {
         /* 改为展示视频，图片暂时设置为空 */
         channel.setImage("");
         channel.setVideo(channelDTO.getVideo());
+        channel.setCover(channelDTO.getCover());
         channel.setWeight(channelDTO.getWeight());
         channel.setEnabled(channelDTO.getEnabled());
         Channel save = channelService.create(channel);
@@ -130,6 +131,7 @@ public class ChannelController {
         channel.setImage("");
         channel.setWeight(channelDTO.getWeight());
         channel.setVideo(channelDTO.getVideo());
+        channel.setCover(channelDTO.getCover());
         channel.setEnabled(channelDTO.getEnabled());
         channel.setStatus(channelDTO.getStatus());
 

@@ -38,4 +38,6 @@ public class ChannelDTO {
     private List<Integer> videoIds;
     /** 排序 0 - 100 倒序 */
     private Integer weight;
+    /** 封面URL */
+    private String cover;
 }

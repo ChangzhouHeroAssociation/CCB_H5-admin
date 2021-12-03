@@ -37,6 +37,8 @@ public class Channel implements Serializable {
     private Integer enabled;
     /** 排序 0 - 100 倒序 */
     private Integer weight;
+    /** 封面URL */
+    private String cover;
 
     @Override
     public String toString() {
@@ -139,6 +141,14 @@ public class Channel implements Serializable {
 
     public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }
 
