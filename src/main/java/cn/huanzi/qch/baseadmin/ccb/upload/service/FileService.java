@@ -54,7 +54,7 @@ public class FileService {
 
 
     public String getUrl() {
-        String url = address + ":" + port;
+        String url = address;
         return url;
     }
 
