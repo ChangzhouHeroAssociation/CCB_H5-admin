@@ -27,6 +27,12 @@ public class FileService {
     @Autowired
     private HttpServletRequest request;
 
+    @Value("${project.server.address}")
+    private String address;
+
+    @Value("${server.port}")
+    private String port;
+
     /** 图片上传路径 */
     @Value("${file.upload-path.image}")
     public String imageUploadPath;
@@ -48,9 +54,7 @@ public class FileService {
 
 
     public String getUrl() {
-        String url = request.getScheme() + "://" +
-                request.getServerName() + ":" +
-                request.getServerPort();
+        String url = address + ":" + port;
         return url;
     }
 
