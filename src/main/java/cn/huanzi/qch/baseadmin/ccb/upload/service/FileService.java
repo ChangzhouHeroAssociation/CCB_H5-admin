@@ -1,9 +1,11 @@
 package cn.huanzi.qch.baseadmin.ccb.upload.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -22,6 +24,8 @@ import java.util.List;
 
 @Service
 public class FileService {
+    @Autowired
+    private HttpServletRequest request;
 
     /** 图片上传路径 */
     @Value("${file.upload-path.image}")
@@ -42,6 +46,13 @@ public class FileService {
     public static List videoSuffix = new ArrayList<String>(Arrays.asList(".MP4", ".AVI", ".FLV",
             ".VOB",  ".WMV", ".MOV", ".MPEG"));
 
+
+    public String getUrl() {
+        String url = request.getScheme() + "://" +
+                request.getServerName() + ":" +
+                request.getServerPort();
+        return url;
+    }
 
     /**
      * 上传图片
@@ -66,8 +77,8 @@ public class FileService {
         }
         try {
             file.transferTo(image);
-            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
-//            String url = "http://192.168.206.1:8081/upload/img/" + fileName + suffix;
+//            String url = "http://ccb-admin.cczuit.cn/upload/img/" + fileName + suffix;
+            String url = getUrl() + "/upload/img/" + fileName + suffix;
             System.out.println("url -> " + url);
             return url;
         } catch (IOException e) {
@@ -96,8 +107,8 @@ public class FileService {
         }
         try {
             file.transferTo(video);
-            String url = "http://ccb-admin.cczuit.cn/upload/video/" + fileName + suffix;
-//            String url = "http://192.168.206.1:8081/upload/video/" + fileName + suffix;
+//            String url = "http://ccb-admin.cczuit.cn/upload/video/" + fileName + suffix;
+            String url = getUrl() + "/upload/video/" + fileName + suffix;
             System.out.println("url -> " + url);
             return url;
         } catch (IOException e) {
