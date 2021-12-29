@@ -102,6 +102,23 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     tableIns.reload();
                 }
             });
+        } else if (obj.event === 'video') {
+            if (data.video.trim() == '') {
+                layer.msg("没有找到视频，请先添加视频");
+                return;
+            }
+            // 查看视频
+            var videoElem =
+                '<video width="100%" height="100%" controls autobuffer autoplay="autoplay" loop="loop">' +
+                '<source src="' + data.video + '" type="video/mp4"/>' +
+                '</video>'
+            layer.open({
+                type: 1,
+                area: ['60%', '80%'],
+                shadeClose: false,
+                title: '播放视频',
+                content: videoElem,
+            });
         }
     });
 });

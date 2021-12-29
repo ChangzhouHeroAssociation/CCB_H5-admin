@@ -55,6 +55,24 @@
             </div>
         </div>
 
+        <!-- 讲师视频上传 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">讲师视频</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="uploadVideo">上传视频</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="videoDetail">查看视频</button>
+                    （视频大小不得超过20MB）
+                    <div class="layui-upload-list">
+                        <video id="url" name="url" th:src="${teacher!=null?teacher.video:''}"
+                               lay-verify="video" class="layui-upload-video" style="max-height: 200px">
+                        </video>
+                        <p id="videoText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 排序 -->
         <div class="layui-form-item">
             <label class="layui-form-label">排序</label>

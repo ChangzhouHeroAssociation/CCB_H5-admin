@@ -45,5 +45,8 @@ public class Teacher implements Serializable {
     /** 更新时间 */
     private Date updateTime;
 
+    /** 视频URL */
+    private String video;
+
 }
 
