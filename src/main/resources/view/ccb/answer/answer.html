@@ -45,7 +45,10 @@
                                 <div class="layui-inline">
                                     <!--注意此处button标签里的type属性-->
                                     <button id="searchBtn" type="button" class="layui-btn layui-btn-primary"
-                                            lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                                            lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon">&#xe615;</i> 搜 索</button>
+                                    <button id="exportBtn" type="button" class="layui-btn layui-btn-normal" >
+                                        <i class="layui-icon">&#xe67d;</i> 导出数据
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -54,9 +57,11 @@
 
                 <!--讲师列表-->
                 <table class="layui-hide" id="answerTable"  lay-filter="answer">
-
                 </table>
-
+                <!-- 导出表，隐藏 -->
+                <div style="display: none;">
+                    <table id="exportTable" lay-filter="export"></table>
+                </div>
 <!--                &lt;!&ndash;操作按钮&ndash;&gt;-->
 <!--                <script type="text/html" id="teacherBarDemo">-->
 <!--                    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
