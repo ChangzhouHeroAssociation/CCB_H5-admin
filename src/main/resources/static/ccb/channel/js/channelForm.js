@@ -40,7 +40,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.icon = $("#iImage").attr("src");
         // formData.image = $("#uImage").attr("src");
         formData.video = $("#url").attr("src");
-        formData.weight = $("#weight").attr("value");
+        formData.weight = $("#weight").val();
         formData.cover = $('#picture').attr('src');
         formData.enabled = isEnable;
         /* 能编辑的肯定没有被删除 */

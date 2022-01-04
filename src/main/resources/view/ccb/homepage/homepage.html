@@ -53,7 +53,7 @@
                         <div class="layui-upload">
                             <button type="button" class="layui-btn" id="uploadPicture">上传视频封面</button>
                             <button type="button" class="layui-btn layui-btn-primary" id="showPicture">查看封面</button>
-                            （图片大小不超过10MB）
+                            （图片大小不超过200kb，尺寸：380 * 214）
                             <div class="layui-upload-list">
                                 <img id="picture" name="picture" th:src="${homepage!=null?homepage.picture:''}"
                                      lay-verify="image" class="layui-upload-img" style="max-height: 200px">

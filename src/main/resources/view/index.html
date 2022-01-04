@@ -77,30 +77,31 @@
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
                         <div id="indexTabContent"  class="layui-row layui-col-space15 tab-content-div" style="padding: 20px;background-color: #F2F2F2;overflow: auto;">
-                            <div class="layui-col-md6">
-                                <div class="layui-card">
-                                    <div class="layui-card-header">频道统计信息</div>
-                                    <div class="layui-card-body">
-                                        <div id="channelChart" style="width: 600px;height:400px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-col-md6">
-                                <div class="layui-card">
-                                    <div class="layui-card-header">讲师统计信息</div>
-                                    <div class="layui-card-body">
-                                        <div id="teacherChart" style="width: 600px;height:400px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="layui-col-md12">
-                                <div class="layui-card">
-                                    <div class="layui-card-header">视频统计信息</div>
-                                    <div class="layui-card-body">
-                                        <div id="videoChart" style="width: auto; height:400px;"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            无图表
+<!--                            <div class="layui-col-md6">-->
+<!--                                <div class="layui-card">-->
+<!--                                    <div class="layui-card-header">频道统计信息</div>-->
+<!--                                    <div class="layui-card-body">-->
+<!--                                        <div id="channelChart" style="width: 600px;height:400px;"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="layui-col-md6">-->
+<!--                                <div class="layui-card">-->
+<!--                                    <div class="layui-card-header">讲师统计信息</div>-->
+<!--                                    <div class="layui-card-body">-->
+<!--                                        <div id="teacherChart" style="width: 600px;height:400px;"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="layui-col-md12">-->
+<!--                                <div class="layui-card">-->
+<!--                                    <div class="layui-card-header">视频统计信息</div>-->
+<!--                                    <div class="layui-card-body">-->
+<!--                                        <div id="videoChart" style="width: auto; height:400px;"></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -166,105 +167,105 @@
     </script>
     <script>
         $(document).ready(function() {
-            /* 频道 */
-            var channelChart = echarts.init(document.getElementById('channelChart'));
-            channelChart.setOption({
-                title: {
-                    text: '昨日频道信息统计'
-                },
-                tooltip: {},
-                xAxis: {
-                    data: []
-                },
-                yAxis: {}
-            });
-            // 异步加载数据
-            $.get('/ccb/log/channel').done(function(data) {
-                // 填入数据
-                console.log(JSON.stringify(data));
-                channelChart.setOption({
-                    xAxis: {
-                        data: data.data.channelName
-                    },
-                    series: [
-                        {
-                            // 根据名字对应到相应的系列
-                            name: '频道访问量',
-                            data: data.data.value,
-                            type: 'bar'
-                        }
-                    ]
-                });
-            });
-
-            /* 讲师 */
-            var teacherChart = echarts.init(document.getElementById('teacherChart'));
-            teacherChart.setOption({
-                title: {
-                    text: '昨日讲师信息统计'
-                },
-                tooltip: {},
-                xAxis: {
-                    data: []
-                },
-                yAxis: {}
-            });
-            // 异步加载数据
-            $.get('/ccb/log/teacher').done(function(data) {
-                // 填入数据
-                console.log(JSON.stringify(data));
-                teacherChart.setOption({
-                    xAxis: {
-                        data: data.data.teacherName
-                    },
-                    series: [
-                        {
-                            // 根据名字对应到相应的系列
-                            name: '讲师访问量',
-                            data: data.data.value,
-                            type: 'bar'
-                        }
-                    ]
-                });
-            });
-
-            /* 视频 */
-            var videoChart = echarts.init(document.getElementById('videoChart'));
-            videoChart.setOption({
-                title: {
-                    text: '昨日视频信息统计'
-                },
-                tooltip: {},
-                xAxis: {
-                    data: []
-                },
-                yAxis: {}
-            });
-            // 异步加载数据
-            $.get('/ccb/log/video').done(function(data) {
-                // 填入数据
-                console.log(JSON.stringify(data));
-                videoChart.setOption({
-                    xAxis: {
-                        data: data.data.videoName
-                    },
-                    series: [
-                        {
-                            // 根据名字对应到相应的系列
-                            name: '播放量',
-                            data: data.data.viewCount,
-                            type: 'bar',
-                            stack: 'x'
-                        },
-                        {
-                            name: '分享量',
-                            data: data.data.shareCount,
-                            type: 'bar',
-                            stack: 'x'
-                        }
-                    ]
-                });
-            });
+            // /* 频道 */
+            // var channelChart = echarts.init(document.getElementById('channelChart'));
+            // channelChart.setOption({
+            //     title: {
+            //         text: '昨日频道信息统计'
+            //     },
+            //     tooltip: {},
+            //     xAxis: {
+            //         data: []
+            //     },
+            //     yAxis: {}
+            // });
+            // // 异步加载数据
+            // $.get('/ccb/log/channel').done(function(data) {
+            //     // 填入数据
+            //     console.log(JSON.stringify(data));
+            //     channelChart.setOption({
+            //         xAxis: {
+            //             data: data.data.channelName
+            //         },
+            //         series: [
+            //             {
+            //                 // 根据名字对应到相应的系列
+            //                 name: '频道访问量',
+            //                 data: data.data.value,
+            //                 type: 'bar'
+            //             }
+            //         ]
+            //     });
+            // });
+            //
+            // /* 讲师 */
+            // var teacherChart = echarts.init(document.getElementById('teacherChart'));
+            // teacherChart.setOption({
+            //     title: {
+            //         text: '昨日讲师信息统计'
+            //     },
+            //     tooltip: {},
+            //     xAxis: {
+            //         data: []
+            //     },
+            //     yAxis: {}
+            // });
+            // // 异步加载数据
+            // $.get('/ccb/log/teacher').done(function(data) {
+            //     // 填入数据
+            //     console.log(JSON.stringify(data));
+            //     teacherChart.setOption({
+            //         xAxis: {
+            //             data: data.data.teacherName
+            //         },
+            //         series: [
+            //             {
+            //                 // 根据名字对应到相应的系列
+            //                 name: '讲师访问量',
+            //                 data: data.data.value,
+            //                 type: 'bar'
+            //             }
+            //         ]
+            //     });
+            // });
+            //
+            // /* 视频 */
+            // var videoChart = echarts.init(document.getElementById('videoChart'));
+            // videoChart.setOption({
+            //     title: {
+            //         text: '昨日视频信息统计'
+            //     },
+            //     tooltip: {},
+            //     xAxis: {
+            //         data: []
+            //     },
+            //     yAxis: {}
+            // });
+            // // 异步加载数据
+            // $.get('/ccb/log/video').done(function(data) {
+            //     // 填入数据
+            //     console.log(JSON.stringify(data));
+            //     videoChart.setOption({
+            //         xAxis: {
+            //             data: data.data.videoName
+            //         },
+            //         series: [
+            //             {
+            //                 // 根据名字对应到相应的系列
+            //                 name: '播放量',
+            //                 data: data.data.viewCount,
+            //                 type: 'bar',
+            //                 stack: 'x'
+            //             },
+            //             {
+            //                 name: '分享量',
+            //                 data: data.data.shareCount,
+            //                 type: 'bar',
+            //                 stack: 'x'
+            //             }
+            //         ]
+            //     });
+            // });
         });
     </script>
 </body>

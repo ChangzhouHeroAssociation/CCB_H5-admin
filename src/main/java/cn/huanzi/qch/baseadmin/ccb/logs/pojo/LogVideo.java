@@ -26,6 +26,10 @@ public class LogVideo {
     private String videoName;
     /** 创建时间 */
     private Date createTime;
+    /** 分发渠道 */
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
+    @JoinColumn(name = "distribution_id", referencedColumnName = "id")
+    private Distribution distribution;
 
     @Override
     public String toString() {

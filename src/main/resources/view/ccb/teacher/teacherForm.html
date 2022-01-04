@@ -45,7 +45,7 @@
             <label class="layui-form-label">讲师照片</label>
             <div class="layui-input-block">
                 <div class="layui-upload">
-                    <button type="button" class="layui-btn" id="uploadTeacherImage">上传讲师照片</button> （图片大小不得超过10MB）
+                    <button type="button" class="layui-btn" id="uploadTeacherImage">上传讲师照片</button> （图片大小不超过100kb，尺寸：150 * 150）
                     <div class="layui-upload-list">
                         <img id="tImage" name="teacherPhoto" th:src="${teacher!=null?teacher.teacherPhoto:''}"
                              lay-verify="image" class="layui-upload-img" style="max-height: 200px">

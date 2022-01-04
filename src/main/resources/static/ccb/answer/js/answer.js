@@ -79,7 +79,9 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                     var result = res.result.replaceAll("&", "</br>");
                     return '<p style="line-height: 16px">' + result + '</p>';
                 } }
-                , { field:'createTime', title: '创建时间', width: '10%', sort: true }
+                // , {
+                //     field: '', width: '10%', title: '题目序号'
+                // }
                 , { field:'updateTime', width: '10%', title: '更新时间', sort: true }
             ]
         ]
