@@ -1,6 +1,5 @@
 package cn.huanzi.qch.baseadmin.ccb.answer.repository;
 
-import cn.huanzi.qch.baseadmin.common.repository.*;
 import cn.huanzi.qch.baseadmin.ccb.answer.pojo.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

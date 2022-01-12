@@ -1,5 +1,7 @@
 package cn.huanzi.qch.baseadmin.ccb.logs.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,6 +25,7 @@ public class LogChannel {
     /** 频道名字 */
     private String channelName;
     /** 创建时间 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
     /** 分发渠道 */
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
@@ -36,6 +39,7 @@ public class LogChannel {
                 ", count=" + count +
                 ", channelName='" + channelName + '\'' +
                 ", createTime=" + createTime +
+                ", distribution=" + distribution +
                 '}';
     }
 
@@ -69,5 +73,13 @@ public class LogChannel {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Distribution getDistribution() {
+        return distribution;
+    }
+
+    public void setDistribution(Distribution distribution) {
+        this.distribution = distribution;
     }
 }

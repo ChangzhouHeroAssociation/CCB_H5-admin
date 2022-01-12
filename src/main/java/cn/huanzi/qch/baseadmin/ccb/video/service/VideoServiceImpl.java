@@ -114,9 +114,6 @@ public class VideoServiceImpl implements VideoService {
     public Video create(Video video) {
         video.setCreateTime(new Date());
         video.setUpdateTime(new Date());
-        video.setViews(0);
-        video.setEnjoyCount(0);
-        video.setShareCount(0);
         video.setStatus(1);
         Video save = videoRepository.save(video);
         return save;
@@ -128,9 +125,6 @@ public class VideoServiceImpl implements VideoService {
         Video origin = videoRepository.findById(video.getId()).get();
         video.setCreateTime(origin.getCreateTime());
         video.setUpdateTime(new Date());
-        video.setViews(origin.getViews());
-        video.setEnjoyCount(origin.getEnjoyCount());
-        video.setShareCount(origin.getShareCount());
         video.setStatus(origin.getStatus());
         Video save = videoRepository.save(video);
         return save;

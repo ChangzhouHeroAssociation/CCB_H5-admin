@@ -101,6 +101,28 @@
             </div>
         </div>
 
+        <!-- 播放数 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">播放数</label>
+            <div class="layui-input-block">
+                <input id="views" th:value="${video!=null?video.views:'0'}" type="text" name="views" lay-verify="number" class="layui-input">
+            </div>
+        </div>
+        <!-- 点赞数 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">点赞数</label>
+            <div class="layui-input-block">
+                <input id="enjoyCount" th:value="${video!=null?video.enjoyCount:'0'}" type="text" name="enjoyCount" lay-verify="number" class="layui-input">
+            </div>
+        </div>
+        <!-- 分享数 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">分享数</label>
+            <div class="layui-input-block">
+                <input id="shareCount" th:value="${video!=null?video.shareCount:'0'}" type="text" name="shareCount" lay-verify="number" class="layui-input">
+            </div>
+        </div>
+
         <div class="layui-form-item" pane="">
             <label class="layui-form-label">是否推荐</label>
             <div class="layui-input-block">

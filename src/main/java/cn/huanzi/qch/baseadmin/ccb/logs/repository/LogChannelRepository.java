@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.logs.repository;
 
 import cn.huanzi.qch.baseadmin.ccb.logs.pojo.LogChannel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -16,9 +17,11 @@ import java.util.List;
  */
 
 @Repository
-public interface LogChannelRepository extends JpaRepository<LogChannel, Integer> {
+public interface LogChannelRepository extends JpaRepository<LogChannel, Integer>, JpaSpecificationExecutor<LogChannel> {
 
     @Query(nativeQuery = true,
             value = "select * from log_channel where date(create_time) = date_sub(curdate(), interval 1 day)")
     List<LogChannel> getAllLogChannelYesterday();
+
+
 }

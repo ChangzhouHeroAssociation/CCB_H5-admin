@@ -2,6 +2,7 @@ package cn.huanzi.qch.baseadmin.ccb.logs.pojo;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @ClassName: Distribution
@@ -12,7 +13,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "log_channel")
+@Table(name = "distribution")
 public class Distribution implements Serializable {
     /** 分发渠道id */
     @Id
@@ -21,11 +22,19 @@ public class Distribution implements Serializable {
     /** 渠道名称 */
     private String name;
 
+    /** 链接 */
+    private String url;
+
+    /** 创建时间 */
+    private Date createTime;
+
     @Override
     public String toString() {
         return "Distribution{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 
@@ -43,5 +52,21 @@ public class Distribution implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

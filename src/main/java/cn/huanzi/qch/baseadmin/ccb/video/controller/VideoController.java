@@ -105,7 +105,7 @@ public class VideoController {
 
     @PostMapping(value = "create")
     public Result create(@RequestBody VideoDTO videoDTO) {
-
+        System.out.println(videoDTO);
         List<Teacher> teachers = new ArrayList<>();
         for (Integer teacherId : videoDTO.getTeacherIds()) {
             teachers.add(teacherService.getById(teacherId));
@@ -119,6 +119,9 @@ public class VideoController {
         video.setChannel(channelService.getById(videoDTO.getChannelId()));
         video.setTextPage(videoDTO.getTextPage());
         video.setPicture(videoDTO.getPicture());
+        video.setViews(videoDTO.getViews());
+        video.setEnjoyCount(videoDTO.getEnjoyCount());
+        video.setShareCount(videoDTO.getShareCount());
         video.setIsRecommend(videoDTO.getIsRecommend());
         Video save = videoService.create(video);
         return Result.of(save);
@@ -127,6 +130,8 @@ public class VideoController {
 
     @PostMapping(value = "update")
     public Result update(@RequestBody VideoDTO videoDTO) {
+        System.out.println("videoDTO");
+        System.out.println(videoDTO);
         List<Integer> teacherIds = videoDTO.getTeacherIds();
 
         List<Teacher> teachers = new ArrayList<>();
@@ -144,9 +149,13 @@ public class VideoController {
         video.setTeachers(teachers);
         video.setTextPage(videoDTO.getTextPage());
         video.setPicture(videoDTO.getPicture());
+        video.setViews(videoDTO.getViews());
+        video.setEnjoyCount(videoDTO.getEnjoyCount());
+        video.setShareCount(videoDTO.getShareCount());
         video.setIsRecommend(videoDTO.getIsRecommend());
         video.setChannel(channelService.getById(videoDTO.getChannelId()));
-
+        System.out.println("video");
+        System.out.println(video);
         Video save = videoService.update(video);
         return Result.of(save);
     }

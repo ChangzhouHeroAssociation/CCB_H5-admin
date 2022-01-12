@@ -11,6 +11,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
             }
         }
         , video: [ /(^$)|(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/, "图片格式不正确" ]
+        , number: [ /^\d+/, " 请输入大于0的整数"]
     });
 
     form.on('submit(commit)', function (data) {
