@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页管理</title>
+    <!-- 样式 -->
+    <link th:href="@{/common/layui/css/layui.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/jquery/jquery.js}" type="application/javascript"></script>
+    <script th:src="@{/common/ccb.js}" type="application/javascript"></script>
+    <script th:src="@{/common/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/ccb/log/js/logChannel.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-row">
+    <!-- 分页表格 -->
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">频道日志</div>
+            <div class="layui-card-body">
+
+                <!-- 搜索框 -->
+                <fieldset class="table-search-fieldset">
+                    <legend>搜索信息</legend>
+                    <div style="margin: 10px 10px 10px 10px" id="btn">
+                        <div class="layui-form">
+                            <!-- 检索信息 -->
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">查找筛选</label>
+                                    <!-- 渠道信息 -->
+                                    <div class="layui-input-inline">
+                                        <select id="distributionId" name="distribution"
+                                                class="layui-input">
+                                            <option value="" class="layui-input">全部</option>
+                                            <option th:each="distribution:${distributions}" class="layui-input"
+                                                    th:value="${distribution.id}" th:text="${distribution.name}">渠道
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- 频道信息 -->
+                                    <div class="layui-input-inline">
+                                        <select id="channelName" name="channel"
+                                                class="layui-input">
+                                            <option value="" class="layui-input">全部</option>
+                                            <option th:each="channel:${channels}" class="layui-input"
+                                                    th:value="${channel.id}" th:text="${channel.channelName}">频道
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- 日期选择 -->
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">时间：从</label>
+                                        <div class="layui-input-block">
+                                            <input name="dateFrom" type="text" autocomplete="off" id="startDate" class="layui-input laydate">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">至</label>
+                                        <div class="layui-input-block">
+                                            <input name="dateTo" type="text" autocomplete="off" id="endDate" class="layui-input laydate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <!-- 重置查询时间 -->
+<!--                                    <button class="layui-btn layui-btn-primary" id="btn-resert"  ><i class="icon-undo"></i> 重置日期</button>-->
+                                    <!--注意此处button标签里的type属性-->
+                                    <button id="searchBtn" type="button" class="layui-btn layui-btn-primary"
+                                            lay-submit data-type="reload" lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索
+                                    </button>
+                                    <button id="export" type="button", class="layui-btn layui-btn-normal">
+                                        <i class="layui-icon">&#xe67d;</i> 导出数据
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!--视频列表-->
+                <table class="layui-hide" id="logChannelTable" lay-size="lg" lay-filter="">
+                </table>
+
+                <!-- 导出用表 -->
+                <div style="display: none">
+                    <table id="exportTable">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

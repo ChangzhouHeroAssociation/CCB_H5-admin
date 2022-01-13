@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName: DistributionServiceImpl
  * @Description: TODO add a description
@@ -33,6 +35,11 @@ public class DistributionServiceImpl implements DistributionService {
     public Distribution getById(Integer id) {
         Distribution distribution = repository.findById(id).get();
         return distribution;
+    }
+
+    @Override
+    public List<Distribution> getAll() {
+        return repository.findAll();
     }
 
     @Override

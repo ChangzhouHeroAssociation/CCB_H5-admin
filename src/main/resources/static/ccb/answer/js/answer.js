@@ -223,8 +223,6 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function(){
                 table.exportFile(exportTableIns.config.id, exportData, 'csv');
             }
         });
-
-
     });
 
 });

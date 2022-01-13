@@ -10,6 +10,5 @@ public interface LogChannelService {
 
     Map getAllLogChannelBeforeTheDay();
 
-
     Page<LogChannel> getLogPageBy(String channelName, Integer distributionId, Date startTime, Date endTime, Integer page, Integer limit);
 }

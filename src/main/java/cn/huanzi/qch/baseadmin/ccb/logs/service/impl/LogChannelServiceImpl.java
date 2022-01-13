@@ -1,5 +1,6 @@
 package cn.huanzi.qch.baseadmin.ccb.logs.service.impl;
 
+import cn.huanzi.qch.baseadmin.ccb.logs.pojo.Distribution;
 import cn.huanzi.qch.baseadmin.ccb.logs.pojo.LogChannel;
 import cn.huanzi.qch.baseadmin.ccb.logs.repository.LogChannelRepository;
 import cn.huanzi.qch.baseadmin.ccb.logs.service.LogChannelService;
@@ -46,18 +47,20 @@ public class LogChannelServiceImpl implements LogChannelService {
 
     @Override
     public Page<LogChannel> getLogPageBy(String channelName, Integer distributionId, Date startTime, Date endTime, Integer page, Integer limit) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Specification<LogChannel> spec = new Specification<LogChannel>() {
             @Override
             public Predicate toPredicate(Root<LogChannel> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 // 各条件之间为and
                 List<Predicate> andPredicates = new ArrayList<>();
-
                 andPredicates.add(criteriaBuilder.like(root.get("channelName"), "%" + channelName + "%"));
                 if (distributionId != null) {
-                    andPredicates.add(criteriaBuilder.equal(root.get("distributionId"), distributionId));
+                    Join<LogChannel, Distribution> joinDistribution = root.join(
+                            root.getModel().getSingularAttribute("distribution", Distribution.class),
+                            JoinType.LEFT
+                    );
+                    andPredicates.add(criteriaBuilder.equal(joinDistribution.get("id"), distributionId));
                 }
-                if (!StringUtils.isNullOrEmpty(sdf.format(startTime)) && !StringUtils.isNullOrEmpty(sdf.format(endTime))) {
+                if (startTime != null && endTime != null) {
                     andPredicates.add(criteriaBuilder.between(root.get("createTime"), startTime, endTime));
                 }
                 Predicate[] predicates = new Predicate[andPredicates.size()];

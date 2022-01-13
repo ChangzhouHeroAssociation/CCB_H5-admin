@@ -1,20 +1,14 @@
 package cn.huanzi.qch.baseadmin.ccb.logs.controller;
 
-import cn.huanzi.qch.baseadmin.ccb.logs.pojo.LogChannel;
-import cn.huanzi.qch.baseadmin.ccb.logs.pojo.LogTeacher;
-import cn.huanzi.qch.baseadmin.ccb.logs.pojo.LogVideo;
 import cn.huanzi.qch.baseadmin.ccb.logs.service.LogChannelService;
 import cn.huanzi.qch.baseadmin.ccb.logs.service.LogTeacherService;
 import cn.huanzi.qch.baseadmin.ccb.logs.service.LogVideoService;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,12 +36,6 @@ public class LogController {
     public Result channelLog() {
         Map channelLogs = logChannelService.getAllLogChannelBeforeTheDay();
         return Result.of(channelLogs);
-    }
-
-    @GetMapping("cl")
-    public Result channelLogList() {
-        Page<LogChannel> logChannelPage = logChannelService.getLogPageBy("", null, new Date(1640966400), new Date(), 1, 10);
-        return Result.of(logChannelPage);
     }
 
     @GetMapping("teacher")
