@@ -65,6 +65,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         formData.id = teacherId;
         formData.teacherPhoto = $("#tImage").attr("src");
         formData.video = $("#url").attr("src");
+        formData.cover = $("#picture").attr("src");
         /* 能编辑的肯定没有被删除 */
         formData.status = 1;
 
@@ -95,6 +96,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         $("#job").text("");
         $("#tImage").attr("src", "");
         $("#url").attr("src", "");
+        $("#picture").attr("src", "");
     }
 
 // 讲师照片上传
@@ -164,6 +166,60 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         }
     });
 
+    // 上传视频封面
+    var uploadCover = upload.render({
+        elem: '#uploadPicture'
+        , url: '/uploadFile/image' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
+        , method: 'POST'
+        // 限制格式
+        , ext: 'jpg|png|gif|bmp|jpeg'
+        , before: function (obj) {
+            //预读本地文件示例，不支持ie8
+            obj.preview(function (index, file, result) {
+                $('#picture').attr('src', result); //图片链接（base64）
+            });
+        }
+        , done: function (res) {
+            //如果上传失败
+            if (res.code == '400') {
+                return layer.msg('上传失败');
+            }
+            //上传成功的一些操作
+            $('#picture').attr('src', res.data.url);
+            $('#pictureText').html(''); //置空上传失败的状态
+            layer.msg('上传成功');
+        }
+        , error: function () {
+            //演示失败状态，并实现重传
+            var pictureText = $('#pictureText');
+            pictureText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+            pictureText.find('.demo-reload').on('click', function () {
+                uploadCover.upload();
+            });
+        }
+    });
+
+    // 查看视频封面
+    $("#showPicture").click(function() {
+        var picture = $("#picture").attr("src");
+        if (picture.trim() == '') {
+            layer.msg("请先上传视频封面");
+            return;
+        }
+        // 封面
+        var pictureElem =
+            '<div style="width: 100%; height: 100%; text-align: center;">' +
+            '<img src="' + picture + '" style="height: 100%; max-width: 100%; margin: auto;" />' +
+            '</div>';
+        layer.open({
+            type: 1,
+            shade: 0.8,
+            offset: 'auto',
+            title: '视频封面',
+            area: ['80%', '80%'],
+            content: pictureElem,
+        });
+    });
 
 });
 

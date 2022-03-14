@@ -48,5 +48,8 @@ public class Teacher implements Serializable {
     /** 视频URL */
     private String video;
 
+    /**  */
+    private String cover;
+
 }
 

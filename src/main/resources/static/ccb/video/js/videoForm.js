@@ -76,7 +76,7 @@ layui.use(['table', 'form', 'upload', 'layer', 'element'], function() {
         // 封面
         var pictureElem =
             '<div style="width: 100%; height: 100%; text-align: center;">' +
-            '<img src="' + picture + '" style="max-height: 100%; margin: auto;" />' +
+            '<img src="' + picture + '" style="height: 100%; max-width: 100%; margin: auto;" />' +
             '</div>';
         layer.open({
             type: 1,
